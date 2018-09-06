@@ -1,0 +1,6 @@
+Three things we need to work with PHP:
+
+1) The file must be located on a PHP enabled web server.
+2) The file has a .php extension.
+3) The PHP code is within PHP blocks <?php ?>
+
