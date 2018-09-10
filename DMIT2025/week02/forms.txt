@@ -1,0 +1,31 @@
+HTML Forms
+-----------
+
+The HTML form does not do anything. it simply present the UI to the user. THe data must be processed with a smart language.
+
+The <form> tag:
+- Must be opened before and close after all the form elements, so they can be processed together.
+- 3 essential attributes:
+    - name/id/class:
+    - method: can be GET or POST
+    - action: the URI of the script that receives the user-inputted data from the form.
+
+example: <form name="myform" method="post" action="mailer.php">
+
+Form Elements:
+    - the actual visible elements the user interacts with.
+    - each MUST be identified with a unique name attribute (except radio buttons). This is the receiving script can identify the values from each form element.
+
+example: <input type="text" name="username">
+
+Input Types:
+    - text
+    - password
+    - submit
+    - radio
+    - checkbox
+Others:
+    - select
+    - textarea
+
+

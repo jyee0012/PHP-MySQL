@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Basic HTML Form</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <form name="myform" method="get" action="#">
+            Name: <input type="text" name="username"> <br>
+            Password: <input type="password" name="password"> <br>
+            Gender: 
+            male <input type="radio" name="gender" value="male">
+            / female <input type="radio" name="gender" value="female">
+            / undecided <input type="radio" name="gender" value="undecided">
+            / other <input type="radio" name="gender" value="other">
+            <br>
+            Please enter your specified gender <input type="text" name="otherGender" disabled> <br>
+            Agree to terms: <input type="checkbox" name="terms"> <br>
+            Country: <select name="country" id="">
+                <option value="canada">Canada</option>
+                <option value="us">United States</option>
+                <option value="australia">Australia</option>
+                <option value="africa">Africa</option>
+                <option value="britain">Britain</option>
+            </select><br>
+            Comments: <textarea name="comments" cols="30" rows="10"></textarea>
+        </form>
+        <script src="" async defer></script>
+    </body>
+</html>
