@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Web Form - Styled with CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style type="text/css">
+body {
+	background-color: #ccc;
+	font-family: verdana;
+	font-size: 100%;
+
+}
+#container {
+	background-color: #fff;
+	width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+}
+
+#myform p {
+	width: 350px;
+	clear: left;
+	margin:0;
+	padding: 15px 0px 5px 0px;
+	padding-left: 155px;  /*width of left "column" containing the labels */
+
+}
+#myform label{
+	float:left;
+	margin-left: -155px;
+	width: 150px;
+}
+
+#myform input[type="text"],select,textarea {
+	width: 300px;
+	/* Optional eye-candy here */
+	border: 1px solid #ccc;
+	background-color: #eaeaea;
+}
+#myform textarea {
+	height: 100px;
+}
+.mysubmit {
+	border: 1px solid #ccc;
+	background-color: #000;
+	color: #fff;
+	font-weight: bold;
+	width: 200px;
+}
+/*******************************************
+Just a quick Media Query for a mobile layout
+********************************************/
+@media screen and (max-width: 480px) {
+	body {
+		background-color: #f00; /* just to test break point ! and to see if any student actually looks at the code or just whines about the red bg :) */
+		
+	}
+	#container {
+		width: 100%;
+	}
+	#myform p {
+		width: 100%;
+		clear: left;
+		margin:0;
+		padding:0px;
+		padding-left: 0;  
+
+	}
+	#myform input[type="text"],select,textarea {
+		width: 90%;
+	
+	}
+	#myform label{
+		float:left;
+		margin-left: 0;
+		width: 100%;
+	}
+
+}
+
+</style>
+</head>
+
+<body>
+<div id="container">
+<h2>My Form</h2>
+
+<form id="myform" method="get" action="formdata.php">
+<!--
+<label> element: Usually bound to a control, in this case a form element.
+"for" attribute: Tabs the focus to the input element associated with that label.
+-->
+<p>
+<label for="user">Name:</label>
+<input type="text" id="user" name="user" value="" />
+
+</p>
+
+<p>
+<label for="emailaddress">Email Address:</label>
+<input type="text" id="emailaddress" name="emailaddress" value="" />
+
+</p>
+
+<p>
+<label for="address1">Address 1:</label>
+<input type="text" id="address1" name="address1" value="" />
+
+</p>
+
+<p>
+<label for="address2">Address 2:</label>
+<input type="text" id="address2" name="address2" value="" />
+
+</p>
+
+<p>
+<label for="city">City:</label>
+<input type="text" id="city" name="city" value="" />
+
+</p>
+
+<p>
+<label for="state">State/Province:</label>
+<input type="text" id="state" name="state" value="" />
+
+</p>
+
+<p>
+<label for="country">Country:</label>
+<select id="country" name="country" />
+		<option value="" selected="selected">-Select Country-</option>
+		<option value="CA">Canada</option>
+		<option value="US">U.S.</option>
+		<option value="UK">U.K.</option>
+		<option value="FR">France</option>
+		<option value="ME">Mexico</option>
+		<option value="TT">Trinidad and Tobago</option>
+
+</select>
+
+</p>
+
+<p>
+<label for="sex">Gender</label>
+M: <input type="radio" id="sex1" name="sex" value="M" />
+F: <input type="radio" id="sex2" name="sex" value="F" />
+</p>
+
+
+
+<p>
+<label for="comments">Comments:</label>
+<textarea id="comments" name="comments"  />
+</textarea>
+</p>
+
+
+
+
+
+<p>
+<label for="terms">Agree to Terms</label>
+<input type="checkbox" id="terms" name="terms" />
+
+</p>
+
+<p>
+
+<input type="submit" id="submit" name="submit" class="mysubmit" value="Submit Info" />
+
+</p>
+
+
+</form>
+
+
+</div>
+</body>
+</html>
+
