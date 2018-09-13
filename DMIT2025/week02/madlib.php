@@ -50,6 +50,7 @@
 			<div class="form-group">
 				<label for="garment">Garment:</label>
 				<select class="form-control" id="garment" name="garment">
+					<option>plain hoodie</option>
 					<option>thong monokini</option>
 					<option>Gap Spring catalog vest</option>
 					<option>pair of Value Village special plaid pants</option>
@@ -67,10 +68,22 @@
 				<div class="radio">
 					<label><input type="radio" name="gender" value="female">Female</label>
 				</div>
-				<div class="radio">
+				<!-- <div class="radio">
 					<label><input type="radio" name="gender" value="other">Other</label>
-				</div>
+				</div> -->
 		  </div>
+
+			<div class="form-group">
+				<label for="end">Ending:</label>
+				<select class="form-control" id="end" name="end">
+					<option>happy</option>
+					<option>sad</option>
+					<option>bad</option>
+					<option>funny</option> 
+					<option>game</option> 
+					<option>.....</option>
+				</select>
+			</div>
 
 		  <input type="submit" class="btn btn-default" name="mysubmit">
 
@@ -82,28 +95,82 @@
 			$color = $_POST["color"];
 			$garment = $_POST["garment"];
 			$gender = $_POST["gender"];
-			echo "$fname, $lname, $color, $garment, $gender";
+			$end = $_POST["end"];
 
-			if ($gender == "male")
-			{
+			//echo "$fname, $lname, $color, $garment, $gender";
+			//echo $end;
+			
+			switch($gender){
+				case "male":
 				$pref = "girl";
-			}
-			else
-			{
+				$gender = "boy";
+				break;
+				case "female":
 				$pref = "boy";
+				$gender = "girl";
+				break;
+				default:
+				$pref = "it";
+				break;
 			}
+
+			switch($end){
+				case "happy":
+				$ending = "";
+				break;
+				case "sad":
+				$ending = "";
+				break;
+				case "bad":
+				$ending = "";
+				break;
+				case "funny":
+				$ending = "";
+				break;
+				case ".....":
+				$ending = "Then all of a sudden $fname woke up.";
+				break;
+			}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 			if (isset($_POST['mysubmit']))
 			{
 				//echo "submit";
-				$story = "Once upon a time, there was a $gender name $fname $lname. One fine day, $fname was out and about wearing a $color $garment and looking for something to do.";
+				$story = "Once upon a time, there was a $gender name $fname $lname. One fine day, $fname was out and about wearing a $color $garment and looking for something to do. <br>";
 				
 				$story .= "Then, $fname saw a cute $pref walk by. \"Hey Cutie\" said $fname. <br>";
 				$story .= "The $pref looked in the direction of $fname, and fell down laughing. \"What are you doing wearing that ridiculous $color $garment\" said the $pref. <br>";
 
-				// on your own, finish the story......
+				echo "<br>";
 				echo "<p>";
-				echo $story;
+				// on your own, finish the story......
+				if ($fname != "" && $lname != "" && $gender != ""){
+					echo $story;
+					echo $ending;
+				}else{
+					echo "Please fill in all information above.";
+				}
 				echo "</p>";
 			}
 			
