@@ -1,0 +1,2142 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html id="ie7" lang="en">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="en">
+<![endif]-->
+<!--[if !(IE 7) & !(IE 8)]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Chapter 20: Mithril Golems | RPGNovels</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="https://rpgnovels.com/xmlrpc.php" />
+<!--[if lt IE 9]>
+<script src="https://s2.wp.com/wp-content/themes/pub/chateau/js/html5.js" type="text/javascript"></script>
+<![endif]-->
+<script type="text/javascript">
+  WebFontConfig = {"google":{"families":["Open+Sans:r:latin,latin-ext","Open+Sans:r,i,b,bi:latin,latin-ext"]}};
+  (function() {
+    var wf = document.createElement('script');
+    wf.src = 'https://s0.wp.com/wp-content/plugins/custom-fonts/js/webfont.js';
+    wf.type = 'text/javascript';
+    wf.async = 'true';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(wf, s);
+	})();
+</script><style id="jetpack-custom-fonts-css">.wf-active #site-title, .wf-active #site-title a{font-family:"Open Sans",sans-serif;font-style:normal;font-weight:400}.wf-active body{font-size:130%}.wf-active body{font-size:98.8%;font-family:"Open Sans",sans-serif}.wf-active #menu a{font-size:1.17em}.wf-active .post-info .post-com-count span{font-family:"Open Sans",sans-serif}.wf-active .post-extras li, .wf-active .post-extras p{font-size:1.17em}.wf-active .post-entry{font-size:16.9px;font-family:"Open Sans",sans-serif}.wf-active .post-entry big{font-size:170.625%}.wf-active .post-entry thead th, .wf-active .post-entry tr th{font-size:15.6px}.wf-active .gallery-caption, .wf-active .wp-caption .wp-caption-text{font-size:15.6px}.wf-active .wp-caption .wp-caption-text:before{font-size:14.3px}.wf-active #author-description{font-size:1.17em}.wf-active .category-archive-meta p{font-size:1.17em}.wf-active #more-posts-inner p{font-size:1.17em}.wf-active .comment-date{font-size:1.17em}.wf-active .comment-text .reply-link a{font-size:1.04em}.wf-active .comment-text .edit-comment{font-size:1.04em}.wf-active #commentform label{font-size:1.04em}.wf-active .comment-notes, .wf-active .form-allowed-tags, .wf-active .logged-in-as, .wf-active .must-log-in{font-size:14.3px}.wf-active #reply-title a#cancel-comment-reply-link{font-size:1.3em}.wf-active .sidebar-widget{font-size:1.17em}.wf-active .sidebar-widget p{font-size:1.17em}.wf-active #calendar_wrap table{font-size:1.17em}.wf-active .footer-widget-item{font-size:1.17em}.wf-active .footer-widget-item #calendar_wrap table{font-size:1.17em}.wf-active .footer-widget p.wp-caption-text{font-size:1.17em}.wf-active .post-entry .sharing a{font-size:1.17em}.wf-active #upper-footer-widgets .widget_text, .wf-active #comments h3, .wf-active #error404, .wf-active #more-posts-inner h1, .wf-active #respond h3, .wf-active .more-posts .notice, .wf-active .more-posts .page-title, .wf-active .post-date, .wf-active .post-entry blockquote, .wf-active .post-entry cite, .wf-active .post-entry h3, .wf-active .post-extras strong, .wf-active .post-title h1, .wf-active .post-title h2{font-family:"Open Sans",sans-serif;font-style:normal;font-weight:400}.wf-active #main-title #site-description{font-family:"Open Sans",sans-serif;font-style:normal;font-weight:400}.wf-active .post-title h1{font-style:normal;font-weight:400}.wf-active .entry-format, .wf-active .more-posts h2.entry-format{font-style:normal;font-weight:400}.wf-active .post-date{font-style:normal;font-weight:400}.wf-active .post-date strong{font-weight:400;font-style:normal}.wf-active .post-date em{font-style:normal;font-weight:400}.wf-active .post-date span{font-style:normal;font-weight:400}.wf-active .post-extras strong{font-weight:400;font-style:normal}.wf-active .post-entry h1{font-family:"Open Sans",sans-serif;font-style:normal;font-weight:400}.wf-active .post-entry h2{font-family:"Open Sans",sans-serif;font-style:normal;font-weight:400}.wf-active .post-entry h3{font-family:"Open Sans",sans-serif;font-style:normal;font-weight:400}.wf-active .post-entry h4{font-family:"Open Sans",sans-serif;font-style:normal;font-weight:400}.wf-active .post-entry h5, .wf-active .post-entry h6{font-family:"Open Sans",sans-serif;font-style:normal;font-weight:400}.wf-active .post-entry dt{font-weight:400;font-style:normal}.wf-active .post-entry blockquote{font-style:normal;font-weight:400}.wf-active .post-entry blockquote cite, .wf-active .post-entry blockquote em, .wf-active .post-entry blockquote i{font-style:normal;font-weight:400}.wf-active .post-entry blockquote p{font-style:normal;font-weight:400}.wf-active .post-entry cite{font-style:normal;font-weight:400}.wf-active #more-posts-inner h1{font-weight:400;font-style:normal}.wf-active #comments h3 span{font-style:normal;font-weight:400}.wf-active .sidebar-widget h1{font-family:"Open Sans",sans-serif;font-style:normal;font-weight:400}.wf-active #upper-footer-widgets .widget_text{font-style:normal;font-weight:400}.wf-active #upper-footer-widgets .widget_text h1{font-weight:400;font-style:normal}.wf-active #upper-footer-widgets .widget_text p{font-style:normal;font-weight:400}.wf-active .footer-widget-item h1{font-weight:400;font-family:"Open Sans",sans-serif;font-style:normal}.wf-active #error404 h1{font-weight:400;font-style:normal}.wf-active #error404 p{font-style:normal;font-weight:400}</style>
+		<script src='https://r-login.wordpress.com/remote-login.php?action=js&amp;host=rpgnovels.com&amp;id=115917209&amp;t=1537283694&amp;back=https%3A%2F%2Frpgnovels.com%2Fmaou_vol1ch20%2F' type="text/javascript"></script>
+		<script type="text/javascript">
+		/* <![CDATA[ */
+			if ( 'function' === typeof WPRemoteLogin ) {
+				document.cookie = "wordpress_test_cookie=test; path=/";
+				if ( document.cookie.match( /(;|^)\s*wordpress_test_cookie\=/ ) ) {
+					WPRemoteLogin();
+				}
+			}
+		/* ]]> */
+		</script>
+		<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//s1.wp.com' />
+<link rel='dns-prefetch' href='//rpgnoob.wordpress.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//s.pubmine.com' />
+<link rel='dns-prefetch' href='//x.bidswitch.net' />
+<link rel='dns-prefetch' href='//static.criteo.net' />
+<link rel='dns-prefetch' href='//ib.adnxs.com' />
+<link rel='dns-prefetch' href='//aax.amazon-adsystem.com' />
+<link rel='dns-prefetch' href='//bidder.criteo.com' />
+<link rel='dns-prefetch' href='//cas.criteo.com' />
+<link rel='dns-prefetch' href='//gum.criteo.com' />
+<link rel='dns-prefetch' href='//ads.pubmatic.com' />
+<link rel='dns-prefetch' href='//gads.pubmatic.com' />
+<link rel='dns-prefetch' href='//tpc.googlesyndication.com' />
+<link rel='dns-prefetch' href='//ad.doubleclick.net' />
+<link rel='dns-prefetch' href='//googleads.g.doubleclick.net' />
+<link rel='dns-prefetch' href='//www.googletagservices.com' />
+<link rel='dns-prefetch' href='//cdn.switchadhub.com' />
+<link rel='dns-prefetch' href='//delivery.g.switchadhub.com' />
+<link rel='dns-prefetch' href='//delivery.swid.switchadhub.com' />
+<link rel="alternate" type="application/rss+xml" title="RPGNovels &raquo; Feed" href="https://rpgnovels.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="RPGNovels &raquo; Comments Feed" href="https://rpgnovels.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="RPGNovels &raquo; Chapter 20: Mithril&nbsp;Golems Comments Feed" href="https://rpgnovels.com/maou_vol1ch20/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s1.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1532082729h&ver=4.9.8"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55358,56760,9792,65039],[55358,56760,8203,9792,65039]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0-1' href='https://s1.wp.com/_static/??-eJyNkttOwzAMhl8IE22McoV4ljQ1rVfnoDpZ2duTNipjbES7iezk/3z4FTUHMN5FdFHZBIFTT07UHIy3IJYYz3+yZyPypO5jTCOKOmIM2oywZjfyln1/6eOnTneievat5se0ZtARdYLTvjaK8RPmext0XBQWO9LIaLOshs3U9RgzLlsMEb+qiA3N1mgJh7x61aTiZtuGCUUgn5aShTjk2apcppbpi63rgFc3BSXlfKRMy09wU7O0UiG1m5dK4pnxESE5U8SwrvGIlZjyqx8JgfWsItrAuZb80/NOAfGGNEPZ6ndSg3v0wN7oSN5dJfDJmqYaOuHy73LYry5f0gX6sO+71/1b83LYHZrjNyoQONs=?cssminify=yes' type='text/css' media='all' />
+<link rel='stylesheet' id='print-css-1-1' href='https://s2.wp.com/wp-content/mu-plugins/global-print/global-print.css?m=1465851035h&cssminify=yes' type='text/css' media='print' />
+<link rel='stylesheet' id='all-css-2-1' href='https://s0.wp.com/_static/??-eJx9i0EKQjEMBS9kDdVfXIlnyS+1jaRJafLx+uJCRBRXbx7MwH2ErOJFHPoWBm+VxACzk8qK8037bLaD3/pQ83BlpAnWcJLU1/6rTDMhB9aqn+cr8lZ6MWgLVNYV+Slc+jmmQzrFtMTj7QHFQEmu?cssminify=yes' type='text/css' media='all' />
+<script type='text/javascript' src='https://s0.wp.com/_static/??-eJyFztEKwjAMBdAfsquTiXsRv6XWOFKXtDbphn69HeiDMBQCgdzDJXZOBtmP5QJiQ517gfx4rybIxv4ChnDITqEh5A/2kRVYF0vxjCOYIpDdUG+16BpXXIqiBCIVraTfLyFPCPNfFkCT8zeTQfC5tJ7o2Hb9Yde3+24bXjRNW9I='></script>
+<link rel='stylesheet' id='all-css-0-2' href='https://s0.wp.com/wp-content/mu-plugins/highlander-comments/style.css?m=1530132353h&cssminify=yes' type='text/css' media='all' />
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='https://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563h&#038;ver=20110606' type='text/css' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://rpgnoob.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress.com" />
+<link rel="canonical" href="https://rpgnovels.com/maou_vol1ch20/" />
+<link rel='shortlink' href='https://wp.me/P7Qnmp-dF' />
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Frpgnovels.com%2Fmaou_vol1ch20%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Frpgnovels.com%2Fmaou_vol1ch20%2F&amp;for=wpcom-auto-discovery" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Chapter 20: Mithril Golems" />
+<meta property="og:url" content="https://rpgnovels.com/maou_vol1ch20/" />
+<meta property="og:description" content="Previous Chapter Next Chapter The time limit for building a Dungeon has ended. Right at that moment, my consciousness drifted away. I was summoned by the Creator. For a time now, I was on a separat…" />
+<meta property="article:published_time" content="2016-11-16T10:58:20+00:00" />
+<meta property="article:modified_time" content="2016-11-19T22:50:18+00:00" />
+<meta property="og:site_name" content="RPGNovels" />
+<meta property="og:image" content="https://rpgnoob.files.wordpress.com/2018/08/cropped-maou-marcho.jpg?w=162" />
+<meta property="og:image:width" content="200" />
+<meta property="og:image:height" content="200" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:site" content="@wordpressdotcom" />
+<meta name="twitter:text:title" content="Chapter 20: Mithril&nbsp;Golems" />
+<meta name="twitter:image" content="https://rpgnoob.files.wordpress.com/2018/08/cropped-maou-marcho.jpg?w=162" />
+<meta name="twitter:card" content="summary" />
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="search" type="application/opensearchdescription+xml" href="https://rpgnovels.com/osd.xml" title="RPGNovels" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+<meta name="theme-color" content="#594f4f" />
+
+		<style type="text/css">
+		#menu li,
+		.post-date em,
+		.sticky .entry-format,
+		.more-posts .sticky h2.entry-format,
+		.more-posts h2.entry-format,
+		#comments h3 span {
+			background-color: #594f4f;
+		}
+
+		#menu a {
+			border-color: #594f4f		}
+		</style>
+	<style>
+		#page {
+			border-color: #0400d1;
+		}
+		#main-title #site-title a:hover,
+		.post-title h1,
+		.post-title h1 a,
+		.post-extras .post-edit-link,
+		.post-entry a,
+		.post-entry .more-link:hover,
+		#author-description a,
+		.more-posts .page-title em,
+		#more-posts-inner a:hover,
+		#comments li a:hover,
+		.comment-text p a,
+		.comment-text .reply-link a:hover,
+		#comments li.byuser .comment-author,
+		#comments #respond h3,
+		.sidebar-widget a:active,
+		#calendar_wrap table td a,
+		#nav-below a:active,
+		#error404 a:hover,
+		#menu .current-menu-item > a,
+		#menu .current_page_item > a,
+		#comment-nav-above a,
+		#comment-nav-below a,
+		.comment-text table a {
+			color: #0400d1;
+		}
+	</style>
+<meta name="application-name" content="RPGNovels" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-tooltip" content="Just another noob" /><meta name="msapplication-task" content="name=Subscribe;action-uri=https://rpgnovels.com/feed/;icon-uri=https://rpgnoob.files.wordpress.com/2018/08/cropped-maou-marcho.jpg?w=16" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="description" content="Previous Chapter Next Chapter The time limit for building a Dungeon has ended. Right at that moment, my consciousness drifted away. I was summoned by the Creator. For a time now, I was on a separate white space, the cave dungeon I had just created at my back. &nbsp; And at the front was the&hellip;" />
+<style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #594f4f; }
+</style>
+			<script type="text/javascript">
+		function __ATA_CC() {var v = document.cookie.match('(^|;) ?personalized-ads-consent=([^;]*)(;|$)');return v ? 1 : 0;}
+		var __ATA_PP = { pt: 2, ht: 1, tn: 'chateau', amp: false, siteid: 115917209, consent: __ATA_CC() };
+		var __ATA = __ATA || {};
+		__ATA.cmd = __ATA.cmd || [];
+		__ATA.criteo = __ATA.criteo || {};
+		__ATA.criteo.cmd = __ATA.criteo.cmd || [];
+		</script>
+		<script type="text/javascript" src="//s.pubmine.com/head.js" async></script><style type="text/css" id="syntaxhighlighteranchor"></style>
+<style type="text/css" id="custom-colors-css">#menu li{background:transparent}#menu a{border-color:transparent}#search #s{background:#fff}#menu a{color:#bababa}#menu ul ul a,#menu ul ul a:hover,#page #menu a:hover,.post-entry a:hover,.post-extras .post-edit-link:hover{color:#7f7f7f}#main-title #site-title a,#more-posts-inner a{color:#fff}.sticky .entry-format,.more-posts .sticky h2.entry-format,.more-posts h2.entry-format,.featured{color:#fff}.post-date{color:#cecece}#page #menu a:hover,.post-entry a:hover,.post-extras .post-edit-link:hover{color:#fff}a.entry-format-link,a.entry-format-link:visited{color:#cecece}.post-extras a:hover{color:#cecece}#comments h3{color:#cecece}#comments li.pingback a,.comment-text p a:hover{color:#cecece}.comment-text .reply-link a{color:#cecece}.comment-author,.comment-author a{color:#cecece}#comments #reply-title a,#comment-nav-above a,#comment-nav-below a,.comment-text table a{color:#cecece}.comment-text p a:hover{color:#cecece}.post-entry .more-link{color:#cecece}.post-info a:hover{color:#cecece}.sidebar-widget a:hover{color:#cecece}.sidebar-widget{color:#cecece}.featured a{color:#cecece}#main-title #site-description{color:#bababa}.post-info{color:#bababa}.post-date span{color:#cecece}.post-info .post-com-count a{color:#bababa}#main-image{border-color:#ddd}#main-image{border-color:rgba(221,221,221,.3)}#main-image img{border-color:#ddd}#main-image img{border-color:rgba(221,221,221,.3)}.post-title h1{border-color:#ddd}.post-title h1{border-color:rgba(221,221,221,.3)}#content,.content-sidebar #content{border-color:#ddd}#content,.content-sidebar #content{border-color:rgba(221,221,221,.3)}.sidebar-widget li{border-color:#ddd}.sidebar-widget li{border-color:rgba(221,221,221,.3)}.more-posts .page-title,.more-posts .notice{border-color:#ddd}.more-posts .page-title,.more-posts .notice{border-color:rgba(221,221,221,.3)}#more-posts-inner span{border-color:#ddd}#more-posts-inner span{border-color:rgba(221,221,221,.3)}#menu .current-menu-item>a,#menu .current_page_item>a,#menu .current-menu-ancestor>a{border-top-color:#ddd}#menu .current-menu-item>a,#menu .current_page_item>a,#menu .current-menu-ancestor>a{border-top-color:rgba(221,221,221,.3)}.single .post{border-color:#ddd}.single .post{border-color:rgba(221,221,221,.3)}.post-extras strong{border-color:#ddd}.post-extras strong{border-color:rgba(221,221,221,.3)}.comment-text{border-color:#ddd}.comment-text{border-color:rgba(221,221,221,.3)}#comments li{border-color:#ddd}#comments li{border-color:rgba(221,221,221,.3)}.post-entry{color:#fff}.sidebar-widget a{color:#fff}.post-extras{color:#fff}.post-extras p a{color:#fff}#more-posts-inner article{color:#cecece}.comment-text p{color:#cecece}#menu .current-menu-item>a,#menu .current_page_item>a,#menu .current-menu-ancestor>a{border-bottom-color:#ccc}#menu .current-menu-item>a,#menu .current_page_item>a,#menu .current-menu-ancestor>a{border-bottom-color:rgba(204,204,204,.3)}#comments #respond h3{border-color:#ccc}#comments #respond h3{border-color:rgba(204,204,204,.3)}#comments h3{border-bottom:#ccc}#comments h3{border-bottom:rgba(204,204,204,.3)}.sidebar-widget li{color:#fff}.wp-caption .wp-caption-text:before,.wp-caption .wp-caption-text,.gallery-caption{color:#cecece}.more-posts .page-title,.more-posts .notice{color:#cecece}#comments li.pingback .comment-text .edit-comment a{color:#cecece}#copyright a{color:#919191}#page{background-image:#594f4f}.sticky .entry-format,.more-posts .sticky h2.entry-format,.more-posts h2.entry-format,.featured{background-color:#594f4f}.post-date em{background-color:#594f4f}#main-image{border-color:#594f4f}#main-image{border-color:rgba(89,79,79,.1)}.post-info a{color:#9de0ad}.sidebar-widget h1{color:#9de0ad}.sidebar-widget h1,#subscribe-item h1{color:#9de0ad}.post-entry h3,#comments .comment-text h3{color:#9de0ad}.post-entry blockquote p,.comment-text blockquote p{color:#9de0ad}#main-title #site-title a:hover{color:#a5d8d6}.post-title h1,.post-title h1 a{color:#a5d8d6}#page{border-color:#45ada8}.more-posts .page-title em{color:#a5d8d6}.sidebar-widget a:active{color:#a5d8d6}#page .post-edit-link a{color:#a5d8d6}#menu .current-menu-item>a,#menu .current_page_item>a,#menu .current-menu-ancestor>a{color:#a5d8d6}.post-title h1,.post-entry a,.post-extras .post-edit-link,#more-posts-inner a:hover{color:#a5d8d6}#comments #respond h3{color:#a5d8d6}#nav-below a:active{color:#2a6e6b}.comment-author a:hover{color:#a5d8d6}.comment-text p a{color:#a5d8d6}.post-entry .more-link:hover{color:#a5d8d6}#comments li a:hover{color:#a5d8d6}</style>
+<link rel="icon" href="https://rpgnoob.files.wordpress.com/2018/08/cropped-maou-marcho.jpg?w=32" sizes="32x32" />
+<link rel="icon" href="https://rpgnoob.files.wordpress.com/2018/08/cropped-maou-marcho.jpg?w=162" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="https://rpgnoob.files.wordpress.com/2018/08/cropped-maou-marcho.jpg?w=162" />
+<meta name="msapplication-TileImage" content="https://rpgnoob.files.wordpress.com/2018/08/cropped-maou-marcho.jpg?w=162" />
+</head>
+
+<body class="page-template-default page page-id-847 custom-background mp6 customizer-styles-applied two-column content-sidebar highlander-enabled highlander-light custom-colors">
+<div id="page" class="hfeed">
+			<div class="wpcnt">
+			<div class="wpa top">
+				<span class="wpa-about">Advertisements</span>
+				<div class="u">
+						<div style="padding-bottom:15px;width:728px;height:90px;">
+		<div id="atatags-1159172092-5ba1166eaaacc">
+			<script type="text/javascript">
+			__ATA.cmd.push(function() {
+				__ATA.initSlot('atatags-1159172092-5ba1166eaaacc',  {
+					collapseEmpty: 'before',
+					sectionId: '1159172092',
+					width: 728,
+					height: 90
+				});
+			});
+			</script>
+		</div></div>
+				</div>
+				
+			</div>
+		</div>
+			<div id="page-inner">
+		<header id="branding" role="banner">
+			<nav id="menu" role="navigation">
+				<ul id="menu-menu" class="menu clear-fix"><li id="menu-item-918" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-918"><a href="https://rpgnovels.com/the-demon-lords-urban-development-the-strongest-dungeon-is-a-modern-day-town/">The Demon Lord&#8217;s Urban Development!</a></li>
+<li id="menu-item-919" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-919"><a href="https://rpgnovels.com/contact/">Contact</a></li>
+<li id="menu-item-1453" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1453"><a href="https://rpgnovels.com/will-work-for-food/">Support the Translator</a></li>
+</ul>			</nav><!-- end #menu -->
+
+			<div id="main-title">
+				<hgroup>
+					<h1 id="site-title"><a href="https://rpgnovels.com/" title="RPGNovels" rel="home">RPGNovels</a></h1>
+												<h2 id="site-description">~ Just another noob</h2>
+									</hgroup>
+			</div><!-- end #main-title -->
+
+							<div id="search">
+					
+<form method="get" action="https://rpgnovels.com//" >
+	<div>
+		<label for="s" class="assistive-text">Search:</label>
+		<input type="text" value="Search&hellip;" name="s" id="s" onfocus="this.value=''" />
+		<input type="submit" name="search" value="Go" />
+	</div>
+</form>
+				</div><!-- end #search -->
+			
+			<div id="main-image">
+							<a href="https://rpgnovels.com/">
+													<img src="https://rpgnoob.files.wordpress.com/2017/01/cropped-cropped-maou-widespread1.png" width="960" height="406" alt="RPGNovels" title="RPGNovels" />
+									</a>
+						</div><!-- end #main-image -->
+		</header><!-- #branding -->
+		<div id="main" class="clear-fix">
+
+
+<div id="primary">
+	<div id="content" class="clear-fix" role="main">
+
+		
+			<article id="post-847" class="post-847 page type-page status-publish hentry">
+	<header class="post-title">
+		<h1>Chapter 20: Mithril&nbsp;Golems</h1>
+	</header><!-- end .post-title -->
+	<div class="post-content clear-fix">
+		<div class="post-entry">
+			<p><a href="https://rpgnoob.wordpress.com/maou_vol1ch19/">Previous Chapter</a></p>
+<p style="text-align:right;"><a href="https://rpgnoob.wordpress.com/maou_vol1ch21/">Next Chapter</a></p>
+<hr />
+<p>The time limit for building a Dungeon has ended.</p>
+<p>Right at that moment, my consciousness drifted away.</p>
+<p>I was summoned by the Creator.</p>
+<p>For a time now, I was on a separate white space, the cave dungeon I had just created at my back.</p>
+<p>&nbsp;</p>
+<p>And at the front was the green-haired conceited girl, [Wind] Demon Lord Stolas. By her back were a lot of monsters. The defending monsters were deployed in the Dungeon so these must be the monsters she would bring to attack my Dungeon.</p>
+<p>I was the same. I had Tenko, Elder Dwarf, Wight, and the Skeleton squad by my back. The Gryphon, too. All of my monsters aside from the Golems were here.</p>
+<p>However, by no means were Stolas’s monsters, numbering close to a hundred, too many. Given that she was born around the same time as I was, she should have around the same amount of monsters that I could create. Was she bringing all of her monsters to attack? No, that’s not it. Could there be a trick at play here?</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>At Stolas’s back was also a cave-type Dungeon.</p>
+<p>However, compared to my shabby-looking cave, hers was as splendid as her budget allowed. Her vainness was showing through.</p>
+<p>&nbsp;</p>
+<p>“Good, you didn’t run away. I’ll praise you that much.”</p>
+<p>“There’s no way I’ll let the chance to get your hard-to-get medal slip away.”</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Following my cheap shot, Stolas popped a vein.</p>
+<p>I wanted to get her as angry as possible to increase my chances of winning.</p>
+<p>&nbsp;</p>
+<p>A gigantic screen was suspended in the sky of the white space.</p>
+<p>Projected on the screen were the figures of the exhilarated Demon Lords. Our own figures were probably being projected on their side as well.</p>
+<p>Stolas was visibly anxious. And why wouldn’t she be? For her, winning against a run of the mill Demon Lord like me was all but certain. Trampling over me was even a given.</p>
+<p>&nbsp;</p>
+<p>“…I won’t even need the full two hours to crush you; I’ll end you right away!”</p>
+<p>“You wish. But I doubt you’d even be able to conquer my Dungeon at all so, I, on the other hand, will be taking it nice and slow.”</p>
+<p>&nbsp;</p>
+<p>Being told this much, she would have little choice but to go at it with full force right from the start.</p>
+<p>She would have to hurry thus her options at how she should tackle things would severely dwindle.</p>
+<p>&nbsp;</p>
+<p>“Now then, let us move on to the main event of tonight’s [Evening Party]. Taking part and putting their medals and pride on the line are [Creation] Demon Lord Procell and [Wind] Demon Lord Stolas. Don’t take your eyes off from their fight.”</p>
+<p>&nbsp;</p>
+<p>The Creator’s voice was heard.</p>
+<p>Finally.</p>
+<p>&nbsp;</p>
+<p>“Before the match, I’ll show you something interesting. As usual, we shall bet on our participants. These are the current rates. For [Creation], 1.3 times. For [Wind], the rate is 3 times. Rumor has it that [Creation] holds an overwhelming advantage but will [Wind] be able to overturn this rumor, I wonder?”</p>
+<p>&nbsp;</p>
+<p>The amount of DP the viewing Demon Lords had wagered were being displayed on the monitor along with the going rate.</p>
+<p>It was heavily on my favor.</p>
+<p>I guess it was logical. The Demon Lords who saw through my true capabilities, who knew I was being followed by S rank monsters, and who held influence over others, all had vast amounts of DP to wager.</p>
+<p>Although our fighting force appeared to be equal, they probably saw something about me who could make S rank monsters.</p>
+<p>If that was so, it was understandable they would pool their wagers on me.</p>
+<p>But Stolas who couldn’t comprehend any of it was in great shock.</p>
+<p>&nbsp;</p>
+<p>“Bah, don’t make me laugh! You see me as someone inferior to this man!? I’ll show you all my powers, the powers of a future Great Demon Lord!”</p>
+<p>&nbsp;</p>
+<p>Stolas was completely beside herself.</p>
+<p>&nbsp;</p>
+<p>“Well then, time to start the [War]. The rules are simple. Both of you are given two hours. Achieve victory by either breaking the enemy crystal or killing the enemy Demon Lord itself before the time limit expires. Use this white space to invade the enemy’s Dungeon but any disturbance on this white space itself is forbidden. Now, are your preparations complete?”</p>
+<p>&nbsp;</p>
+<p>Stolas and I both nodded.</p>
+<p>These rules were reasonable. After all, if one were allowed to make any disturbance at this place, they would be employing an extremely effective tactic of not letting the enemy force enter your Dungeon.</p>
+<p>&nbsp;</p>
+<p>“Now, let the [War] begin!”</p>
+<p>&nbsp;</p>
+<p>~From the perspective of [Wind] Demon Lord Stolas~</p>
+<p>&nbsp;</p>
+<p>I grinded my teeth and endured my vexations.</p>
+<p>The betting rates shocked me.</p>
+<p>They’ve placed my value less than that man? The chosen me who had one of the four great elements? Impossible. Impossible. Impossible.</p>
+<p>As I entered my Dungeon, I flew to the innermost room where the crystal was via [Transfer].</p>
+<p>It was a privilege a Demon Lord has; to be able to jump to any room they wanted to as long as it was within their own Dungeon. And being where it was safest was a normal play considering everything would be lost should the Demon Lord fall.</p>
+<p>There was no need for me to unreasonably go out to the frontlines neither.</p>
+<p>It was all because my Unique Skill was the strongest.</p>
+<p>[Wind] Unique Skill was as follows: first, of course, was the ability to blow wind; the ability to generate wind blades; the highly versatile ability to fly; and most of all, the ability to use [Omnipresence].</p>
+<p><span style="color:#999999;">Note: [Uneven Distribution] to [Omnipresence]</span></p>
+<p>Put plainly, it’s a skill that would make temporary copies of my monsters.</p>
+<p>Each instance of use would produce up to a hundred monsters at a rank lower than they were originally before. However, it could only be used once a day and the copies would only last an hour before they vanish.</p>
+<p>Its effects had already been activated all this time. All of the copies would be deployed outside to conquer the enemy’s Dungeon.</p>
+<p>&nbsp;</p>
+<p>“There’s no way I’d lose.”</p>
+<p>&nbsp;</p>
+<p>Yeah, no way.</p>
+<p>Ever since I was born, I had been desperately earning DP and making monsters. My forces numbered 98. Not to mention, even the weakest among them were still D rank monsters.</p>
+<p>So I, obviously, was far different from that man who only had troops so weak, he had to walk alongside a Skeleton.</p>
+<p>Even normally, I already overwhelm him in terms of both the quality and quantity of our fighting forces but what more if I doubled it via [Omnipresence]?</p>
+<p>All my monsters would be put on the defense as the monsters created by [Omnipresence] shall be focused on attacking.</p>
+<p>No, rather, I’ll send half of my original monsters to go attack. That way, I’ll be able to overwhelm him much sooner than initially planned.</p>
+<p>And thus, I issued out an order to sortie to the half of the monsters that were initially supposed to remain.</p>
+<p>Now, let the trampling begin.</p>
+<p>I, using my [Wind] skill, will leave behind my real body here as I go to the frontlines in a spiritual body as my avatar.</p>
+<p>On the white space that adjoined the two Dungeon.</p>
+<p>That man was just standing there with his subordinates, neither defending his Dungeon nor attacking mine.</p>
+<p>How deplorable. Well, it’s fine too if he stood there for the rest of his life.</p>
+<p>My avatar could only be seen by monsters that could see spirits.</p>
+<p>In fact, that man didn’t notice a thing.</p>
+<p>The fox girl, however, had her ears twitching but maybe I was just imagining things.</p>
+<p>Still, for them to not move at all, what could they be planning? Were they waiting to see what our play would be?</p>
+<p>&nbsp;</p>
+<p>“Rozelitte, let’s get started.”</p>
+<p>&nbsp;</p>
+<p>I ordered so to one of my [Monsters of the Covenant].</p>
+<p>It was an angel-type monster; the strongest combination born from the combination of my [Wind] medal and the [Holy] medal given by Astaroth-sama. A Rathgrith.</p>
+<p>(Note: ラーゼグリフ. Phonetically Razegurifu. I have no idea what kind of monster it really is. Please comment any alternatives)</p>
+<p>The A rank monsters had a lot of powerful special abilities but this one had a particularly excellent ability which made her an outstanding monster not just in terms of stats.</p>
+<p>Although the copies made by [Omnipresence] were of a lower rank than the original, [Crusaders], Rozelitte’s skill, would compensate for it by strengthening everyone under her command.</p>
+<p>That man’s monsters would be beaten senseless in an instant.</p>
+<p>&nbsp;</p>
+<p>◇</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>The angel-type monster, Rozelitte, issued out a command to attack to the monsters in the white space.</p>
+<p>The monsters in the white space numbered 98, with 50 monsters as reinforcements on standby. Most of them were C and D rank monsters with some B rank monsters mixed in.</p>
+<p>The entrance to that man’s Dungeon was narrow.</p>
+<p>The most amount of monsters that could enter all at once were around ten.</p>
+<p>Some monsters made a formation and entered the Dungeon.</p>
+<p>The inside of the Dungeon itself was located in another dimension so someone on this side wouldn’t be able to see nor hear what was happening within. That didn’t apply to Rozelitte, however, as she could communicate with all the monsters her command via telepathy. She really was a monster that specialized in commanding an army.</p>
+<p>&nbsp;</p>
+<p>“It sure is weird, right?”</p>
+<p>“Yes, they should have contacted us by now…”</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>I was as puzzled as her. There hadn’t been any message from the ones that went within.</p>
+<p>If it was safe, they would have instructed us to follow; and if there was some sort of danger, they would have asked for reinforcements. No matter what, they should have contacted us by now.</p>
+<p>That should have been the case but there was no contact from them at all.</p>
+<p>&nbsp;</p>
+<p>“Rozalitte?”</p>
+<p>“I’ve called out to them but, still, no response.”</p>
+<p>“No, it can’t be… were they killed?”</p>
+<p>&nbsp;</p>
+<p>Impossible. The first squad was mostly C ranks.</p>
+<p>Although they were weakened by [Omnipresence], the adjustments done by [Crusaders] made them more powerful than D ranks.</p>
+<p>It was then, therefore, impossible for them to vanish within a few seconds.</p>
+<p>&nbsp;</p>
+<p>“Just to be sure, let’s send in a second group.”</p>
+<p>&nbsp;</p>
+<p>I assented to her proposal.</p>
+<p>And so, a second group went in.</p>
+<p>Several seconds later, and as what was expected, no message came from them neither even after Rozelitte contacted them through telepathy.</p>
+<p>&nbsp;</p>
+<p>“Now that it has become like this, I’ll go in myself.”</p>
+<p>“Are you sure, Stolas-sama?”</p>
+<p>“Most definitely.”</p>
+<p>&nbsp;</p>
+<p>This was a spiritual body made by [Wind] so it was impossible to be destroyed and should it be destroyed, it won’t be a problem at all.</p>
+<p>This option was the most definite way to investigate the inside of this Dungeon.</p>
+<p>&nbsp;</p>
+<p>◇</p>
+<p>&nbsp;</p>
+<p>The inside of the Dungeon.</p>
+<p>&nbsp;</p>
+<p>“Huh, what is this? Is he an idiot?”</p>
+<p>&nbsp;</p>
+<p>The interior was a stone room.</p>
+<p>It had a width of just 4 meters and a length of 2 kilometers. However, there was nothing else but the long road ahead.</p>
+<p>Anyone would be able to conquer this room by just running through it.</p>
+<p>I can’t understand the reason behind this skimping to the extreme.</p>
+<p>But it was troubling that the ceiling was just 3 meters from the floor; a height wherein flying monsters wouldn’t be able to display their full potential.</p>
+<p>I then looked around.</p>
+<p>&nbsp;</p>
+<p>“Hii!?”</p>
+<p>&nbsp;</p>
+<p>What was there were the corpses of my own monsters.</p>
+<p>And they weren’t simple corpses neither; they were completely torn to bits.</p>
+<p>Just what the hell could have happened here to make them like this?</p>
+<p>After a short while, they turned into blue particles and then vanished.</p>
+<p>After seeing such, I was convinced that somehow, the monsters that went in here were killed instantly.</p>
+<p>But then, just how, exactly?</p>
+<p>When I strained my eyes, I saw two Mithril Golems standing in the far end of the room. And for some reason, there were these huge iron pipes installed.</p>
+<p>Mithril Golems, when translated into monster terms, were of B rank.</p>
+<p>But they were dimwitted and slow to react, and their great physical strength and stamina were their only redeeming features. A so-called good-for-nothing. They were no threat at all.</p>
+<p>But then, what the hell happened to my monsters?</p>
+<p>&nbsp;</p>
+<p>“Rozelitte, send in another group.”</p>
+<p>&nbsp;</p>
+<p>I wouldn’t know if I just stood here like this.</p>
+<p>I had no choice but to experiment.</p>
+<p>The Golems couldn’t see spirits so they couldn’t see me but, perhaps, if an enemy were to come into their view, they were going to do some kind of action.</p>
+<p>Rozelitte dispatched the monsters I asked for.</p>
+<p>The ten monsters that came in were a mix of Pseudo-elves and Lesser Gryphons.</p>
+<p>And then…</p>
+<p>A storm blew.</p>
+<p>Something terribly quick passed through the side of my face.</p>
+<p>And then, an explosion happened in the back. The Pseudo-elves, the Lesser Gryphons, all of them, were just blown away and turned into minced meat.</p>
+<p>Afterwards, many sounds of explosions were heard.</p>
+<p>What, what was that?</p>
+<p>&nbsp;</p>
+<p>“What the hellllllllllllllll!? What’s thaaaaaat!?”</p>
+<p>&nbsp;</p>
+<p>Not understanding anything, I screamed.</p>
+<p>When I turned to face the front, there were smoke coming out of the metal pipes installed besides the Golem on the far end of the room.</p>
+<p>It was that that attacked.</p>
+<p>An attack so nightmarish, the sound lagged behind.</p>
+<p>Furthermore, it was dealt from two kilometers away.</p>
+<p>In other words, its range was this whole room. There was nowhere to escape to.</p>
+<p>I wanted to call bullshit for the furthest an attack from any of my monsters went was only about two hundred meters and yet, this one flew a full two kilometers? On top of that, it had an absurd amount of power to turn my monsters into minced meat in an instant to the point that its sound was left far behind?</p>
+<p>This, this was impossible.</p>
+<p>&nbsp;</p>
+<p>“No, I have to calm down. I’m a future Great Demon Lord.”</p>
+<p>&nbsp;</p>
+<p>It was possible. It was possible since it had already happened.</p>
+<p>I will approve of his Dungeon. And upon approving, I will conquer it.</p>
+<p>This was probably due to that man’s Unique Skill. It perhaps granted overwhelming range and attack power to even Golems.</p>
+<p>Then, my next play was simple.</p>
+<p>There was no way such an ultra-high-ranged and ultra-high-powered magic could be used without limits.</p>
+<p>Even a Demon Lord’s Unique Skill had limits.</p>
+<p>A magic of this magnitude probably couldn’t be used continuously and should have a usage limit overall. Its magic consumption should also be great.</p>
+<p>But exactly how much? Thinking pessimistically, the most it could be used should be two more times. I could breakthrough through sheer numbers.</p>
+<p>Now, it had put a little wrinkle in my plans but I shall now conquer this Dungeon immediately.</p>
+<p>Thus, I had relayed my new plan to Rozelitte.</p>
+<hr />
+<p>Note 1: The lines the Creator was speaking were quoted in 『』 which would imply that the Creator wasn&#8217;t in the same room/space. This is true for all the other times the Creator has spoken.</p>
+<p>Note 2: [Uneven Distribution] to [Omnipresence].</p>
+<p>Note 3: About Rathgrith. I&#8217;m almost certain that it&#8217;s NOT what Rozelitte&#8217;s race is but it&#8217;s the closest my imagination allowed. Another reason I&#8217;m doubting it is because it&#8217;s more of a person&#8217;s name than a race&#8217;s name. Any suggestion is welcomed. The same applies to all the names in my translation except for the Demon Lords&#8217;, I&#8217;m sure of those.</p>
+<hr />
+<p><a href="https://rpgnoob.wordpress.com/maou_vol1ch19/">Previous Chapter</a></p>
+<p style="text-align:right;"><a href="https://rpgnoob.wordpress.com/maou_vol1ch21/">Next Chapter</a></p>
+		<div class="wpcnt">
+			<div class="wpa wpmrec">
+				<span class="wpa-about">Advertisements</span>
+				<div class="u">		<div style="padding-bottom:15px;width:300px;height:250px;float:left;margin-right:5px;margin-top:0px">
+		<div id="atatags-1159172091-5ba1166eac72c">
+			<script type="text/javascript">
+			__ATA.cmd.push(function() {
+				__ATA.initSlot('atatags-1159172091-5ba1166eac72c',  {
+					collapseEmpty: 'before',
+					sectionId: '1159172091',
+					width: 300,
+					height: 250
+				});
+			});
+			</script>
+		</div></div>		<div style="padding-bottom:15px;width:300px;height:250px;float:left;margin-top:0px">
+		<div id="atatags-1159172094-5ba1166eac72f">
+			<script type="text/javascript">
+			__ATA.cmd.push(function() {
+				__ATA.initSlot('atatags-1159172094-5ba1166eac72f',  {
+					collapseEmpty: 'before',
+					sectionId: '1159172094',
+					width: 300,
+					height: 250
+				});
+			});
+			</script>
+		</div></div></div>
+				
+			</div>
+		</div><div id="atatags-1159172095-5ba1166eac753">
+        <script type="text/javascript">
+            __ATA.cmd.push(function() {
+                __ATA.initVideoSlot('atatags-1159172095-5ba1166eac753', {
+                    sectionId: '1159172095',
+                    format: 'inread'
+                });
+            });
+        </script>
+    </div><div id="jp-post-flair" class="sharedaddy sd-like-enabled sd-sharing-enabled"><div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon-text sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul><li class="share-twitter"><a rel="nofollow noopener noreferrer" data-shared="sharing-twitter-847" class="share-twitter sd-button share-icon" href="https://rpgnovels.com/maou_vol1ch20/?share=twitter" target="_blank" title="Click to share on Twitter"><span>Twitter</span></a></li><li class="share-facebook"><a rel="nofollow noopener noreferrer" data-shared="sharing-facebook-847" class="share-facebook sd-button share-icon" href="https://rpgnovels.com/maou_vol1ch20/?share=facebook" target="_blank" title="Click to share on Facebook"><span>Facebook</span></a></li><li class="share-google-plus-1"><a rel="nofollow noopener noreferrer" data-shared="sharing-google-847" class="share-google-plus-1 sd-button share-icon" href="https://rpgnovels.com/maou_vol1ch20/?share=google-plus-1" target="_blank" title="Click to share on Google+"><span>Google</span></a></li><li class="share-end"></li></ul></div></div></div><div class='sharedaddy sd-block sd-like jetpack-likes-widget-wrapper jetpack-likes-widget-unloaded' id='like-post-wrapper-115917209-847-5ba1166eafb01' data-src='//widgets.wp.com/likes/index.html?ver=20180319#blog_id=115917209&amp;post_id=847&amp;origin=rpgnoob.wordpress.com&amp;obj_id=115917209-847-5ba1166eafb01' data-name='like-post-frame-115917209-847-5ba1166eafb01'><h3 class='sd-title'>Like this:</h3><div class='likes-widget-placeholder post-likes-widget-placeholder' style='height: 55px;'><span class='button'><span>Like</span></span> <span class="loading">Loading...</span></div><span class='sd-text-color'></span><a class='sd-link-color'></a></div></div>								</div>
+	</div><!-- end .post-content -->
+</article><!-- #post-847 -->
+
+			<div id="comments">
+	
+	
+			<h3 id="comments-title">
+			<span>61</span> thoughts on &ldquo;Chapter 20: Mithril&nbsp;Golems&rdquo;		</h3>
+
+		
+		<ol class="commentlist">
+			
+			<li class="comment byuser comment-author-haiyami even thread-even depth-1 highlander-comment" id="comment-8738">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://1.gravatar.com/avatar/a09c303bd95634157ff5016f0b17f668?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span><a href='http://gravatar.com/haiyami' rel='external nofollow' class='url'>haiyami</a></span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-8738"><time pubdate datetime="2018-07-16T10:59:57+00:00">July 16, 2018 at 10:59 am</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>I feel sorry for her. She already created a covenant monster. But it&#8217;s too low ranked. 😦</p>
+<p id="comment-like-8738" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=8738&#038;_wpnonce=c6594d2906" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-8738" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=8738#respond' onclick='return addComment.moveForm( "comment-8738", "8738", "respond", "847" )' aria-label='Reply to haiyami'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-5162">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://1.gravatar.com/avatar/4d94eca1cc7c0bf676f8a7a51aa83392?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span>Assassin</span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-5162"><time pubdate datetime="2017-09-06T22:31:43+00:00">September 6, 2017 at 10:31 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>Those are Mobile suit Baku&#8217;s Equip with Heavy Arm Machine Guns!!!</p>
+<p id="comment-like-5162" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=5162&#038;_wpnonce=7175bf0acd" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-5162" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=5162#respond' onclick='return addComment.moveForm( "comment-5162", "5162", "respond", "847" )' aria-label='Reply to Assassin'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment byuser comment-author-emeralkat even thread-even depth-1 parent highlander-comment" id="comment-4825">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://1.gravatar.com/avatar/d5ce252bf2500f1c683aee0a8773ea80?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span>emeralkat</span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-4825"><time pubdate datetime="2017-08-19T16:58:42+00:00">August 19, 2017 at 4:58 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>While reading this series for the second time (adore it all) I forgot that you had a note saying that you didn&#8217;t know what a Rathgrith was.</p>
+<p>In the chapter it is noted that it is an angel type monster, but in the original mythology it is a bit different.</p>
+<p>Rathgrith is the name of a Valkyrie from Norse Mythology (though she is a very minor one, unlike Brynhildr, Hildr and Sigrun who&#8217;s names are used in many other works).</p>
+<p>In other words, the author took the name of a valkyrie, who are normally depicted as armored female warriors with feathers/wings decorating their armor, and decided to name an angle warrior race after her.</p>
+<p>For reference, here is a quick link that shows this: <a href="http://www.newworldencyclopedia.org/entry/Valkyrie" rel="nofollow">http://www.newworldencyclopedia.org/entry/Valkyrie</a></p>
+<p id="comment-like-4825" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=4825&#038;_wpnonce=d4d9e78aa4" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-4825" class="comment-like-feedback">Liked by <a href="#" class="view-likers" data-like-count="1">1 person</a></span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=4825#respond' onclick='return addComment.moveForm( "comment-4825", "4825", "respond", "847" )' aria-label='Reply to emeralkat'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		<ul class="children">
+
+			<li class="comment byuser comment-author-rpgnoob bypostauthor odd alt depth-2 parent highlander-comment" id="comment-4828">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://0.gravatar.com/avatar/c245eb1490fab3371df29d3b0fc0faa0?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span><a href='https://rpgnoob.wordpress.com' rel='external nofollow' class='url'>rpgnoob</a></span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-4828"><time pubdate datetime="2017-08-19T17:03:30+00:00">August 19, 2017 at 5:03 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>The problem was whether the author really was referring to Rathgrith here. I&#8217;m still hoping to know in the future. 🙂</p>
+<p id="comment-like-4828" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=4828&#038;_wpnonce=ec9a286354" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-4828" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=4828#respond' onclick='return addComment.moveForm( "comment-4828", "4828", "respond", "847" )' aria-label='Reply to rpgnoob'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		<ul class="children">
+
+			<li class="comment byuser comment-author-emeralkat even depth-3 highlander-comment" id="comment-4830">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://1.gravatar.com/avatar/d5ce252bf2500f1c683aee0a8773ea80?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span>emeralkat</span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-4830"><time pubdate datetime="2017-08-19T17:10:20+00:00">August 19, 2017 at 5:10 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>True, other than the author, one wouldn&#8217;t know excatly what he/she meant or based it off of.</p>
+<p>Maybe the author plays the phone game &#8220;Valkyrie Crusade&#8221; which has a card/character named Rathgrith (shown here: <a href="http://valkyriecrusade.wikia.com/wiki/Rathgrith" rel="nofollow">http://valkyriecrusade.wikia.com/wiki/Rathgrith</a> ).  Though that character is probably taken from the same thing I mentioned before, being a character in a valkyrie themed game.</p>
+<p>There is also an original robot/mecha in Super Robot Wars: Original Generation 2 that is named Rathgrith, but naming an angle type monster after a super robot seems a bit dubious&#8230;.</p>
+<p id="comment-like-4830" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=4830&#038;_wpnonce=436d93dc57" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-4830" class="comment-like-feedback">Liked by <a href="#" class="view-likers" data-like-count="1">1 person</a></span></p>
+										<p class="reply-link"></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+			<li class="comment byuser comment-author-seregosa odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-3408">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://0.gravatar.com/avatar/62b7d6674b2d57afdc801bf33333b8e4?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span><a href='http://seregosa.wordpress.com' rel='external nofollow' class='url'>seregosa</a></span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-3408"><time pubdate datetime="2017-06-12T06:22:34+00:00">June 12, 2017 at 6:22 am</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>I kinda feel some pity for this foolish demon lord, but it&#8217;s really amusing, so I guess it&#8217;s fine.</p>
+<p id="comment-like-3408" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=3408&#038;_wpnonce=a5746e17ff" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-3408" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=3408#respond' onclick='return addComment.moveForm( "comment-3408", "3408", "respond", "847" )' aria-label='Reply to seregosa'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment byuser comment-author-lohithbb even thread-even depth-1 highlander-comment" id="comment-1228">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://2.gravatar.com/avatar/8d51431fc800db9f7761780842f89b5c?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span><a href='http://lohithbbtls.wordpress.com' rel='external nofollow' class='url'>lohithbb</a></span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-1228"><time pubdate datetime="2017-01-23T00:29:11+00:00">January 23, 2017 at 12:29 am</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>ラーゼグリフ &#8211; Rāzegurifu<br />
+The first part sounds like ラーゼフォン (Rāzefon), the anime, whereas the second could be glyph or griff.<br />
+I&#8217;d say Rāzeglyph sounds more angelic/cherubic.</p>
+<p id="comment-like-1228" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=1228&#038;_wpnonce=ad00bfd91c" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-1228" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=1228#respond' onclick='return addComment.moveForm( "comment-1228", "1228", "respond", "847" )' aria-label='Reply to lohithbb'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment odd alt thread-odd thread-alt depth-1 parent highlander-comment" id="comment-1182">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://0.gravatar.com/avatar/992f3d62a97a30a39d93bd0e8331ac16?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span>Catnip</span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-1182"><time pubdate datetime="2017-01-19T10:08:36+00:00">January 19, 2017 at 10:08 am</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>If stolas is in spirit form, can&#8217;t she bypass the golems and just break the crystal?</p>
+<p id="comment-like-1182" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=1182&#038;_wpnonce=765a34bddb" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-1182" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=1182#respond' onclick='return addComment.moveForm( "comment-1182", "1182", "respond", "847" )' aria-label='Reply to Catnip'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		<ul class="children">
+
+			<li class="comment byuser comment-author-rpgnoob bypostauthor even depth-2 highlander-comment" id="comment-1184">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://0.gravatar.com/avatar/c245eb1490fab3371df29d3b0fc0faa0?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span><a href='https://rpgnoob.wordpress.com' rel='external nofollow' class='url'>rpgnoob</a></span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-1184"><time pubdate datetime="2017-01-19T11:12:25+00:00">January 19, 2017 at 11:12 am</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>I think she can bypass the golems (though there might be some kind of &#8220;door&#8221; that needs physical interaction) but I doubt she could destroy the crystal in that form</p>
+<p id="comment-like-1184" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=1184&#038;_wpnonce=71c4bff528" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-1184" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=1184#respond' onclick='return addComment.moveForm( "comment-1184", "1184", "respond", "847" )' aria-label='Reply to rpgnoob'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+			<li class="comment byuser comment-author-darkloki2 odd alt thread-even depth-1 highlander-comment" id="comment-915">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://2.gravatar.com/avatar/8c0684ea5765c1cd941cb559c9a45f79?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span>darkloki2</span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-915"><time pubdate datetime="2017-01-03T05:57:18+00:00">January 3, 2017 at 5:57 am</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>thanks for the chapter and happy new year!</p>
+<p id="comment-like-915" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=915&#038;_wpnonce=627605f99b" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-915" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=915#respond' onclick='return addComment.moveForm( "comment-915", "915", "respond", "847" )' aria-label='Reply to darkloki2'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment byuser comment-author-ebolove even thread-odd thread-alt depth-1 highlander-comment" id="comment-592">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://0.gravatar.com/avatar/0521cdb18319c3dfbecc98eabc31b4e0?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span><a href='http://ebolove.wordpress.com' rel='external nofollow' class='url'>ebolove</a></span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-592"><time pubdate datetime="2016-12-11T04:23:41+00:00">December 11, 2016 at 4:23 am</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>Let&#8217;s throw numbers at the machine gun! I feel bad for her.</p>
+<p id="comment-like-592" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=592&#038;_wpnonce=77d7c71386" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-592" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=592#respond' onclick='return addComment.moveForm( "comment-592", "592", "respond", "847" )' aria-label='Reply to ebolove'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment byuser comment-author-goo21 odd alt thread-even depth-1 highlander-comment" id="comment-334">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://1.gravatar.com/avatar/7111862fcded6055fef2f6f87f948cf5?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span><a href='http://goo21.wordpress.com' rel='external nofollow' class='url'>goo21</a></span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-334"><time pubdate datetime="2016-11-19T17:28:37+00:00">November 19, 2016 at 5:28 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>DemO Lords. They are unmatched in playing demos</p>
+<p id="comment-like-334" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=334&#038;_wpnonce=28aebdc98b" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-334" class="comment-like-feedback">Liked by <a href="#" class="view-likers" data-like-count="2">2 people</a></span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=334#respond' onclick='return addComment.moveForm( "comment-334", "334", "respond", "847" )' aria-label='Reply to goo21'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment byuser comment-author-goo21 even thread-odd thread-alt depth-1 parent highlander-comment" id="comment-325">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://1.gravatar.com/avatar/7111862fcded6055fef2f6f87f948cf5?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span><a href='http://goo21.wordpress.com' rel='external nofollow' class='url'>goo21</a></span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-325"><time pubdate datetime="2016-11-19T17:14:57+00:00">November 19, 2016 at 5:14 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>&#8220;Cretion&#8221; you mistyped</p>
+<p id="comment-like-325" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=325&#038;_wpnonce=f1bd8532dc" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-325" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=325#respond' onclick='return addComment.moveForm( "comment-325", "325", "respond", "847" )' aria-label='Reply to goo21'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		<ul class="children">
+
+			<li class="comment byuser comment-author-rpgnoob bypostauthor odd alt depth-2 highlander-comment" id="comment-330">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://0.gravatar.com/avatar/c245eb1490fab3371df29d3b0fc0faa0?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span><a href='https://rpgnoob.wordpress.com' rel='external nofollow' class='url'>rpgnoob</a></span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-330"><time pubdate datetime="2016-11-19T17:24:38+00:00">November 19, 2016 at 5:24 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>Thanks. Fixed.</p>
+<p id="comment-like-330" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=330&#038;_wpnonce=a1986f1593" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-330" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=330#respond' onclick='return addComment.moveForm( "comment-330", "330", "respond", "847" )' aria-label='Reply to rpgnoob'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+			<li class="comment byuser comment-author-sherrynity even thread-even depth-1 highlander-comment" id="comment-319">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://0.gravatar.com/avatar/60261b4fd495b5e8dc5d1a0c21cac100?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span><a href='http://needmoartea.wordpress.com' rel='external nofollow' class='url'>Sherrynity</a></span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-319"><time pubdate datetime="2016-11-17T07:20:26+00:00">November 17, 2016 at 7:20 am</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>« Warning!!! This wordpress is being invaded by TYPE=CLIFFHANGER/. All leechers need to be prepared for the suspense. Proceed with caution. »</p>
+<p id="comment-like-319" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=319&#038;_wpnonce=e4feb57759" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-319" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=319#respond' onclick='return addComment.moveForm( "comment-319", "319", "respond", "847" )' aria-label='Reply to Sherrynity'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment byuser comment-author-neurosabrac odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-317">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://1.gravatar.com/avatar/141befd6a48f7a139c7ac50afa3e00ac?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span>neurosabrac</span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-317"><time pubdate datetime="2016-11-17T06:04:40+00:00">November 17, 2016 at 6:04 am</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>Thanks for the chapter!</p>
+<p id="comment-like-317" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=317&#038;_wpnonce=9863b052ae" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-317" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=317#respond' onclick='return addComment.moveForm( "comment-317", "317", "respond", "847" )' aria-label='Reply to neurosabrac'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment byuser comment-author-sfcipher even thread-even depth-1 highlander-comment" id="comment-316">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://0.gravatar.com/avatar/98fd375e826a623af8256e73c992da19?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span><a href='http://rlnanashi.wordpress.com' rel='external nofollow' class='url'>sfcipher</a></span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-316"><time pubdate datetime="2016-11-17T06:01:49+00:00">November 17, 2016 at 6:01 am</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>Thanks for the chapter</p>
+<p id="comment-like-316" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=316&#038;_wpnonce=ad375816f3" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-316" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=316#respond' onclick='return addComment.moveForm( "comment-316", "316", "respond", "847" )' aria-label='Reply to sfcipher'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment byuser comment-author-jirathti odd alt thread-odd thread-alt depth-1 parent highlander-comment" id="comment-315">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://2.gravatar.com/avatar/51b888f6a90f6295bd7557b32fd3c656?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span><a href='http://nostalgia.iblogger.org/' rel='external nofollow' class='url'>Tokanya</a></span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-315"><time pubdate datetime="2016-11-17T05:36:10+00:00">November 17, 2016 at 5:36 am</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>There are valkeries from Norse methology name Randgrith Rathgrith and Reginleif. Although they fit the bill of Wind and Holy but they are names not race. Well, That as far as I can guess.</p>
+<p id="comment-like-315" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=315&#038;_wpnonce=b2dd1c470d" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-315" class="comment-like-feedback">Liked by <a href="#" class="view-likers" data-like-count="2">2 people</a></span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=315#respond' onclick='return addComment.moveForm( "comment-315", "315", "respond", "847" )' aria-label='Reply to Tokanya'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		<ul class="children">
+
+			<li class="comment byuser comment-author-rpgnoob bypostauthor even depth-2 parent highlander-comment" id="comment-318">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://0.gravatar.com/avatar/c245eb1490fab3371df29d3b0fc0faa0?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span><a href='https://rpgnoob.wordpress.com' rel='external nofollow' class='url'>rpgnoob</a></span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-318"><time pubdate datetime="2016-11-17T07:04:01+00:00">November 17, 2016 at 7:04 am</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>That is my concern as well, plus I don&#8217;t think any of those three are &#8216;famous&#8217; enough to be a substitute race name.</p>
+<p id="comment-like-318" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=318&#038;_wpnonce=d80830ff11" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-318" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=318#respond' onclick='return addComment.moveForm( "comment-318", "318", "respond", "847" )' aria-label='Reply to rpgnoob'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		<ul class="children">
+
+			<li class="comment odd alt depth-3 highlander-comment" id="comment-1325">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://0.gravatar.com/avatar/092572807e55c23642b0a0e79e4e0bae?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span>LegoTechnic</span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-1325"><time pubdate datetime="2017-01-31T04:31:23+00:00">January 31, 2017 at 4:31 am</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>Japanese games use the names of valkyries as racial advancements, so in card and gacha games where a Valkyrie &#8220;ranks up&#8221; they will increase to a Randgrith class or similar.  Randgrith, rathgriz, or however you like to spell it is a fairly popular choice in Japan and has appeared in many games, even Korean MMOs like Ragnarok Online or completely unrelated things like Super Robot Wars.</p>
+<p id="comment-like-1325" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=1325&#038;_wpnonce=c4372d4372" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-1325" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+			<li class="comment byuser comment-author-spiralbaka even thread-even depth-1 highlander-comment" id="comment-314">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://2.gravatar.com/avatar/e143479f62b9338123af7835167ec3d5?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span><a href='http://spiralbaka.wordpress.com' rel='external nofollow' class='url'>SpiralBaka</a></span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-314"><time pubdate datetime="2016-11-17T04:34:27+00:00">November 17, 2016 at 4:34 am</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>too naive. when you are in a bad situation, you should have prepared for the worst. of course assuming things like &#8216;limit&#8217; is just plain idiocy. you can&#8217;t count on that without proper investigation. if your assumption is wrong or being taken advantage of, you&#8217;d be done for.<br />
+thank you for the translation.</p>
+<p id="comment-like-314" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=314&#038;_wpnonce=b833a015bf" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-314" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=314#respond' onclick='return addComment.moveForm( "comment-314", "314", "respond", "847" )' aria-label='Reply to SpiralBaka'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment byuser comment-author-9fortis9fortuna9adiuvat9 odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-313">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://1.gravatar.com/avatar/48d699a494a53deb21d46f64f7f7b517?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span>Deal with it</span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-313"><time pubdate datetime="2016-11-17T03:00:28+00:00">November 17, 2016 at 3:00 am</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>😭 she&#8217;s too pitiful&#8230;.</p>
+<p id="comment-like-313" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=313&#038;_wpnonce=bf932450b8" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-313" class="comment-like-feedback">Liked by <a href="#" class="view-likers" data-like-count="1">1 person</a></span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=313#respond' onclick='return addComment.moveForm( "comment-313", "313", "respond", "847" )' aria-label='Reply to Deal with it'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment even thread-even depth-1 highlander-comment" id="comment-312">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://0.gravatar.com/avatar/012ba1b13852f37c2a2927456f67d491?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span>Osamaru</span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-312"><time pubdate datetime="2016-11-17T02:39:51+00:00">November 17, 2016 at 2:39 am</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>Given the description and medals, and the rough legends of similar words, it is most likely some kind of Valkyrie.</p>
+<p id="comment-like-312" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=312&#038;_wpnonce=a85a6082d5" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-312" class="comment-like-feedback">Liked by <a href="#" class="view-likers" data-like-count="1">1 person</a></span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=312#respond' onclick='return addComment.moveForm( "comment-312", "312", "respond", "847" )' aria-label='Reply to Osamaru'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-310">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://i0.wp.com/lh6.googleusercontent.com/-uE6MCDkhmMk/AAAAAAAAAAI/AAAAAAAAADc/Sn0M16qfAss/photo.jpg?resize=32%2C32&#038;ssl=1' class='avatar avatar-32' height='32' width='32' />						<span><a href='https://plus.google.com/117965289274119968727' rel='external nofollow' class='url'>Pyrok -</a></span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-310"><time pubdate datetime="2016-11-17T02:09:16+00:00">November 17, 2016 at 2:09 am</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>oh! a boomstick!</p>
+<p id="comment-like-310" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=310&#038;_wpnonce=79ecd952fb" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-310" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=310#respond' onclick='return addComment.moveForm( "comment-310", "310", "respond", "847" )' aria-label='Reply to Pyrok -'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment even thread-even depth-1 highlander-comment" id="comment-309">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://0.gravatar.com/avatar/05f9d71528cdcce75307759eea9a6ec8?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span>Random Internet User (tm)</span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-309"><time pubdate datetime="2016-11-17T01:50:00+00:00">November 17, 2016 at 1:50 am</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>Bad move, standing at the wrong end of a shooting gallery&#8230; <i>with tanks!</i> :&gt;</p>
+<p>Thanks kindly for all the hard work.</p>
+<p id="comment-like-309" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=309&#038;_wpnonce=c97a293c59" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-309" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=309#respond' onclick='return addComment.moveForm( "comment-309", "309", "respond", "847" )' aria-label='Reply to Random Internet User (tm)'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment byuser comment-author-celicasylphil odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-307">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://1.gravatar.com/avatar/1cd2eb1d6b6aab2ebd4b054a878686e2?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span><a href='http://ididntwantthisweb.wordpress.com' rel='external nofollow' class='url'>celicasylphil</a></span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-307"><time pubdate datetime="2016-11-17T01:21:31+00:00">November 17, 2016 at 1:21 am</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>Im disappointed in myself for not knowing such a monster as the Razegurifu even tough i played so many eroge s , Anyways my best bet would be some kind of angelic-harpy hybrid or a better alternative , a holy-sylph hybrid since &#8216; crusade &#8216; signifies that existence must be related to the light faction and a sylph would represent the wind attribute.</p>
+<p id="comment-like-307" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=307&#038;_wpnonce=f65ac08611" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-307" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=307#respond' onclick='return addComment.moveForm( "comment-307", "307", "respond", "847" )' aria-label='Reply to celicasylphil'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment even thread-even depth-1 highlander-comment" id="comment-306">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://0.gravatar.com/avatar/31e1344864307f5ffeeddf4b55768da4?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span>Rauna</span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-306"><time pubdate datetime="2016-11-17T00:16:22+00:00">November 17, 2016 at 12:16 am</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>Ano.. TL-san, I think it is Rathgrith. The name taken from one of the Valkyrie that served Odin.</p>
+<p id="comment-like-306" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=306&#038;_wpnonce=c17b75d335" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-306" class="comment-like-feedback">Liked by <a href="#" class="view-likers" data-like-count="2">2 people</a></span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=306#respond' onclick='return addComment.moveForm( "comment-306", "306", "respond", "847" )' aria-label='Reply to Rauna'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-305">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://0.gravatar.com/avatar/9348ec76a82d61c301e0686d7bad079d?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span>Zeg</span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-305"><time pubdate datetime="2016-11-17T00:02:19+00:00">November 17, 2016 at 12:02 am</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>Thanks for the translation!<br />
+Just throwing this, but somehow all this discussion about Rozelitte remembered me about Ragnarok Online and Valkyrie Randgris.</p>
+<p id="comment-like-305" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=305&#038;_wpnonce=60360de4a9" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-305" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=305#respond' onclick='return addComment.moveForm( "comment-305", "305", "respond", "847" )' aria-label='Reply to Zeg'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment byuser comment-author-phyrigia even thread-even depth-1 parent highlander-comment" id="comment-303">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://0.gravatar.com/avatar/cb45b365719233ac6ade1950310cbe2e?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span><a href='http://suntomon.wordpress.com' rel='external nofollow' class='url'>phyrigia</a></span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-303"><time pubdate datetime="2016-11-16T22:32:53+00:00">November 16, 2016 at 10:32 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>I think I found something similiar to &#8221; ラーゼグリフ (Razegurifu)&#8221;<br />
+That&#8217;s probably &#8220;razgriz&#8221; (<a href="http://acecombat.wikia.com/wiki/Razgriz" rel="nofollow">http://acecombat.wikia.com/wiki/Razgriz</a>)<br />
+thank you!</p>
+<p id="comment-like-303" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=303&#038;_wpnonce=4be40ad5e3" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-303" class="comment-like-feedback">Liked by <a href="#" class="view-likers" data-like-count="1">1 person</a></span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=303#respond' onclick='return addComment.moveForm( "comment-303", "303", "respond", "847" )' aria-label='Reply to phyrigia'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		<ul class="children">
+
+			<li class="comment byuser comment-author-rpgnoob bypostauthor odd alt depth-2 highlander-comment" id="comment-304">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://0.gravatar.com/avatar/c245eb1490fab3371df29d3b0fc0faa0?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span><a href='https://rpgnoob.wordpress.com' rel='external nofollow' class='url'>rpgnoob</a></span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-304"><time pubdate datetime="2016-11-16T22:46:53+00:00">November 16, 2016 at 10:46 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>I don&#8217;t know&#8230; According to the link, Razgriz is both demon and hero. There&#8217;s also that comparison to valkyries which is what Rathgrith is.</p>
+<p id="comment-like-304" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=304&#038;_wpnonce=f2fa647068" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-304" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=304#respond' onclick='return addComment.moveForm( "comment-304", "304", "respond", "847" )' aria-label='Reply to rpgnoob'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+			<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="comment-302">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://2.gravatar.com/avatar/8cfdb92a4c05b0e4b12ab7e341336235?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span>Lushwf</span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-302"><time pubdate datetime="2016-11-16T22:14:42+00:00">November 16, 2016 at 10:14 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>Thank you for your work!</p>
+<p>That&#8217;s right keep sending in the fodder Stolas ha ha ha!</p>
+<p id="comment-like-302" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=302&#038;_wpnonce=bb53b82578" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-302" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=302#respond' onclick='return addComment.moveForm( "comment-302", "302", "respond", "847" )' aria-label='Reply to Lushwf'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment odd alt thread-even depth-1 highlander-comment" id="comment-301">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://2.gravatar.com/avatar/5003edb6eb77209911e1c876d820d3bd?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span>ReadingAnonymous</span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-301"><time pubdate datetime="2016-11-16T22:08:40+00:00">November 16, 2016 at 10:08 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>Man.  That cliffhangar.  I&#8217;m guessing it&#8217;ll be another 2-3 chapters before we see just how badly Lolicell stomps her.</p>
+<p id="comment-like-301" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=301&#038;_wpnonce=b52f1476bc" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-301" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=301#respond' onclick='return addComment.moveForm( "comment-301", "301", "respond", "847" )' aria-label='Reply to ReadingAnonymous'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment byuser comment-author-animemanganovelfiction even thread-odd thread-alt depth-1 highlander-comment" id="comment-300">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://2.gravatar.com/avatar/2c93db814508baff7d48bf001e4ac797?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span><a href='http://animemanganovelfiction.wordpress.com' rel='external nofollow' class='url'>animemanganovelfiction</a></span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-300"><time pubdate datetime="2016-11-16T22:06:50+00:00">November 16, 2016 at 10:06 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>ahahaha 😀 this is really interesting and amusing 😀 , now i am curious what they will do next ? </p>
+<p>thx for the chapter ^^</p>
+<p id="comment-like-300" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=300&#038;_wpnonce=8cc1a0e4ac" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-300" class="comment-like-feedback">Liked by <a href="#" class="view-likers" data-like-count="1">1 person</a></span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=300#respond' onclick='return addComment.moveForm( "comment-300", "300", "respond", "847" )' aria-label='Reply to animemanganovelfiction'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment odd alt thread-even depth-1 highlander-comment" id="comment-299">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://2.gravatar.com/avatar/e13f0bf0902399805b8e16aac0372189?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span>Tolk</span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-299"><time pubdate datetime="2016-11-16T21:43:31+00:00">November 16, 2016 at 9:43 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>Lmao. Poor girl is in denial; &#8220;they can&#8217;t possibly have more ammo, could they?&#8221; Haha, thanks for the chapter.</p>
+<p id="comment-like-299" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=299&#038;_wpnonce=18fde45a9b" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-299" class="comment-like-feedback">Liked by <a href="#" class="view-likers" data-like-count="1">1 person</a></span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=299#respond' onclick='return addComment.moveForm( "comment-299", "299", "respond", "847" )' aria-label='Reply to Tolk'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="comment-298">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://0.gravatar.com/avatar/f876c0b71b8bfd7745519cb3a338226f?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span>S4TY4</span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-298"><time pubdate datetime="2016-11-16T21:41:20+00:00">November 16, 2016 at 9:41 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>Thanks for the new chapter</p>
+<p id="comment-like-298" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=298&#038;_wpnonce=6bfbb1c5fa" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-298" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=298#respond' onclick='return addComment.moveForm( "comment-298", "298", "respond", "847" )' aria-label='Reply to S4TY4'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment odd alt thread-even depth-1 highlander-comment" id="comment-297">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://0.gravatar.com/avatar/0a5ea90deb79e8c42b35c87ea77dd7f7?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span>Wew</span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-297"><time pubdate datetime="2016-11-16T21:36:31+00:00">November 16, 2016 at 9:36 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>Thats a vulcan for sure&#8230;</p>
+<p id="comment-like-297" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=297&#038;_wpnonce=a1a6404d06" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-297" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=297#respond' onclick='return addComment.moveForm( "comment-297", "297", "respond", "847" )' aria-label='Reply to Wew'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment byuser comment-author-rafaomegax even thread-odd thread-alt depth-1 highlander-comment" id="comment-296">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://1.gravatar.com/avatar/aab1837d2db4b8dfd8bdd72c876636cf?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span>Raphalice</span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-296"><time pubdate datetime="2016-11-16T21:28:27+00:00">November 16, 2016 at 9:28 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>Oh btw, I can&#8217;t wait for Lolicell to build his own dungeon~<br />
+IIRC He&#8217;s the one with the dungeon where people are inhabiting it right?</p>
+<p>Damn, the security guards are enough to fight multiple enemies from kilometers away~ Who wouldn&#8217;t want to be protected by that kind&#8230; </p>
+<p>Also, entertainment-wise&#8230; [Creation] skill~</p>
+<p id="comment-like-296" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=296&#038;_wpnonce=d06c1bf40d" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-296" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=296#respond' onclick='return addComment.moveForm( "comment-296", "296", "respond", "847" )' aria-label='Reply to Raphalice'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment byuser comment-author-rafaomegax odd alt thread-even depth-1 highlander-comment" id="comment-294">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://1.gravatar.com/avatar/aab1837d2db4b8dfd8bdd72c876636cf?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span>Raphalice</span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-294"><time pubdate datetime="2016-11-16T21:24:59+00:00">November 16, 2016 at 9:24 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>I was trembling with excitement&#8230; no actually, I&#8217;m still currently trembling~</p>
+<p>Oooohh~ hahahah I want to see the next chapters as soon as possible~</p>
+<p>(~ &gt; u &lt;)~</p>
+<p id="comment-like-294" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=294&#038;_wpnonce=a4cfa4e3e2" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-294" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=294#respond' onclick='return addComment.moveForm( "comment-294", "294", "respond", "847" )' aria-label='Reply to Raphalice'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment byuser comment-author-reaperphoenix even thread-odd thread-alt depth-1 highlander-comment" id="comment-293">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://1.gravatar.com/avatar/4fb7a3476a414c2bcd89ea9d9d8e891d?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span>Reaper Phoenix</span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-293"><time pubdate datetime="2016-11-16T21:23:25+00:00">November 16, 2016 at 9:23 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>Thanks 4 the chapter!</p>
+<p>I&#8217;m imagining an explosive round from a tank&#8217;s main gun from the description of the attack.</p>
+<p id="comment-like-293" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=293&#038;_wpnonce=2c7b32a5ac" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-293" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=293#respond' onclick='return addComment.moveForm( "comment-293", "293", "respond", "847" )' aria-label='Reply to Reaper Phoenix'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment byuser comment-author-kirindas odd alt thread-even depth-1 highlander-comment" id="comment-292">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://1.gravatar.com/avatar/7a1460f3bfb37256dfe6780107a4329f?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span><a href='http://aquarilasscenario.blogspot.com/' rel='external nofollow' class='url'>kirindas</a></span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-292"><time pubdate datetime="2016-11-16T21:14:50+00:00">November 16, 2016 at 9:14 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>Thanks for the new chapter! Lol! Swiss cheese monster a la mode~</p>
+<p id="comment-like-292" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=292&#038;_wpnonce=0ce9a69a09" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-292" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=292#respond' onclick='return addComment.moveForm( "comment-292", "292", "respond", "847" )' aria-label='Reply to kirindas'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment byuser comment-author-kuruuruu even thread-odd thread-alt depth-1 highlander-comment" id="comment-291">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://0.gravatar.com/avatar/0faf6b1ab5bba0cf1edc1249f2d8862e?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span>KuRuuRuu</span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-291"><time pubdate datetime="2016-11-16T21:00:17+00:00">November 16, 2016 at 9:00 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>Thank you for the chapter!<br />
+Stolas couldn&#8217;t be more wrong~<br />
+I can&#8217;t wait for the next chapter to come!<br />
+Massacre time!!!</p>
+<p id="comment-like-291" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=291&#038;_wpnonce=d68087673a" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-291" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=291#respond' onclick='return addComment.moveForm( "comment-291", "291", "respond", "847" )' aria-label='Reply to KuRuuRuu'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment byuser comment-author-gmartinezsite odd alt thread-even depth-1 highlander-comment" id="comment-290">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://1.gravatar.com/avatar/47e7c1142ea3e5eb2c1655d851c36012?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span><a href='http://gmartinezsite.wordpress.com' rel='external nofollow' class='url'>gmartinezsite</a></span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-290"><time pubdate datetime="2016-11-16T20:54:14+00:00">November 16, 2016 at 8:54 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>thanks 🙂</p>
+<p id="comment-like-290" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=290&#038;_wpnonce=00f4721fb0" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-290" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=290#respond' onclick='return addComment.moveForm( "comment-290", "290", "respond", "847" )' aria-label='Reply to gmartinezsite'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment byuser comment-author-goblinrou even thread-odd thread-alt depth-1 parent highlander-comment" id="comment-289">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://0.gravatar.com/avatar/f5438977c06fbf31df3e07abf6be52c0?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span><a href='http://goblinrou.wordpress.com' rel='external nofollow' class='url'>goblinrou</a></span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-289"><time pubdate datetime="2016-11-16T20:45:10+00:00">November 16, 2016 at 8:45 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>Smoking iron pipes of doom.</p>
+<p id="comment-like-289" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=289&#038;_wpnonce=c2df7d6a1f" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-289" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=289#respond' onclick='return addComment.moveForm( "comment-289", "289", "respond", "847" )' aria-label='Reply to goblinrou'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		<ul class="children">
+
+			<li class="comment byuser comment-author-rafaomegax odd alt depth-2 highlander-comment" id="comment-295">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://1.gravatar.com/avatar/aab1837d2db4b8dfd8bdd72c876636cf?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span>Raphalice</span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-295"><time pubdate datetime="2016-11-16T21:25:27+00:00">November 16, 2016 at 9:25 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>Boomsticks of Doomstick!</p>
+<p id="comment-like-295" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=295&#038;_wpnonce=6390fad305" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-295" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=295#respond' onclick='return addComment.moveForm( "comment-295", "295", "respond", "847" )' aria-label='Reply to Raphalice'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+			<li class="comment even thread-even depth-1 parent highlander-comment" id="comment-286">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://2.gravatar.com/avatar/84a5ecf0e87ca75d3ddd95a28ef4949b?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span>Rye24</span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-286"><time pubdate datetime="2016-11-16T20:18:24+00:00">November 16, 2016 at 8:18 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>Something that has been annoying me for a while is Stolas&#8217;s mentor is known as the dragon demon lord so you would think that he would have given her a copy of his Dragon medal for her to make her first demon similar to what happened with the MC.</p>
+<p>So then why does she have a Weasel, Winged horse and Angel?<br />
+Which one is from the Dragon medal?<br />
+The Angel was from a Holy and Wind medals, so that just leaves the Weasel and Winged horse.</p>
+<p>Dragon Weasel&#8230;. Sounds like a rock band&#8230;.</p>
+<p id="comment-like-286" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=286&#038;_wpnonce=345ad71337" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-286" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=286#respond' onclick='return addComment.moveForm( "comment-286", "286", "respond", "847" )' aria-label='Reply to Rye24'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		<ul class="children">
+
+			<li class="comment byuser comment-author-hydraburning odd alt depth-2 parent highlander-comment" id="comment-287">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://1.gravatar.com/avatar/aa333a096446da2fa150c48208222d77?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span>Hydra Burning</span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-287"><time pubdate datetime="2016-11-16T20:23:59+00:00">November 16, 2016 at 8:23 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>ok spoiler-ish </p>
+<p>There is a reason why none of the currently introduced daemons don&#8217;t have dragon mentioned.</p>
+<p id="comment-like-287" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=287&#038;_wpnonce=c6737de2f7" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-287" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=287#respond' onclick='return addComment.moveForm( "comment-287", "287", "respond", "847" )' aria-label='Reply to Hydra Burning'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		<ul class="children">
+
+			<li class="comment even depth-3 highlander-comment" id="comment-288">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://2.gravatar.com/avatar/84a5ecf0e87ca75d3ddd95a28ef4949b?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span>Rye24</span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-288"><time pubdate datetime="2016-11-16T20:40:29+00:00">November 16, 2016 at 8:40 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>Ok, Im looking forward to finding out the full story in time.</p>
+<p>And &#8216;none .. don&#8217;t have dragon&#8217;, would be that all daemons have dragon mentioned. lol</p>
+<p id="comment-like-288" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=288&#038;_wpnonce=91e72d03f0" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-288" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+			<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-285">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://2.gravatar.com/avatar/84a5ecf0e87ca75d3ddd95a28ef4949b?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span>Rye24</span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-285"><time pubdate datetime="2016-11-16T20:07:50+00:00">November 16, 2016 at 8:07 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>Thanks, Ive been looking forward to this.</p>
+<p id="comment-like-285" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=285&#038;_wpnonce=866c300da8" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-285" class="comment-like-feedback">Liked by <a href="#" class="view-likers" data-like-count="1">1 person</a></span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=285#respond' onclick='return addComment.moveForm( "comment-285", "285", "respond", "847" )' aria-label='Reply to Rye24'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment byuser comment-author-jinyoonique even thread-even depth-1 highlander-comment" id="comment-284">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://1.gravatar.com/avatar/a5bcd161c85386b47747212906b99ebb?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span>Mesmerised</span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-284"><time pubdate datetime="2016-11-16T20:00:55+00:00">November 16, 2016 at 8:00 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>Thanks for the chapter!<br />
+And he didn&#8217;t even start yet? XD</p>
+<p id="comment-like-284" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=284&#038;_wpnonce=0761e838d3" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-284" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=284#respond' onclick='return addComment.moveForm( "comment-284", "284", "respond", "847" )' aria-label='Reply to Mesmerised'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment odd alt thread-odd thread-alt depth-1 parent highlander-comment" id="comment-282">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://1.gravatar.com/avatar/a83f83137f04081c0ac22a8893a4527b?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span>Aoyos</span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-282"><time pubdate datetime="2016-11-16T19:57:44+00:00">November 16, 2016 at 7:57 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>Isn&#8217;t Rozelitte just a type of a gryphon (griffin)? Gurifu is usually related to gryphons plus she used a wind medal to create the monster so it makes sense to me at the very least. No clue exactly how to call it though since the Raaze part doesn&#8217;t really make much sense to me.</p>
+<p id="comment-like-282" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=282&#038;_wpnonce=de5db098ea" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-282" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=282#respond' onclick='return addComment.moveForm( "comment-282", "282", "respond", "847" )' aria-label='Reply to Aoyos'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		<ul class="children">
+
+			<li class="comment byuser comment-author-rpgnoob bypostauthor even depth-2 parent highlander-comment" id="comment-283">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://0.gravatar.com/avatar/c245eb1490fab3371df29d3b0fc0faa0?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span><a href='https://rpgnoob.wordpress.com' rel='external nofollow' class='url'>rpgnoob</a></span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-283"><time pubdate datetime="2016-11-16T20:00:43+00:00">November 16, 2016 at 8:00 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>But she&#8217;s described as an angel.</p>
+<p id="comment-like-283" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=283&#038;_wpnonce=8120913c0c" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-283" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=283#respond' onclick='return addComment.moveForm( "comment-283", "283", "respond", "847" )' aria-label='Reply to rpgnoob'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		<ul class="children">
+
+			<li class="comment byuser comment-author-zomthemonk odd alt depth-3 highlander-comment" id="comment-308">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://2.gravatar.com/avatar/2d2963a742985d09485a1a61d1295229?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span><a href='http://zomthemonk.wordpress.com' rel='external nofollow' class='url'>zomthemonk</a></span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-308"><time pubdate datetime="2016-11-17T01:36:24+00:00">November 17, 2016 at 1:36 am</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>I thought it might be Razor Griffin, which would make it a higher level griffin. Also griffins, are sometimes described as the lords of the sky with the eagle part adding to the majesticness of it, and that may be the holy element as well as the commander abilities.</p>
+<p id="comment-like-308" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=308&#038;_wpnonce=d76eb41734" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-308" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment even depth-3 highlander-comment" id="comment-1285">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://1.gravatar.com/avatar/a63a2be8e76602aeb88a07d98a116bd2?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span>Bondo</span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-1285"><time pubdate datetime="2017-01-26T15:43:54+00:00">January 26, 2017 at 3:43 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>The first Raze can became Raise, seem to be most correct since it&#8217;s an angel type, but I can&#8217;t figure the last for now.</p>
+<p id="comment-like-1285" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=1285&#038;_wpnonce=0fb04a682b" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-1285" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+			<li class="comment byuser comment-author-yttam50 odd alt thread-even depth-1 highlander-comment" id="comment-281">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://1.gravatar.com/avatar/744b59d209165707665361df3f274a30?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span><a href='http://yttam50.wordpress.com' rel='external nofollow' class='url'>yttam50</a></span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-281"><time pubdate datetime="2016-11-16T19:56:42+00:00">November 16, 2016 at 7:56 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>Thanks for the chapter! Poor Stolas, they do have a limit but then they just have to reload.</p>
+<p id="comment-like-281" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=281&#038;_wpnonce=4a402498d6" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-281" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=281#respond' onclick='return addComment.moveForm( "comment-281", "281", "respond", "847" )' aria-label='Reply to yttam50'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment byuser comment-author-xtremeloldude even thread-odd thread-alt depth-1 highlander-comment" id="comment-280">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://1.gravatar.com/avatar/16c6df04629e271bf850e555c823e3b5?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span><a href='http://xtremeloldude.wordpress.com' rel='external nofollow' class='url'>xtremeloldude</a></span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-280"><time pubdate datetime="2016-11-16T19:56:31+00:00">November 16, 2016 at 7:56 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>true, it&#8217;s not &#8220;indefinite&#8221; but i&#8217;m fairly sure he has a metric fuckton of bullets</p>
+<p>thanks for the chapter</p>
+<p id="comment-like-280" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=280&#038;_wpnonce=70f4c5c654" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-280" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=280#respond' onclick='return addComment.moveForm( "comment-280", "280", "respond", "847" )' aria-label='Reply to xtremeloldude'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment odd alt thread-even depth-1 parent highlander-comment" id="comment-279">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://i0.wp.com/graph.facebook.com/v2.2/100000127985940/picture?q=type%3Dlarge%26_md5%3Dac8e18452425e5c97e89b03a0dda2b2e&#038;resize=32%2C32' class='avatar avatar-32' height='32' width='32' />						<span><a href='https://www.facebook.com/app_scoped_user_id/100000127985940/' rel='external nofollow' class='url'>Hendri Susanto</a></span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-279"><time pubdate datetime="2016-11-16T19:50:15+00:00">November 16, 2016 at 7:50 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>ラーゼグリフ<br />
+I got an idea from Rahxephon (ラーゼフォン) , so it could be Rahxegliph or Rahxegrif or something like that</p>
+<p id="comment-like-279" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=279&#038;_wpnonce=55e31c1b56" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-279" class="comment-like-feedback">Liked by <a href="#" class="view-likers" data-like-count="2">2 people</a></span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=279#respond' onclick='return addComment.moveForm( "comment-279", "279", "respond", "847" )' aria-label='Reply to Hendri Susanto'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		<ul class="children">
+
+			<li class="comment byuser comment-author-zarvii even depth-2 highlander-comment" id="comment-311">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://0.gravatar.com/avatar/f4016fb4e5038ec51f6d32da58399c8e?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span><a href='http://smalltimetranslation.wordpress.com' rel='external nofollow' class='url'>zarvii</a></span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-311"><time pubdate datetime="2016-11-17T02:24:45+00:00">November 17, 2016 at 2:24 am</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>with the last syllable griff or gryph like in griffin/gryphon or hippogryip since she is a winged monster right?</p>
+<p id="comment-like-311" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=311&#038;_wpnonce=9dca76a4c2" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-311" class="comment-like-feedback">Liked by <a href="#" class="view-likers" data-like-count="1">1 person</a></span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=311#respond' onclick='return addComment.moveForm( "comment-311", "311", "respond", "847" )' aria-label='Reply to zarvii'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+			<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-278">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://0.gravatar.com/avatar/3620613f6f705d6f0d86e0739d27b5cf?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span><a href='https://plus.google.com/109824752383564129796' rel='external nofollow' class='url'>randi listianto</a></span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-278"><time pubdate datetime="2016-11-16T19:49:24+00:00">November 16, 2016 at 7:49 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>Alhmdllh 4 yr effort translator. Thz 4 tis chptr yooo&#8230;</p>
+<p id="comment-like-278" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=278&#038;_wpnonce=da50c4db66" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-278" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=278#respond' onclick='return addComment.moveForm( "comment-278", "278", "respond", "847" )' aria-label='Reply to randi listianto'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment even thread-even depth-1 highlander-comment" id="comment-277">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://1.gravatar.com/avatar/adf90dfffdd3be259df767fc0934dd6b?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span>redribon</span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-277"><time pubdate datetime="2016-11-16T19:44:38+00:00">November 16, 2016 at 7:44 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>moaaar!!! come on&#8230; the cliff!! aaaaaghh!! thanks for the chap!</p>
+<p id="comment-like-277" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=277&#038;_wpnonce=e6af82c646" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-277" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=277#respond' onclick='return addComment.moveForm( "comment-277", "277", "respond", "847" )' aria-label='Reply to redribon'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment byuser comment-author-kingofmangonia odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-276">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://0.gravatar.com/avatar/0334765916287395067ec463adfbd95b?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span><a href='http://ascendintoheaven.wordpress.com' rel='external nofollow' class='url'>kingofmangonia</a></span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-276"><time pubdate datetime="2016-11-16T19:41:47+00:00">November 16, 2016 at 7:41 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>can&#8217;t wait for the next 4ish chapters 😛</p>
+<p id="comment-like-276" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=276&#038;_wpnonce=5c2035b5e6" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-276" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=276#respond' onclick='return addComment.moveForm( "comment-276", "276", "respond", "847" )' aria-label='Reply to kingofmangonia'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+
+			<li class="comment byuser comment-author-hydraburning even thread-even depth-1 highlander-comment" id="comment-275">
+
+				<div class="comment-heading clear-fix">
+					<p class="comment-author">
+						<img alt='' src='https://1.gravatar.com/avatar/aa333a096446da2fa150c48208222d77?s=32&#038;d=identicon&#038;r=G' class='avatar avatar-32' height='32' width='32' />						<span>Hydra Burning</span> <em>said:</em>					</p>
+					<p class="comment-date">
+						<a href="https://rpgnovels.com/maou_vol1ch20/#comment-275"><time pubdate datetime="2016-11-16T19:33:11+00:00">November 16, 2016 at 7:33 pm</time></a>					</p>
+				</div>
+				<div class="comment-text">
+					<p>Its a meet grinder</p>
+<p id="comment-like-275" data-liked=comment-not-liked class="comment-likes comment-not-liked"><a href="https://rpgnovels.com/maou_vol1ch20/?like_comment=275&#038;_wpnonce=58f1b4751f" class="comment-like-link needs-login" rel="nofollow" data-blog="115917209"><span>Like</span></a><span id="comment-like-count-275" class="comment-like-feedback">Like</span></p>
+										<p class="reply-link"><a rel='nofollow' class='comment-reply-link' href='https://rpgnovels.com/maou_vol1ch20/?replytocom=275#respond' onclick='return addComment.moveForm( "comment-275", "275", "respond", "847" )' aria-label='Reply to Hydra Burning'>Reply</a></p>
+					<p class="edit-comment"></p>
+				</div>
+		</li><!-- #comment-## -->
+		</ol>
+
+		
+	
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/maou_vol1ch20/#respond" style="display:none;">Cancel reply</a></small></h3>			<form action="https://rpgnovels.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+				<input type="hidden" id="highlander_comment_nonce" name="highlander_comment_nonce" value="b3ce1db29e" /><input type="hidden" name="_wp_http_referer" value="/maou_vol1ch20/" />
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest" />
+
+<div class="comment-form-field comment-textarea">
+	<label for="comment">Enter your comment here...</label>
+	<div id="comment-form-comment"><textarea id="comment" name="comment" title="Enter your comment here..."></textarea></div>
+</div>
+
+<div id="comment-form-identity">
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="#comment-form-guest" id="postas-guest" class="nascar-signin-link"
+                   title="Login via Guest">
+									</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:WordPress.com" id="postas-wordpress" class="nascar-signin-link"
+                   title="Login via WordPress.com">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg>				</a>
+			</li>
+			<li>
+			<li>
+				<a href="#comment-form-load-service:Twitter" id="postas-twitter" class="nascar-signin-link"
+                   title="Login via Twitter">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg>				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Facebook" id="postas-facebook" class="nascar-signin-link"
+                   title="Login via Facebook">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg>				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Gravatar" width="25" class="no-grav" />
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="email" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value="" /></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="url" value="" /></div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="WordPress.com Logo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="" />
+						<p class="comment-form-posting-as pa-wordpress">
+			<strong></strong>
+			You are commenting using your WordPress.com account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'wordpress' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-googleplus" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Google+ photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="googleplus_avatar" id="googleplus-avatar" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_user_id" id="googleplus-user_id" class="comment-meta-googleplus" value="" />
+				<input type="hidden" name="googleplus_access_token" id="googleplus-access_token" class="comment-meta-googleplus" value="" />
+						<p class="comment-form-posting-as pa-googleplus">
+			<strong></strong>
+			You are commenting using your Google+ account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'googleplus' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" x="0px" y="0px" viewBox="0 0 60 60" ><path fill="#519bf7" d="M56.3,30c0,-1.6 -0.2,-3.4 -0.6,-5h-3.1H42.2H30v10.6h14.8C44,39.3 42,42 39.1,43.9l8.8,6.8C53,46 56.3,39 56.3,30z" /><path fill="#3db366" d="M30,57.5c6.7,0 13.1,-2.4 17.9,-6.8l-8.8,-6.8c-2.5,1.6 -5.6,2.4 -9.1,2.4c-7.2,0 -13.3,-4.7 -15.4,-11.2l-9.3,7.1C9.8,51.3 19.1,57.5 30,57.5z" /><path fill="#fdc600" d="M5.3,42.2l9.3,-7.1c-0.5,-1.6 -0.8,-3.3 -0.8,-5.1s0.3,-3.5 0.8,-5.1l-9.3,-7.1C3.5,21.5 2.5,25.6 2.5,30S3.5,38.5 5.3,42.2z" /><path fill="#f15b44" d="M40.1,17.4l8,-8C43.3,5.1 37,2.5 30,2.5C19.1,2.5 9.8,8.7 5.3,17.8l9.3,7.1c2.1,-6.5 8.2,-11.1 15.4,-11.1C33.9,13.7 37.4,15.1 40.1,17.4z" /></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Twitter picture" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="" />
+						<p class="comment-form-posting-as pa-twitter">
+			<strong></strong>
+			You are commenting using your Twitter account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'twitter' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=G" alt="Facebook photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="" />
+						<p class="comment-form-posting-as pa-facebook">
+			<strong></strong>
+			You are commenting using your Facebook account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'facebook' );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" ><rect x="0" fill="none" width="24" height="24"/><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"/></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+var highlander_expando_javascript = function(){
+	var input = document.createElement( 'input' ),
+	    comment = jQuery( '#comment' );
+
+	if ( 'placeholder' in input ) {
+		comment.attr( 'placeholder', jQuery( '.comment-textarea label' ).remove().text() );
+	}
+
+	// Expando Mode: start small, then auto-resize on first click + text length
+	jQuery( '#comment-form-identity' ).hide();
+	jQuery( '#comment-form-subscribe' ).hide();
+	jQuery( '#commentform .form-submit' ).hide();
+
+	comment.css( { 'height':'10px' } ).one( 'focus', function() {
+		var timer = setInterval( HighlanderComments.resizeCallback, 10 )
+		jQuery( this ).animate( { 'height': HighlanderComments.initialHeight } ).delay( 100 ).queue( function(n) { clearInterval( timer ); HighlanderComments.resizeCallback(); n(); } );
+		jQuery( '#comment-form-identity' ).slideDown();
+		jQuery( '#comment-form-subscribe' ).slideDown();
+		jQuery( '#commentform .form-submit' ).slideDown();
+	});
+}
+jQuery(document).ready( highlander_expando_javascript );
+</script>
+
+<div id="comment-form-subscribe">
+	<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;"/> <label class="subscribe-label" id="subscribe-label" for="subscribe" style="display: inline;">Notify me of new comments via email.</label></p></div>
+
+
+
+
+<p class="form-submit"><input name="submit" type="submit" id="comment-submit" class="submit" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='847' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="2b2c0570b2" /></p>
+<input type="hidden" name="genseq" value="1537283694" />
+<p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="117"/></p>			</form>
+			</div><!-- #respond -->
+	<div style="clear: both"></div>
+</div><!-- #comments -->
+
+		
+	</div><!-- end #content -->
+</div><!-- end #primary -->
+
+
+	<div id="secondary" class="widget-area" role="complementary">
+				<div class="wpcnt">
+			<div class="wpa wpwidesky">
+				<span class="wpa-about">Advertisements</span>
+				<div class="u">
+							<div style="padding-bottom:15px;width:160px;height:600px;">
+		<div id="atatags-1159172093-5ba1166ecddf8">
+			<script type="text/javascript">
+			__ATA.cmd.push(function() {
+				__ATA.initSlot('atatags-1159172093-5ba1166ecddf8',  {
+					collapseEmpty: 'before',
+					sectionId: '1159172093',
+					width: 160,
+					height: 600
+				});
+			});
+			</script>
+		</div></div>
+				</div>
+				
+			</div>
+		</div>
+		<aside id="text-3" class="sidebar-widget widget_text"><h1 class="widget-title">DOnate</h1>			<div class="textwidget">	<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=ER8734T7YHM5W" target="_blank" rel="nofollow"><img src="https://www.paypal.com/en_US/i/btn/x-click-but21.gif" alt="" /></a></div>
+		</aside><aside id="archives-5" class="sidebar-widget widget_archive"><h1 class="widget-title">Archives</h1>		<label class="screen-reader-text" for="archives-dropdown-5">Archives</label>
+		<select id="archives-dropdown-5" name="archive-dropdown" onchange='document.location.href=this.options[this.selectedIndex].value;'>
+			
+			<option value="">Select Month</option>
+				<option value='https://rpgnovels.com/2018/09/'> September 2018 </option>
+	<option value='https://rpgnovels.com/2018/08/'> August 2018 </option>
+	<option value='https://rpgnovels.com/2018/07/'> July 2018 </option>
+	<option value='https://rpgnovels.com/2018/06/'> June 2018 </option>
+	<option value='https://rpgnovels.com/2018/05/'> May 2018 </option>
+	<option value='https://rpgnovels.com/2018/04/'> April 2018 </option>
+	<option value='https://rpgnovels.com/2018/03/'> March 2018 </option>
+	<option value='https://rpgnovels.com/2018/02/'> February 2018 </option>
+	<option value='https://rpgnovels.com/2018/01/'> January 2018 </option>
+	<option value='https://rpgnovels.com/2017/12/'> December 2017 </option>
+	<option value='https://rpgnovels.com/2017/11/'> November 2017 </option>
+	<option value='https://rpgnovels.com/2017/10/'> October 2017 </option>
+	<option value='https://rpgnovels.com/2017/09/'> September 2017 </option>
+	<option value='https://rpgnovels.com/2017/08/'> August 2017 </option>
+	<option value='https://rpgnovels.com/2017/07/'> July 2017 </option>
+	<option value='https://rpgnovels.com/2017/06/'> June 2017 </option>
+	<option value='https://rpgnovels.com/2017/05/'> May 2017 </option>
+	<option value='https://rpgnovels.com/2017/04/'> April 2017 </option>
+	<option value='https://rpgnovels.com/2017/03/'> March 2017 </option>
+	<option value='https://rpgnovels.com/2017/02/'> February 2017 </option>
+	<option value='https://rpgnovels.com/2017/01/'> January 2017 </option>
+	<option value='https://rpgnovels.com/2016/12/'> December 2016 </option>
+	<option value='https://rpgnovels.com/2016/11/'> November 2016 </option>
+	<option value='https://rpgnovels.com/2016/10/'> October 2016 </option>
+	<option value='https://rpgnovels.com/2016/09/'> September 2016 </option>
+
+		</select>
+		</aside>		<div class="wpcnt">
+			<div class="wpa wpwidesky">
+				<span class="wpa-about">Advertisements</span>
+				<div class="u">
+							<div style="padding-bottom:15px;width:160px;height:600px;">
+		<div id="atatags-1159172093-5ba1166ece85b">
+			<script type="text/javascript">
+			__ATA.cmd.push(function() {
+				__ATA.initSlot('atatags-1159172093-5ba1166ece85b',  {
+					collapseEmpty: 'before',
+					sectionId: '1159172093',
+					width: 160,
+					height: 600
+				});
+			});
+			</script>
+		</div></div>
+				</div>
+				
+			</div>
+		</div>
+	</div><!-- #secondary .widget-area -->
+
+
+		</div><!-- end #main -->
+	</div><!-- end #page-inner -->
+
+	<footer id="colophon" role="contentinfo">
+		<div id="footer">
+			<div id="footer-inner">
+				<div id="footer-inner-inner">
+					
+	<div id="upper-footer-widgets" class="clear-fix">
+				<aside id="recent-posts-1" class="footer-widget widget_recent_entries clear-fix">		<h1>Recent Posts</h1>		<ul>
+											<li>
+					<a href="https://rpgnovels.com/2018/09/17/chapter-10-3/">Chapter 10</a>
+											<span class="post-date">September 17, 2018</span>
+									</li>
+											<li>
+					<a href="https://rpgnovels.com/2018/09/04/chapter-9-3/">Chapter 9</a>
+											<span class="post-date">September 4, 2018</span>
+									</li>
+											<li>
+					<a href="https://rpgnovels.com/2018/08/25/chapter-8-and-patreon/">Chapter 8 and&nbsp;Patreon</a>
+											<span class="post-date">August 25, 2018</span>
+									</li>
+											<li>
+					<a href="https://rpgnovels.com/2018/08/16/chapter-7-4/">Chapter 7</a>
+											<span class="post-date">August 16, 2018</span>
+									</li>
+											<li>
+					<a href="https://rpgnovels.com/2018/08/04/chapter-6-3/">Chapter 6</a>
+											<span class="post-date">August 4, 2018</span>
+									</li>
+					</ul>
+		</aside>	</div><!-- end #about-info -->
+
+				</div><!-- end #footer-inner-inner -->
+			</div><!-- end #footer-inner -->
+		</div>
+		<div id="copyright">
+			<div id="copyright-inner">
+					<div id="copyright-inner-inner">
+					<p>
+						<a href="https://wordpress.com/?ref=footer_blog">Blog at WordPress.com.</a>
+							</p>
+				</div><!-- end #copyright-inner-inner -->
+			</div><!-- end #copyright-inner -->
+		</div><!-- end #copyright -->
+	</footer><!-- end #footer -->
+
+	<!--  -->
+<script type='text/javascript' src='//0.gravatar.com/js/gprofiles.js?ver=201838y'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1380573781h'></script>
+
+	<script>
+		//initialize and attach hovercards to all gravatars
+		jQuery( document ).ready( function( $ ) {
+
+			if (typeof Gravatar === "undefined"){
+				return;
+			}
+
+			if ( typeof Gravatar.init !== "function" ) {
+				return;
+			}			
+
+			Gravatar.profile_cb = function( hash, id ) {
+				WPGroHo.syncProfileData( hash, id );
+			};
+			Gravatar.my_hash = WPGroHo.my_hash;
+			Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+		});
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-a09c303bd95634157ff5016f0b17f668">
+	</div>
+	<div class="grofile-hash-map-4d94eca1cc7c0bf676f8a7a51aa83392">
+	</div>
+	<div class="grofile-hash-map-d5ce252bf2500f1c683aee0a8773ea80">
+	</div>
+	<div class="grofile-hash-map-c245eb1490fab3371df29d3b0fc0faa0">
+	</div>
+	<div class="grofile-hash-map-62b7d6674b2d57afdc801bf33333b8e4">
+	</div>
+	<div class="grofile-hash-map-8d51431fc800db9f7761780842f89b5c">
+	</div>
+	<div class="grofile-hash-map-992f3d62a97a30a39d93bd0e8331ac16">
+	</div>
+	<div class="grofile-hash-map-8c0684ea5765c1cd941cb559c9a45f79">
+	</div>
+	<div class="grofile-hash-map-0521cdb18319c3dfbecc98eabc31b4e0">
+	</div>
+	<div class="grofile-hash-map-7111862fcded6055fef2f6f87f948cf5">
+	</div>
+	<div class="grofile-hash-map-60261b4fd495b5e8dc5d1a0c21cac100">
+	</div>
+	<div class="grofile-hash-map-141befd6a48f7a139c7ac50afa3e00ac">
+	</div>
+	<div class="grofile-hash-map-98fd375e826a623af8256e73c992da19">
+	</div>
+	<div class="grofile-hash-map-51b888f6a90f6295bd7557b32fd3c656">
+	</div>
+	<div class="grofile-hash-map-092572807e55c23642b0a0e79e4e0bae">
+	</div>
+	<div class="grofile-hash-map-e143479f62b9338123af7835167ec3d5">
+	</div>
+	<div class="grofile-hash-map-48d699a494a53deb21d46f64f7f7b517">
+	</div>
+	<div class="grofile-hash-map-012ba1b13852f37c2a2927456f67d491">
+	</div>
+	<div class="grofile-hash-map-b2f2183890525058c58beead1114fa33">
+	</div>
+	<div class="grofile-hash-map-05f9d71528cdcce75307759eea9a6ec8">
+	</div>
+	<div class="grofile-hash-map-1cd2eb1d6b6aab2ebd4b054a878686e2">
+	</div>
+	<div class="grofile-hash-map-31e1344864307f5ffeeddf4b55768da4">
+	</div>
+	<div class="grofile-hash-map-9348ec76a82d61c301e0686d7bad079d">
+	</div>
+	<div class="grofile-hash-map-cb45b365719233ac6ade1950310cbe2e">
+	</div>
+	<div class="grofile-hash-map-8cfdb92a4c05b0e4b12ab7e341336235">
+	</div>
+	<div class="grofile-hash-map-5003edb6eb77209911e1c876d820d3bd">
+	</div>
+	<div class="grofile-hash-map-2c93db814508baff7d48bf001e4ac797">
+	</div>
+	<div class="grofile-hash-map-e13f0bf0902399805b8e16aac0372189">
+	</div>
+	<div class="grofile-hash-map-f876c0b71b8bfd7745519cb3a338226f">
+	</div>
+	<div class="grofile-hash-map-0a5ea90deb79e8c42b35c87ea77dd7f7">
+	</div>
+	<div class="grofile-hash-map-aab1837d2db4b8dfd8bdd72c876636cf">
+	</div>
+	<div class="grofile-hash-map-4fb7a3476a414c2bcd89ea9d9d8e891d">
+	</div>
+	<div class="grofile-hash-map-7a1460f3bfb37256dfe6780107a4329f">
+	</div>
+	<div class="grofile-hash-map-0faf6b1ab5bba0cf1edc1249f2d8862e">
+	</div>
+	<div class="grofile-hash-map-47e7c1142ea3e5eb2c1655d851c36012">
+	</div>
+	<div class="grofile-hash-map-f5438977c06fbf31df3e07abf6be52c0">
+	</div>
+	<div class="grofile-hash-map-84a5ecf0e87ca75d3ddd95a28ef4949b">
+	</div>
+	<div class="grofile-hash-map-aa333a096446da2fa150c48208222d77">
+	</div>
+	<div class="grofile-hash-map-a5bcd161c85386b47747212906b99ebb">
+	</div>
+	<div class="grofile-hash-map-a83f83137f04081c0ac22a8893a4527b">
+	</div>
+	<div class="grofile-hash-map-2d2963a742985d09485a1a61d1295229">
+	</div>
+	<div class="grofile-hash-map-a63a2be8e76602aeb88a07d98a116bd2">
+	</div>
+	<div class="grofile-hash-map-744b59d209165707665361df3f274a30">
+	</div>
+	<div class="grofile-hash-map-16c6df04629e271bf850e555c823e3b5">
+	</div>
+	<div class="grofile-hash-map-56cde1255d4492a771699e3d05062da5">
+	</div>
+	<div class="grofile-hash-map-f4016fb4e5038ec51f6d32da58399c8e">
+	</div>
+	<div class="grofile-hash-map-3620613f6f705d6f0d86e0739d27b5cf">
+	</div>
+	<div class="grofile-hash-map-adf90dfffdd3be259df767fc0934dd6b">
+	</div>
+	<div class="grofile-hash-map-0334765916287395067ec463adfbd95b">
+	</div>
+	</div>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"https:\/\/rpgnoob.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"https:\/\/rpgnoob.wordpress.com\/wp-login.php?action=logout&_wpnonce=cf74eacee3","homeURL":"https:\/\/rpgnovels.com\/","postID":"847","gravDefault":"identicon","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":"","isJetpack":"","text_direction":"ltr"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://s2.wp.com/_static/??/wp-content/js/jquery/jquery.autoresize.js,/wp-content/mu-plugins/highlander-comments/script.js?m=1521806916j'></script>
+
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"https:\/\/rpgnovels.com\/maou_vol1ch20\/":847};
+	</script>
+				<script type='text/javascript'>
+/* <![CDATA[ */
+var comment_like_text = {"loading":"Loading..."};
+/* ]]> */
+</script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var actionbardata = {"siteID":"115917209","siteName":"RPGNovels","siteURL":"https:\/\/rpgnovels.com","icon":"<img alt='' src='https:\/\/rpgnoob.files.wordpress.com\/2018\/08\/cropped-maou-marcho.jpg?w=50' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/chateau","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/rpgnoob.wordpress.com\/wp-login.php?redirect_to=https%3A%2F%2Frpgnovels.com%2Fmaou_vol1ch20%2F","themeURL":"","xhrURL":"https:\/\/rpgnovels.com\/wp-admin\/admin-ajax.php","nonce":"8e9f338cb2","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"36c1c82cc3\" \/>","referer":"https:\/\/rpgnovels.com\/maou_vol1ch20\/","canFollow":"1","feedID":"56813890","statusMessage":"","customizeLink":"https:\/\/rpgnoob.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Frpgnoob.wordpress.com%2Fmaou_vol1ch20%2F","postID":"847","shortlink":"https:\/\/wp.me\/P7Qnmp-dF","canEditPost":"","editLink":"https:\/\/wordpress.com\/page\/rpgnovels.com\/847","statsLink":"https:\/\/wordpress.com\/stats\/post\/847\/rpgnovels.com","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Chateau","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"Join 620 other followers","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/rpgnoob.wordpress.com\/wp-login.php?redirect_to=https%3A%2F%2Frpgnovels.com%2Fmaou_vol1ch20%2F\">Log in now.<\/a>","stats":"Stats"}};
+/* ]]> */
+</script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var sharing_js_options = {"lang":"en","counts":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://s1.wp.com/_static/??-eJyVkN1OwzAMhV+I1LAKTbtAPArKEq9zmz9sZ4W3JxXaxLiItCtbx+c7tgxrMS4nxaQwC3i8kMPyNczyBH9GsZoS6kRJINCCAp8VK55t8gG5Y3Y5xiaZX2je6CPISgUfge6EK0jJhervDYwlfA+RUid9JT+hCmBt07wQmmBXUIwlWMV/eifH+rbHHC1DtKLIrTP5gsy0HXXTHkxQtm6RHuSUctqgW9dzLyQR1YzDM3y0j8Epc+z4SxY1p2CJQc6WKU3X2qD3+PbyOu4O+9142M8/oyjUuQ=='></script>
+<script type='text/javascript'>
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-twitter', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-facebook', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-google-plus-1', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomgoogle-plus-1', 'menubar=1,resizable=1,width=480,height=550' );
+				return false;
+			});
+</script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script>	<script type="text/javascript">
+	var skimlinks_pub_id = "725X584219"
+	var skimlinks_sitename = "rpgnoob.wordpress.com";
+	</script>
+	<script type="text/javascript" defer src="https://s.skimresources.com/js/725X1342.skimlinks.js"></script>		<iframe src='https://widgets.wp.com/likes/master.html?ver=20180319#ver=20180319' scrolling='no' id='likes-master' name='likes-master' style='display:none;'></iframe>
+		<div id='likes-other-gravatars'><div class="likes-text"><span>%d</span> bloggers like this:</div><ul class="wpl-avatars sd-like-gravatars"></ul></div>
+<script src="//stats.wp.com/w.js?56" type="text/javascript" async defer></script>
+<script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'115917209','blog_tz':'8','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'115917209','v':'wpcom','tz':'8','user_id':'0','post':'847','subd':'rpgnoob'}]);
+_stq.push(['extra', {'crypt':'UE5tW3cvZGQ9MH5ucz1rL21iUFg5b2JueV0/TS4tRlQ4X2hiNFRMRTMrQV1iWGEwbHQsRUVzfG1+PXZKdllrb1ZmV11ZUmZrbV0teC1LP1VTU04rcWNNUFlETkZzVmFCcV94cUFOd054NHFYQkQ/fDddRlBaYW03aWo/Y3FyMk5EZ2JCRzAwTTIzZzJuaDUxPytBUj9Td0NtaUtZSm0mK0pxYmwrMURfcFVUcUxSTw=='}]);
+_stq.push([ 'clickTrackerInit', '115917209', '847' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:0px;width:0px;overflow:hidden" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script></div><!-- end #page -->
+</body>
+</html>
+<!--
+	generated in 0.236 seconds
+	174146 bytes batcached for 300 seconds
+-->
