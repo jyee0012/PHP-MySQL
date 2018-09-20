@@ -9,26 +9,14 @@
         <title>Blog Post</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-        <style type="text/css">
-            .newEntry{
-                padding:1rem;
-                margin: 0 2rem;
-                
-            }
-            .title{
-
-            }
-            .timedate{
-
-            }
-            .entry{
-
-            }
-        </style>
+        <link rel="stylesheet" href="style.css">
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
-    <h1>Welcome to the blog</h1>
+    <h1>Welcome to My Blog</h1>
+    <div class="blog">
         <?php
         include("admin/blogfile.txt");
         ?>
@@ -36,7 +24,8 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <br>
-        <button><a href="admin/login.php">Login</a></button>
+        <a href="admin/insert.php" class="btn btn-default">Login</a>
+        </div>
         <script src="" async defer></script>
     </body>
 </html>

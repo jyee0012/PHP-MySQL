@@ -36,6 +36,7 @@ if (isset($_POST['insert'])){
 	$handle = fopen("blogfile.txt", "w");
 	fwrite($handle, $allEntries); // write to file
 	fclose($handle); // close the resource
+	$insertMsg = "Successfully added \"". $title . "\".";
 }
 ?>
 <!DOCTYPE html>
@@ -64,7 +65,7 @@ if (isset($_POST['insert'])){
 	<div class="container">
 
 		<h1>Insert Blog Entry</h1>
-
+		<p><?php echo $insertMsg; ?></p>
 
 		<form name="myform" class="formstyle" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
 			
@@ -80,7 +81,9 @@ if (isset($_POST['insert'])){
 			<textarea class="form-control" name="entry" id="entry" cols="30" rows="10"></textarea>
 		  </div>
 
-		  <input type="submit" class="btn btn-default" name="insert">
+		  <input type="submit" class="btn btn-default" name="insert" value="Insert Entry">
+		  <a href="../index.php" class="btn btn-default">Back to the Blog</a>
+		  <a href="logout.php" class="btn btn-default">Logout</a>
 
 		</form>
 

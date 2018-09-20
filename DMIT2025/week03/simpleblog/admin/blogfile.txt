@@ -1,0 +1,26 @@
+
+<div class="newEntry">
+	<div class="title">Day ??x@</div>
+	<div class="timedate">September 20, 2018, 2:05 pm</div>
+	<div class="entry">I'm going to cheat and modify the date outside of the site</div>
+</div>
+<div class="newEntry">
+	<div class="title">Day 312</div>
+	<div class="timedate">April 2, 2018, 2:05 pm</div>
+	<div class="entry">It's almost been a year</div>
+</div>
+<div class="newEntry">
+	<div class="title">Day 17</div>
+	<div class="timedate">October 7, 2017, 2:04 pm</div>
+	<div class="entry">I skipped a few days</div>
+</div>
+<div class="newEntry">
+	<div class="title">Day 2</div>
+	<div class="timedate">September 21, 2017, 2:02 pm</div>
+	<div class="entry">I updated css styles for the blog</div>
+</div>
+<div class="newEntry">
+	<div class="title">Day 1</div>
+	<div class="timedate">September 20, 2017, 1:24 pm</div>
+	<div class="entry">I made a blog</div>
+</div>

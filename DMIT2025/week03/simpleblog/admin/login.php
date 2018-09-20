@@ -23,7 +23,7 @@ if (isset($_POST['login'])){
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Secured Login</title>
+	<title>Blog Login</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- These must be in place to use Bootstrap ! -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -43,7 +43,7 @@ if (isset($_POST['login'])){
 	<div class="container">
 
 		<h1>Login</h1>
-		<?php if ($errorMsg) echo "<h2 class=\"red\">$errorMsg</h2>"; ?>
+		<?php if ($errorMsg) echo "<h3 class=\"red\">$errorMsg</h3>"; ?>
 
 
 		<form name="myform" class="formstyle" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
@@ -60,7 +60,8 @@ if (isset($_POST['login'])){
 		    <input type="password" class="form-control" id="pwd" name="pwd">
 		  </div>
 
-		  <input type="submit" class="btn btn-default" name="login">
+		  <input type="submit" class="btn btn-default" name="login" value="Login">
+		  <a href="../index.php" class="btn btn-default">Back to the Blog</a>
 
 		</form>
 
