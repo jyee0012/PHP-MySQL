@@ -1,0 +1,20 @@
+// Security against email form injections. This is an older way of making sure there are no mail injections in a message. While there are newer filters that promise that they will cleanse any injections out, the documentation on them is confusing, so you may wish to use something like this as well.
+
+	$badStrings = array("Content-Type:",
+	"MIME-Version:",
+	"Content-Transfer-Encoding:",
+	"bcc:",
+	"cc:");
+	foreach($_POST as $k => $v){
+		foreach($badStrings as $v2){
+			if(strpos($v, $v2) !== false){
+				// In case of spam, all actions taken here
+				//header("HTTP/1.0 403 Forbidden");
+				//exit; // stop all further PHP scripting, so mail will not be sent.
+				
+				$boolValidateOK = 0;
+				$strValidationMessage = "There is a security problem with the formatting of this message. ";
+				$strValidationMessage .= "Please try again.";
+			}
+		}
+	}

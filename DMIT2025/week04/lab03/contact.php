@@ -74,7 +74,7 @@ if (isset($_POST['submit'])){
         $subject = "Lab03 Validation and Mail";
 
         
-        $send = true;
+        $send = false;
         $test = false;  
         if ($send){
             mail($to, $subject, $myMail, $headers);
