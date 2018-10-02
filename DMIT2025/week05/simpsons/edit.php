@@ -1,6 +1,19 @@
 <?php include("includes/header.php"); ?>
 
 <?php
+    echo "<script> let previousVal;</script>";
+    $newCharid = trim($_GET['charid']);
+    $newCharid = filter_var($newCharid, FILTER_SANITIZE_NUMBER_INT);
+    if ($newCharid != "")  {
+        $newResult = mysqli_query($con, "SELECT * from simpsons WHERE sid = '$newCharid'") or die(mysqli_error($con));
+        while ($fillChar = mysqli_fetch_array($newResult)){
+        
+        $fname = $fillChar['fname'];
+        $lname = $fillChar['lname'];
+        $descrip = $fillChar['description'];
+        }
+        echo "<script> previousVal = $newCharid;</script>";
+    }
     if (isset($_POST['submit'])){
         $fname = trim($_POST['fname']);
         $lname = trim($_POST['lname']);
@@ -40,7 +53,9 @@
                     while ($row = mysqli_fetch_array($result)){
                         $displayName = $row['fname'] . " " . $row['lname']; 
                         $charid = $row['sid'];
-                        echo "<option value=\"$charid\">$displayName</option>";
+                        echo "<option value=\"$charid\" "; 
+                        if (isset($newCharid) && $newCharid == $charid) echo "selected=\"selected\"";
+                        echo ">$displayName</option>";
                     }
                 ?>           
             </select>
@@ -74,8 +89,11 @@
 
 	</div><!-- / .container -->
     <script>
-        document.querySelector('.select-char').addEventListener('select', (evt) => {
-            console.log("hello");
+        document.querySelector('.select-char').addEventListener('click', (evt) => {
+            let options = document.querySelector('.select-char');
+            if (options.value != "" && options.value != previousVal) {
+                window.location.href = "edit.php?charid=" + options.value;
+            }
         });
     </script>
 
