@@ -85,13 +85,17 @@
           
 
 		  <input type="submit" class="btn btn-default" name="update" value="Update">
-		  <a href="delete.php?charid=<?php echo $charid; ?>" class="btn btn-default">Delete</a>
+		  <a href="delete.php?charid=<?php echo $charid; ?>" class="btn btn-default deletebtn">Delete</a>
             <?php if ($stringValidate){echo "<div class=\"alert alert-warning\">" .$stringValidate. "</div>"; } ?>
 		</form>
 
 
 	</div><!-- / .container -->
     <script>
+        document.querySelector('.deletebtn').addEventListener('click', (evt) => {
+            <?php echo "let alertbool = alert(\"Are you sure you wish to delete $fname $lname?\")"; ?>
+            if (!alertbool) evt.preventDefault();
+        });
         document.querySelector('.select-char').addEventListener('click', (evt) => {
             let options = document.querySelector('.select-char');
             if (options.value != "" && options.value != previousVal) {

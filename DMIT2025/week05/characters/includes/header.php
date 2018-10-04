@@ -27,9 +27,9 @@
         </style>
     </head>
     <body>
-        <div class="form-group">
-            <button class="btn btn-secondary"><a href="index.php">Home</a></button>
-            <button class="btn btn-secondary"><a href="insert.php">Insert</a></button>
-            <button class="btn btn-secondary"><a href="edit.php">Edit</a></button>
-            <button class="btn btn-secondary"><a href="search.php">Search</a></button>
-        </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="index.php">List</a>
+            <a class="navbar-brand" href="create.php">Create</a>
+            <a class="navbar-brand" href="update.php">Update</a>
+            <a class="navbar-brand" href="search.php">Search</a>
+        </nav>
