@@ -5,22 +5,47 @@
         $fname = trim($_POST['fname']);
         $lname = trim($_POST['lname']);
         $descrip = trim($_POST['descrip']);
+        $charinfo = trim($_POST['charinfo']);
+        $series = trim($_POST['series']);
+        $source = trim($_POST['source']);
+
         $fname = filter_var($fname, FILTER_SANITIZE_STRING);
         $lname = filter_var($lname, FILTER_SANITIZE_STRING);
         $descrip = filter_var($descrip, FILTER_SANITIZE_STRING);
+        $charinfo = filter_var($charinfo, FILTER_SANITIZE_STRING);
+        $series = filter_var($series, FILTER_SANITIZE_STRING);
+        $source = filter_var($source, FILTER_SANITIZE_STRING);
         $boolValidateOK = true; //user has succesfully filled out the form; when we test for this further down, if its still 1, we can go ahead and do whatever this form is meant to do. Any validation rule can veto this by setting it to 0.
         $stringValidate = "";
         // $ip = $_SERVER['REMOTE_ADDR'];
 
-        if ($fname != "" && $lname != "" && $descrip != "")
+        if (strlen($fname) < 2 || strlen($fname) > 50){
+            $boolValidateOK = false;
+            $fnameValidate .= "<p>Please enter a first name that is between 2 and 50 characters</p>";
+        }
+        if (strlen($lname) < 2 || strlen($lname) > 50){
+            $boolValidateOK = false;
+            $lnameValidate .= "<p>Please enter a last name that is between 2 and 50 characters</p>";
+        }
+        if (strlen($series) < 1 || strlen($series) > 100){
+            $boolValidateOK = false;
+            $seriesValidate .= "<p>Please enter the series this character is from</p>";
+        }
+        if (strlen($source) < 6 || strlen($source) > 100){
+            $boolValidateOK = false;
+            $sourceValidate .= "<p>Please enter the url of where you found this character, it's wiki or your source of info</p>";
+        }
+
+        if ($fname != "" && $lname != "" && $series != "" && $source != "")
         {
             // CREATE: aka. insert
-            mysqli_query($con, "INSERT INTO simpsons (fname, lname, description) VALUES ('$fname', '$lname', '$descrip')") or die(mysqli_error($con));
+            $sql = "INSERT INTO $database (jye_fname, jye_lname, jye_description, jye_charinfo, jye_series, jye_source) VALUES ('$fname', '$lname', '$descrip', '$charinfo', '$series', '$source')";
+            mysqli_query($con, $sql) or die(mysqli_error($con));
             $stringValidate = "<p>Thank you for inserting data</p>";
 
         }else{
             $boolValidateOK = false;
-            $stringValidate = "<p>Please fill in all information</p>";
+            $stringValidate = "<p>Please fill in the information above</p>";
         }
 
 
@@ -50,8 +75,25 @@
             <textarea name="descrip" id="descrip" class="form-control"><?php if ($descrip) echo $descrip ?></textarea>
             <?php if ($descripValidate){echo "<div class=\"alert alert-warning\">" .$descripValidate. "</div>"; } ?>
           </div>
-          
 
+          <div class="form-group">
+		    <label for="charinfo">Character Info:</label>
+            <textarea name="charinfo" id="charinfo" class="form-control"><?php if ($charinfo) echo $charinfo ?></textarea>
+            <?php if ($charinfoValidate){echo "<div class=\"alert alert-warning\">" .$charinfoValidate. "</div>"; } ?>
+          </div>
+        
+          <div class="form-group">
+		    <label for="series">Series:</label>
+		    <input type="text" class="form-control" id="series" name="series" value="<?php if ($series) echo $series ?>">
+            <?php if ($seriesValidate){echo "<div class=\"alert alert-warning\">" .$seriesValidate. "</div>"; } ?>
+          </div>
+
+          <div class="form-group">
+		    <label for="source">Source:</label>
+		    <input type="text" class="form-control" id="source" name="source" value="<?php if ($source) echo $source ?>" placeholder="Personal Source">
+            <?php if ($sourceValidate){echo "<div class=\"alert alert-warning\">" .$sourceValidate. "</div>"; } ?>
+          </div>
+            <br>
 		  <input type="submit" class="btn btn-default" name="submit" value="Insert">
             <?php if ($stringValidate){echo "<div class=\"alert alert-warning\">" .$stringValidate. "</div>"; } ?>
 		</form>

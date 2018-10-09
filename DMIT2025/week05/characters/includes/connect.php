@@ -13,4 +13,5 @@
     foreach ($_GET as $key => $value) { 
         $_GET[$key] = mysqli_real_escape_string($con, $value); 
     }
+    $database = "fictional_characters";
 ?>
