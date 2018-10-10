@@ -139,7 +139,7 @@
             <br>
 		  <input type="submit" class="btn btn-default" name="update" value="Update">
 		  <a href="delete.php?charid=<?php echo $charid; ?>" class="btn btn-default deletebtn"><i class="fas fa-trash-alt"></i> Delete</a>
-            <?php if ($stringValidate){echo "<div class=\"alert alert-warning\">" .$stringValidate. "</div>"; } ?>
+            <?php if ($stringValidate){echo "<div class=\"alert alert-success\">" .$stringValidate. "</div>"; } ?>
 		</form>
 
 

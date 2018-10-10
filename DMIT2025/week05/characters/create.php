@@ -105,7 +105,7 @@
           </div>
             <br>
 		  <input type="submit" class="btn btn-default" name="submit" value="Insert">
-            <?php if ($stringValidate){echo "<div class=\"alert alert-warning\">" .$stringValidate. "</div>"; } ?>
+            <?php if ($stringValidate){echo "<div class=\"alert alert-success\">" .$stringValidate. "</div>"; } ?>
 		</form>
 
 

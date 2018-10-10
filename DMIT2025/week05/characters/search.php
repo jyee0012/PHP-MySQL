@@ -7,7 +7,7 @@
 		  <div class="form-group col-md-3">
 		    <!-- <label for="searchterm">Search:</label> -->
 		    <input type="text" class="form-control searchsubmit-text" id="searchterm" name="searchterm" value="<?php if ($fname) echo $fname ?>">
-		    <input type="submit" class="btn btn-default searchsubmit" name="searchsubmit" value="Search " + <i class="fas fa-search-icon"></i>>
+		    <input type="submit" class="btn btn-default searchsubmit" name="searchsubmit">Search <i class="fas fa-search"></i></input>
             <?php if ($searchValidate){echo "<div class=\"alert alert-warning\">" .$searchValidate. "</div>"; } ?>
 		  </div>
 		</form>
