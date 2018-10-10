@@ -40,10 +40,7 @@
             $boolValidateOK = false;
             $fnameValidate .= "<p>Please enter a first name that is between 2 and 50 characters</p>";
         }
-        if (strlen($lname) < 2 || strlen($lname) > 50){
-            $boolValidateOK = false;
-            $lnameValidate .= "<p>Please enter a last name that is between 2 and 50 characters</p>";
-        }
+        
         if (strlen($series) < 1 || strlen($series) > 100){
             $boolValidateOK = false;
             $seriesValidate .= "<p>Please enter the series this character is from</p>";
@@ -130,7 +127,7 @@
 
           <div class="form-group">
 		    <label for="source">Source:</label>
-		    <input type="text" class="form-control" id="source" name="source" value="<?php if ($source) echo $source ?>" placeholder="Personal Source">
+		    <input type="text" class="form-control" id="source" name="source" value="<?php if ($source) echo $source ?>" placeholder="<?php if ($sourcePlaceholder) echo $sourcePlaceholder; ?>">
             <?php if ($sourceValidate){echo "<div class=\"alert alert-warning\">" .$sourceValidate. "</div>"; } ?>
           </div>
             <br>
@@ -143,7 +140,7 @@
 	</div><!-- / .container -->
     <script>
         document.querySelector('.deletebtn').addEventListener('click', (evt) => {
-            <?php if ($newCharid != "") echo "let alertbool = alert(\"Are you sure you wish to delete $fname $lname?\")"; ?>
+            <?php if ($newCharid != "") echo "let alertbool = confirm(\"Are you sure you wish to delete $fname $lname?\")"; ?>
             if (!alertbool) evt.preventDefault();
         });
         document.querySelector('.select-char').addEventListener('click', (evt) => {

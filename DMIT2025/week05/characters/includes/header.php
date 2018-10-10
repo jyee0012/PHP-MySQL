@@ -2,6 +2,34 @@
 <?php
     $thisFile = basename($_SERVER['PHP_SELF']);
     $title = ucwords(str_replace(".php","",$thisFile));
+    
+    function echoChar($row){
+        
+        $fname = $row['jye_fname']; 
+        $lname = $row['jye_lname'];
+        $descrip = nl2br($row['jye_description']);
+        $charinfo = nl2br($row['jye_charinfo']);
+        $series = $row['jye_series'];
+        $source = $row['jye_source'];
+        $useSource = $source;
+
+        echo "<div class=\"character\">";
+        echo "<h3>$fname $lname</h3>";
+        echo "<br><h4>Description:</h4>";
+        echo "<p>$descrip</p>";
+        echo "<br><h4>Character Info:</h4>";
+        echo "<p>$charinfo</p>";
+        echo "<p class=\"series\">from </p>";
+        echo "<h4 class=\"series\">$series</h4>";
+        // for $fname $lname
+        if ($source == "Personal Source"){
+            $useSource = "";
+        }
+        echo "<a href=\"$useSource\" class=\"btn btn-secondary\">Source </a>";
+        
+        echo "</div>";
+    }
+    $sourcePlaceholder = "Wiki Link or Personal Source";
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -18,52 +46,17 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
+        <link rel="stylesheet" href="css/style.css">
         <style type="text/css">
-            .formstyle{ /* optional: in case you don't like the really wide form */
-                max-width:450px;
-            }
-            a{
-                color: #333;
-            }
-            a:hover{
-                text-decoration:none;
-            }
-            .character{
-                border: 1px solid black;
-                border-radius: 1rem;
-                background-image: linear-gradient(up, #333, #777);
-                width: 60rem;
-                margin: 0 auto;
-                padding: 0.5rem 2rem;
-                padding-bottom: 3rem;
-                margin-bottom: 3rem;
-            }
-            .character .series{
-                margin-top: 0.5rem;
-                float: left;
-
-            }
-            .character a{
-                /* margin-top: 0rem; */
-                float: right;
-
-            }
-            .character-list{
-                width: 100%;
-                padding: 1rem;
-            }
-            .character-list h1{
-                text-align:center;
-                /* margin: 0 auto; */
-            }
+            
         </style>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="index.php">Home</a>
-            <a class="navbar-brand" href="list.php">List</a>
-            <a class="navbar-brand" href="create.php">Create</a>
-            <a class="navbar-brand" href="update.php">Update</a>
-            <a class="navbar-brand" href="search.php">Search</a>
-        </nav>
+        <div> 
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="index.php">Home</a>
+                <a class="navbar-brand" href="list.php">List</a>
+                <a class="navbar-brand" href="create.php">Create</a>
+                <a class="navbar-brand" href="update.php">Update</a>
+                <a class="navbar-brand" href="search.php">Search</a>
+            </nav>
