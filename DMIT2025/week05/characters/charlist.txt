@@ -1,30 +1,33 @@
 James Source:
-Misogi - Medaka Box
-Jack Rakan - Mahou Sensei Negima
-Meliodas - Nanatsu no Taizai
-Rimuru Tempest - Tensei Shitara Slime Datta Ken
-Satou - Death March Hajimeru kara Isekai Kyoushoukokyouko
-Momonga - Overlord
-Zeref - Fairy Tail
-Yui - Arifureta
+✓   Misogi - Medaka Box
+✓   Jack Rakan - Mahou Sensei Negima
+✓   Meliodas - Nanatsu no Taizai
+✓   Rimuru Tempest - Tensei Shitara Slime Datta Ken
+✓   Satou - Death March Hajimeru kara Isekai Kyoushoukokyouko
+✓   Momonga - Overlord
+   Zeref - Fairy Tail
+   Yue - Arifureta
 
 Brandon Source:
-Taiga - Toradora
-Accelerator - Toaru Kagaku no Accelerator
-Revy - Black Lagoon
-Honoka - Love Live
-Rikka Takanashi - Chuunibyou
-Renton - Eureka 7
-TK - Angel Beats
-Dokuro-chan - Bokusatsu Tenshi
-Ranka Lee - Macross Frontier
-Irene - Claymore
-Usui - Kaichou wa Maid-sama
-Yuno - Mirai Nikki
-Nikuru - Haruhi Suzumiya
-Moriyoko Moriko - Netjuu no Susume
-Inori - Guilty Crown
-Sagara Sousuke - Full Metal Panic
-Syaoran Li - Subasa Chronicles 
+✓   Taiga - Toradora
+✓   Accelerator - Toaru Kagaku no Accelerator
+   Revy - Black Lagoon
+   Honoka - Love Live
+   Rikka Takanashi - Chuunibyou
+   Renton - Eureka 7
+   TK - Angel Beats
+   Dokuro-chan - Bokusatsu Tenshi
+   Ranka Lee - Macross Frontier
+   Irene - Claymore
+   Usui - Kaichou wa Maid-sama
+   Yuno - Mirai Nikki
+   Nikuru - Haruhi Suzumiya
+   Moriyoko Moriko - Netjuu no Susume
+   Inori - Guilty Crown
+   Sagara Sousuke - Full Metal Panic
+   Syaoran Li - Subasa Chronicles 
 
 
+
+✓ = ALT 10003	
+X = ALT 2713 

@@ -33,12 +33,25 @@
             $sourceValidate .= "<p>Please enter the url of where you found this character, it's wiki or your source of info</p>";
         }
 
-        if ($fname != "" && $lname != "" && $series != "" && $source != "")
+        if ($fname != "" && $series != "" && $source != "")
         {
             // CREATE: aka. insert
-            $sql = "INSERT INTO $database (jye_fname, jye_lname, jye_description, jye_charinfo, jye_series, jye_source) VALUES ('$fname', '$lname', '$descrip', '$charinfo', '$series', '$source')";
+            if (filter_var($source, FILTER_VALIDATE_URL)){
+                $useSource = $source;
+            }else{
+                $useSource = "";
+            }
+            $sql = "INSERT INTO $database (jye_fname, jye_lname, jye_description, jye_charinfo, jye_series, jye_source) VALUES ('$fname', '$lname', '$descrip', '$charinfo', '$series', '$useSource')";
             mysqli_query($con, $sql) or die(mysqli_error($con));
-            $stringValidate = "<p>Thank you for inserting data</p>";
+            $stringValidate = "<p>Thank you for inserting \"$fname\" into the database</p>";
+
+            
+            $fname = '';
+            $lname = '';
+            $descrip = '';
+            $charinfo = '';
+            $series = '';
+            $source = '';
 
         }else{
             $boolValidateOK = false;

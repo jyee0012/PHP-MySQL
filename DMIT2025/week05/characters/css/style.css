@@ -2,7 +2,7 @@
     max-width:450px;
 }
 a{
-    color: #333;
+    /* color: #333; */
 }
 a:hover{
     text-decoration:none;
@@ -15,18 +15,23 @@ a:hover{
     /* margin: 0 auto; */
     /* margin-left: 20rem; */
     padding: 0.5rem 2rem;
-    padding-bottom: 3rem;
+    padding-bottom: 5rem;
     margin-bottom: 3rem;
 }
 .character .series{
-    margin-top: 0.5rem;
+    margin-top: 2.5rem;
     float: left;
 }
-.character p .series{
-    padding-right: 0.5rem;
+.character .series-left {
+    padding-left: 1rem;
+}
+.character .float-right{
+    float: right;
+    clear: both;
 }
 .character a{
     /* margin-top: 0rem; */
+    margin-top: 1.5rem;
     float: right;
 
 }

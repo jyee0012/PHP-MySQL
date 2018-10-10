@@ -15,12 +15,22 @@
 
         echo "<div class=\"character\">";
         echo "<h3>$fname $lname</h3>";
-        echo "<br><h4>Description:</h4>";
-        echo "<p>$descrip</p>";
-        echo "<br><h4>Character Info:</h4>";
-        echo "<p>$charinfo</p>";
+        
+        if ($charNum){
+            echo "<h4 class=\"float-right\">#$charNum</h4>";
+        }
+
+        if ($descrip){
+            echo "<br><h4>Description:</h4>";
+            echo "<p>$descrip</p>";
+        }
+        if ($charinfo){
+            echo "<br><h4>Character Info:</h4>";
+            echo "<p>$charinfo</p>";
+        }
+
         echo "<p class=\"series\">from </p>";
-        echo "<h4 class=\"series\">$series</h4>";
+        echo "<h4 class=\"series series-left\">$series</h4>";
         // for $fname $lname
         if ($source == "Personal Source"){
             $useSource = "";

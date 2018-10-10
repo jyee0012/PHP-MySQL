@@ -18,8 +18,8 @@
         echo "<script> previousVal = $newCharid;</script>";
     }
     if (isset($_POST['update'])){
-        $firstname = trim($_POST['fname']);
-        $lastname = trim($_POST['lname']);
+        $fname = trim($_POST['fname']);
+        $lname = trim($_POST['lname']);
         $descrip = trim($_POST['descrip']);
         $charinfo = trim($_POST['charinfo']);
         $series = trim($_POST['series']);
@@ -54,11 +54,17 @@
             $charidValidate = "<p>Please select a character to update</p>";
         }
 
-        if ($fname != "" && $lname != "" && $series != "" && $source != "")
+        if ($fname != "" && $series != "" && $source != "")
         {
             // CREATE: aka. insert
             //echo "$fname, $lname, $descrip";
-            $sql = "UPDATE $database SET jye_fname = '$fname', jye_lname = '$lname', jye_description = '$descrip', jye_charinfo = '$charinfo', jye_series = '$series', jye_source = '$source' WHERE fcid = '$charid'";
+            if (filter_var($source, FILTER_VALIDATE_URL) ){
+                $useSource = $source;
+            }else{
+                $useSource = "";
+            }
+
+            $sql = "UPDATE $database SET jye_fname = '$fname', jye_lname = '$lname', jye_description = '$descrip', jye_charinfo = '$charinfo', jye_series = '$series', jye_source = '$useSource' WHERE fcid = '$charid'";
             mysqli_query($con, $sql) or die(mysqli_error($con));
             $stringValidate = "<p>Thank you for updating data</p>";
 
@@ -140,12 +146,13 @@
 	</div><!-- / .container -->
     <script>
         document.querySelector('.deletebtn').addEventListener('click', (evt) => {
-            <?php if ($newCharid != "") echo "let alertbool = confirm(\"Are you sure you wish to delete $fname $lname?\")"; ?>
+            <?php if ($newCharid != "") echo "let alertbool = confirm(\"Are you sure you wish to delete $fname $lname?\");"; ?>
             if (!alertbool) evt.preventDefault();
         });
         document.querySelector('.select-char').addEventListener('click', (evt) => {
             let options = document.querySelector('.select-char');
-            if (options.value != "" && options.value != previousVal) {
+            // console.log(options.value);
+            if (options.value != "" && Number(options.value) != previousVal) {
                 window.location.href = "update.php?charid=" + options.value;
             }
         });
