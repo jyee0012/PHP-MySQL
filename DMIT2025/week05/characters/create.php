@@ -17,6 +17,7 @@
         $source = filter_var($source, FILTER_SANITIZE_STRING);
         $boolValidateOK = true; //user has succesfully filled out the form; when we test for this further down, if its still 1, we can go ahead and do whatever this form is meant to do. Any validation rule can veto this by setting it to 0.
         $stringValidate = "";
+        $alertString = "success";
         // $ip = $_SERVER['REMOTE_ADDR'];
 
         if (strlen($fname) < 2 || strlen($fname) > 50){
@@ -56,6 +57,7 @@
         }else{
             $boolValidateOK = false;
             $stringValidate = "<p>Please fill in the information above</p>";
+            $alertString = "warning";
         }
 
 
@@ -105,7 +107,7 @@
           </div>
             <br>
 		  <input type="submit" class="btn btn-default" name="submit" value="Insert">
-            <?php if ($stringValidate){echo "<div class=\"alert alert-success\">" .$stringValidate. "</div>"; } ?>
+            <?php if ($stringValidate){echo "<div class=\"alert alert-$alertString\">" .$stringValidate. "</div>"; } ?>
 		</form>
 
 

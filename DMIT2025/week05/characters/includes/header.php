@@ -11,6 +11,7 @@
         $charinfo = nl2br($row['jye_charinfo']);
         $series = $row['jye_series'];
         $source = $row['jye_source'];
+        $charid = $row['fcid'];
         $useSource = $source;
 
         echo "<div class=\"character\">";
@@ -35,7 +36,8 @@
         if ($source == "Personal Source"){
             $useSource = "";
         }
-        echo "<a href=\"$useSource\" class=\"btn btn-secondary\">Source </a>";
+        echo "<a href=\"$useSource\" class=\"btn btn-secondary sourcebtn\">Source </a>";
+        echo "<a href=\"update.php?charid=$charid\" class=\"btn btn-secondary editbtn\">Edit </a>";
         
         echo "</div>";
     }
@@ -68,5 +70,26 @@
                 <a class="navbar-brand" href="list.php">List</a>
                 <a class="navbar-brand" href="create.php">Create</a>
                 <a class="navbar-brand" href="update.php">Update</a>
-                <a class="navbar-brand" href="search.php">Search</a>
+                <!-- <a class="navbar-brand" href="search.php">Search</a> -->
+                            
+                <div class="form-group col-md-6">
+                    <form name="myform" class="formstyle" method="post" action="<?php echo "search.php";?>">
+                        <!-- <label for="searchterm">Search:</label> -->
+                        <div class="input-group">
+                            <input type="text" class="form-control searchsubmit-text" id="searchterm" name="searchterm" value="<?php if ($fname) echo $fname ?>">
+                            <?php if ($searchValidate){echo "<div class=\"alert alert-warning\">" .$searchValidate. "</div>"; } ?>
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-default searchsubmit" name="searchsubmit">Search <i class="fas fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+                <script>
+                    document.querySelector(".searchsubmit").addEventListener('submit' (evt) => {
+                        if (trim(document.querySelector(".searchsubmit-text").innerHTML) == "") {
+                            evt.preventDefault();
+                            alert("Please enter something to search.");
+                        }
+                    });
+                </script>
             </nav>

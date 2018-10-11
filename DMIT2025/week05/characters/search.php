@@ -3,22 +3,6 @@
 
 <div class="container">
         <h1>Search</h1>
-        <form name="myform" class="formstyle" method="post" action="<?php echo "search.php";?>">
-		  <div class="form-group col-md-3">
-		    <!-- <label for="searchterm">Search:</label> -->
-		    <input type="text" class="form-control searchsubmit-text" id="searchterm" name="searchterm" value="<?php if ($fname) echo $fname ?>">
-		    <input type="submit" class="btn btn-default searchsubmit" name="searchsubmit">Search <i class="fas fa-search"></i></input>
-            <?php if ($searchValidate){echo "<div class=\"alert alert-warning\">" .$searchValidate. "</div>"; } ?>
-		  </div>
-		</form>
-        <script>
-            document.querySelector(".searchsubmit").addEventListener('submit' (evt) => {
-                if (trim(document.querySelector(".searchsubmit-text").innerHTML) == "") {
-                    evt.preventDefault();
-                    alert("Please enter something to search.");
-                }
-            });
-        </script>
 <?php
     if (isset($_POST['searchsubmit'])){
         $searchterm = trim($_POST['searchterm']);

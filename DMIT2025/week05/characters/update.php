@@ -34,6 +34,7 @@
         $charid = $_POST['charid'];
         $boolValidateOK = true; //user has succesfully filled out the form; when we test for this further down, if its still 1, we can go ahead and do whatever this form is meant to do. Any validation rule can veto this by setting it to 0.
         $stringValidate = "";
+        $alertString = "success";
         // $ip = $_SERVER['REMOTE_ADDR'];
 
         if (strlen($fname) < 2 || strlen($fname) > 50){
@@ -66,11 +67,12 @@
 
             $sql = "UPDATE $database SET jye_fname = '$fname', jye_lname = '$lname', jye_description = '$descrip', jye_charinfo = '$charinfo', jye_series = '$series', jye_source = '$useSource' WHERE fcid = '$charid'";
             mysqli_query($con, $sql) or die(mysqli_error($con));
-            $stringValidate = "<p>Thank you for updating data</p>";
+            $stringValidate = "<p>Thank you for updating $fname's data</p>";
 
         }else{
             $boolValidateOK = false;
             $stringValidate = "<p>Please fill in information stated above</p>";
+            $alertString = "warning";
         }
 
 
@@ -139,7 +141,7 @@
             <br>
 		  <input type="submit" class="btn btn-default" name="update" value="Update">
 		  <a href="delete.php?charid=<?php echo $charid; ?>" class="btn btn-default deletebtn"><i class="fas fa-trash-alt"></i> Delete</a>
-            <?php if ($stringValidate){echo "<div class=\"alert alert-success\">" .$stringValidate. "</div>"; } ?>
+            <?php if ($stringValidate){echo "<div class=\"alert alert-$alertString\">" .$stringValidate. "</div>"; } ?>
 		</form>
 
 
