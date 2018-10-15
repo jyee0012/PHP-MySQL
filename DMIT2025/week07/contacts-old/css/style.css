@@ -1,0 +1,48 @@
+.formstyle{ /* optional: in case you don't like the really wide form */
+    max-width:450px;
+}
+a{
+    /* color: #333; */
+}
+a:hover{
+    text-decoration:none;
+}
+.character{
+    border: 1px solid black;
+    border-radius: 1rem;
+    background-image: linear-gradient(up, #333, #777);
+    width: 60rem;
+    /* margin: 0 auto; */
+    /* margin-left: 20rem; */
+    padding: 0.5rem 2rem;
+    padding-bottom: 5rem;
+    margin-bottom: 3rem;
+}
+.character .series{
+    margin-top: 2.5rem;
+    float: left;
+}
+.character .series-left {
+    padding-left: 1rem;
+}
+.character .float-right{
+    float: right;
+    clear: both;
+}
+.character a{
+    /* margin-top: 0rem; */
+    margin-top: 1.5rem;
+    float: right;
+
+}
+.character-list{
+    padding: 1rem;
+}
+body{
+    width: 100%;
+    padding: 1rem;
+}
+.character-list h1{
+    text-align:center;
+    /* margin: 0 auto; */
+}
