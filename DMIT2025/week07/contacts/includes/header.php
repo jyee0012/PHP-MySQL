@@ -48,25 +48,25 @@ $title = ucwords(str_replace(".php","",$thisFile));
               <span class="icon-bar"></span>
             </button>
             <!--  We'll use the BASE_URL set in the connection script to resolve all links -->
-            <a class="navbar-brand" href="<?php echo BASE_URL ?>index.php">Basic App - Template</a>
+            <a class="navbar-brand" href="<?php echo BASE_URL ?>index.php">Contacts DB - <?php echo "$title"; ?></a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <!-- This page doesn't exist. It's just a sample link. YOU need to change it! -->
-              <li><a href="<?php echo BASE_URL ?>anotherpage.php">Another Page</a></li>
+              <li><a href="<?php echo BASE_URL ?>list.php">List</a></li>
               
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="<?php echo BASE_URL ?>admin/insert.php">Insert</a></li>
-                  <li><a href="<?php echo BASE_URL ?>admin/anotherpage.php">Another Page</a></li>
+                  <li><a href="<?php echo BASE_URL ?>admin/edit.php">Edit</a></li>
                   
                  
                 </ul>
               </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="#">Right Link</a></li>
+              <li><a href="<?php echo BASE_URL ?>admin/logout.php">Logout</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->

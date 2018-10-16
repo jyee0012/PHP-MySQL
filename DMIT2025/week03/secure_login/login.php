@@ -43,17 +43,13 @@ if (isset($_POST['login'])){
 	<div class="container">
 
 		<h1>Login</h1>
-		<?php if ($errorMsg) echo "<h2 class=\"red\">$errorMsg</h2>"; ?>
-
 
 		<form name="myform" class="formstyle" method="post" action="login.php">
 			
-		<!-- you can copy/paste one of these form-groups, then change the form element and label within -->
 		  <div class="form-group">
 		    <label for="user">Username:</label>
 		    <input type="text" class="form-control" id="user" name="user">
 		  </div>
-		 <!-- / form-group -->
 
 		  <div class="form-group">
 		    <label for="pwd">Password:</label>
@@ -61,6 +57,7 @@ if (isset($_POST['login'])){
 		  </div>
 
 		  <input type="submit" class="btn btn-default" name="login">
+		<?php if $errorMsg {echo "<div class=\"alert alert-warning\">" . $errorMsg . "</div>"; } ?>
 
 		</form>
 

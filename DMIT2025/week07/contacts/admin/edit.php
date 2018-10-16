@@ -2,7 +2,7 @@
 <?php include("../includes/admin-check.php"); ?>
 
 <?php
-	if (isset($_POST['insert'])){
+	if (isset($_POST['edit'])){
 		$bname = trim($_POST['bname']);
 		$pname = trim($_POST['pname']);
 		$email = trim($_POST['email']);
@@ -85,9 +85,27 @@
 
 ?>
 
-<h2>Insert</h2>
+<h2>Edit</h2>
 <form id="myform" name="myform" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
 		<?php if ($stringValidate){echo "<div class=\"alert alert-$alertString\">" .$stringValidate. "</div>"; } ?>
+
+        <div class="form-group">
+		    <label for="charid">Contact List:</label>
+            <select name="charid" id="charid" class="form-control select-char">
+                <option value="" selected disabled hidden >Please Select a Contact</option>
+                <?php
+                    $result = mysqli_query($con, "SELECT * from $database") or die(mysqli_error($con));
+                    while ($row = mysqli_fetch_array($result)){
+                        $displayName = $row['jye_bname']; 
+                        $charid = $row['cid'];
+                        echo "<option value=\"$contactid\" "; 
+                        if (isset($newContactId) && $newContactId == $contactid) echo "selected=\"selected\"";
+                        echo ">$displayName</option>";
+                    }
+                ?>           
+            </select>
+        </div>
+
 		<div class="form-group">
 			<label for="bname">* Business Name:</label>
 			<input type="text" class="form-control" id="bname" name="bname" value="<?php if ($bname) echo $bname ?>">
@@ -163,13 +181,27 @@
 		</div>
 		
 		<div class="form-group">
-			<label for="insert">&nbsp;</label>
-			<input type="submit" name="insert" class="btn btn-info" value="Insert">
+			<label for="edit">&nbsp;</label>
+			<input type="submit" name="edit" class="btn btn-info" value="Update">
+		    <a href="delete.php?charid=<?php echo $charid; ?>" class="btn btn-info deletebtn">Delete <i class="fas fa-trash-alt"></i></a>
 		</div>
 
 
 
 </form>
+<script>
+        document.querySelector('.deletebtn').addEventListener('click', (evt) => {
+            <?php if ($newContactId != "") echo "let alertbool = confirm(\"Are you sure you wish to delete $bname?\");"; ?>
+            if (!alertbool) evt.preventDefault();
+        });
+        document.querySelector('.select-char').addEventListener('click', (evt) => {
+            let options = document.querySelector('.select-char');
+            // console.log(options.value);
+            if (options.value != "" && Number(options.value) != previousVal) {
+                window.location.href = "update.php?contactid=" + options.value;
+            }
+        });
+</script>
 <?php
 	include("../includes/footer.php");
 ?>
