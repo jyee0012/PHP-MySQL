@@ -2,6 +2,26 @@
 <?php include("../includes/admin-check.php"); ?>
 
 <?php
+	echo "<script> let previousVal;</script>";
+    $newContactId = trim($_GET['contactid']);
+    $newContactId = filter_var($newContactId, FILTER_SANITIZE_NUMBER_INT);
+    if ($newContactId != "")  {
+        $newResult = mysqli_query($con, "SELECT * from $database WHERE cid = '$newContactId'") or die(mysqli_error($con));
+        while ($fillContact = mysqli_fetch_array($newResult)){
+			
+			$bname = $fillContact['jye_bname'];
+			$pname = $fillContact['jye_pname'];
+			$email = $fillContact['jye_email'];
+			$url = $fillContact['jye_url'];
+			$phone = $fillContact['jye_phone'];
+			$address = $fillContact['jye_address'];
+			$city = $fillContact['jye_city'];
+			$province = $fillContact['jye_province'];
+			$descrip = $fillContact['jye_description'];
+			$sendletters = $fillContact['jye_sendletters'];
+        }
+        echo "<script> previousVal = $newContactId;</script>";
+    }
 	if (isset($_POST['edit'])){
 		$bname = trim($_POST['bname']);
 		$pname = trim($_POST['pname']);
@@ -13,6 +33,7 @@
 		$province = $_POST['province'];
 		$descrip = trim($_POST['descrip']);
 		$sendletters = trim($_POST['sendletters']);
+		$contactid = $_POST['contactid'];
 
         $bname = filter_var($bname, FILTER_SANITIZE_STRING);
         $pname = filter_var($pname, FILTER_SANITIZE_STRING);
@@ -59,23 +80,22 @@
 
 		if ($boolValidateOK){
 			
-            $sql = "INSERT INTO $database 
-			(jye_bname, jye_pname, jye_email, jye_url, jye_phone, jye_address, jye_city, jye_province, jye_description, jye_sendletter) VALUES 
-			('$bname', '$pname', '$email', '$url', '$phone', '$address', '$city', '$province', '$descrip', '$sendletters')";
+            $sql = "UPDATE $database SET 
+			jye_bname = '$bname', 
+			jye_pname = '$pname', 
+			jye_email = '$email', 
+			jye_url = '$url', 
+			jye_phone = '$phone', 
+			jye_address = '$address',
+			jye_city = '$city',
+			jye_province = '$province',
+			jye_description = '$descrip',
+			jye_sendletter = '$sendletters'
+			WHERE cid = '$contactid'";
 
             mysqli_query($con, $sql) or die(mysqli_error($con));
-			$stringValidate = "<p>Thank you for inserting \"$bname\" into the Contacts database</p>";
+			$stringValidate = "<p>Thank you for updating \"$bname\"'s Info in the Contacts database</p>";
 
-			$bname = "";
-			$pname = "";
-			$email = "";
-			$url = "";
-			$phone = "";
-			$address = "";
-			$city = "";
-			$province = "";
-			$descrip = "";
-			$sendletters = "";
 			
 		}else{
 			$alertString = "warning";
@@ -90,14 +110,14 @@
 		<?php if ($stringValidate){echo "<div class=\"alert alert-$alertString\">" .$stringValidate. "</div>"; } ?>
 
         <div class="form-group">
-		    <label for="charid">Contact List:</label>
-            <select name="charid" id="charid" class="form-control select-char">
+		    <label for="contactid">Contact List:</label>
+            <select name="charid" id="contactid" class="form-control select-char">
                 <option value="" selected disabled hidden >Please Select a Contact</option>
                 <?php
                     $result = mysqli_query($con, "SELECT * from $database") or die(mysqli_error($con));
                     while ($row = mysqli_fetch_array($result)){
                         $displayName = $row['jye_bname']; 
-                        $charid = $row['cid'];
+                        $contactid = $row['cid'];
                         echo "<option value=\"$contactid\" "; 
                         if (isset($newContactId) && $newContactId == $contactid) echo "selected=\"selected\"";
                         echo ">$displayName</option>";

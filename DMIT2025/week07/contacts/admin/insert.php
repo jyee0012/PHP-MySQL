@@ -60,7 +60,7 @@
 		if ($boolValidateOK){
 			
             $sql = "INSERT INTO $database 
-			(jye_bname, jye_pname, jye_email, jye_url, jye_phone, jye_address, jye_city, jye_province, jye_description, jye_sendletter) VALUES 
+			(jye_bname, jye_pname, jye_email, jye_url, jye_phone, jye_address, jye_city, jye_province, jye_description, jye_sendletters) VALUES 
 			('$bname', '$pname', '$email', '$url', '$phone', '$address', '$city', '$province', '$descrip', '$sendletters')";
 
             mysqli_query($con, $sql) or die(mysqli_error($con));
