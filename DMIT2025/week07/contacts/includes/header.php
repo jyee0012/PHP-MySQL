@@ -3,6 +3,10 @@ include("mysql_connect.php");// here we include the connection script; since thi
 
 $thisFile = basename($_SERVER['PHP_SELF']);
 $title = ucwords(str_replace(".php","",$thisFile));
+$loginText = "login";
+if ($loggedin){
+  $loginText = "logout";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,7 +57,7 @@ $title = ucwords(str_replace(".php","",$thisFile));
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <!-- This page doesn't exist. It's just a sample link. YOU need to change it! -->
-              <li><a href="<?php echo BASE_URL ?>list.php">List</a></li>
+              <li><a href="<?php echo BASE_URL ?>index.php">Contact List</a></li>
               
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
@@ -66,7 +70,7 @@ $title = ucwords(str_replace(".php","",$thisFile));
               </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="<?php echo BASE_URL ?>admin/logout.php">Logout</a></li>
+              <li><a href="<?php echo BASE_URL ?>admin/<?php echo $loginText; ?>.php"><?php echo ucwords($loginText); ?></a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->

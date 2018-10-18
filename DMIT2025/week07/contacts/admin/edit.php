@@ -1,5 +1,6 @@
-<?php include("../includes/header.php"); ?>
+<?php $admincontrol = true; ?>
 <?php include("../includes/admin-check.php"); ?>
+<?php include("../includes/header.php"); ?>
 
 <?php
 	echo "<script> let previousVal;</script>";
@@ -47,7 +48,10 @@
 		$stringValidate = "";
 		$alertString = "success";
 		
-
+		if (!isset($contactid)){
+			$boolValidateOK = false;
+			$contactValidate .= "Please Select a Contact";
+		}
 		if (strlen($bname) > 250){
             $boolValidateOK = false;
             $bnameValidate .= "<p>Please enter the company name</p>";
@@ -90,15 +94,24 @@
 			jye_city = '$city',
 			jye_province = '$province',
 			jye_description = '$descrip',
-			jye_sendletter = '$sendletters'
+			jye_sendletters = '$sendletters'
 			WHERE cid = '$contactid'";
 
             mysqli_query($con, $sql) or die(mysqli_error($con));
-			$stringValidate = "<p>Thank you for updating \"$bname\"'s Info in the Contacts database</p>";
-
+			$stringValidate = "<p>Thank you for updating \"$bname's\" Info in the Contacts database</p>";
 			
+			$bname = "";
+			$pname = "";
+			$email = "";
+			$url = "";
+			$phone = "";
+			$address = "";
+			$city = "";
+			$province = "";
+			$descrip = "";
+			$sendletters = "";
 		}else{
-			$alertString = "warning";
+			$alertString = "danger";
 			$stringValidate = "<p>Please fill in the information below</p>";
 		}
 	}
@@ -124,6 +137,7 @@
                     }
                 ?>           
             </select>
+			<?php if ($contactValidate){echo "<div class=\"alert alert-warning\">" .$contactValidate. "</div>"; } ?>
         </div>
 
 		<div class="form-group">
@@ -203,7 +217,7 @@
 		<div class="form-group">
 			<label for="edit">&nbsp;</label>
 			<input type="submit" name="edit" class="btn btn-info" value="Update">
-		    <a href="delete.php?charid=<?php echo $charid; ?>" class="btn btn-info deletebtn">Delete <i class="fas fa-trash-alt"></i></a>
+		    <a href="delete.php?contactid=<?php echo $charid; ?>" class="btn btn-info deletebtn">Delete <i class="fas fa-trash-alt"></i></a>
 		</div>
 
 
@@ -218,7 +232,7 @@
             let options = document.querySelector('.select-char');
             // console.log(options.value);
             if (options.value != "" && Number(options.value) != previousVal) {
-                window.location.href = "update.php?contactid=" + options.value;
+                window.location.href = "edit.php?contactid=" + options.value;
             }
         });
 </script>

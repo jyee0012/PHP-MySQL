@@ -1,5 +1,6 @@
-<?php include("../includes/header.php"); ?>
+<?php $admincontrol = true; ?>
 <?php include("../includes/admin-check.php"); ?>
+<?php include("../includes/header.php"); ?>
 
 <?php
 	if (isset($_POST['insert'])){
@@ -78,7 +79,7 @@
 			$sendletters = "";
 			
 		}else{
-			$alertString = "warning";
+			$alertString = "danger";
 			$stringValidate = "<p>Please fill in the information below</p>";
 		}
 	}
@@ -143,7 +144,7 @@
 				<option value="NS" <?php if ($province == "NS") echo "selected=\"selected\""; ?>>Nova Scotia</option>
 				<option value="NB" <?php if ($province == "NB") echo "selected=\"selected\""; ?>>New Brunswick</option>
 				<option value="NL" <?php if ($province == "NL") echo "selected=\"selected\""; ?>>Newfoundland</option>
-				<option value="PE" <?php if ($province == "PE") echo "selected=\"selected\""; ?> >Prince Edward Island</option>
+				<option value="PE" <?php if ($province == "PE") echo "selected=\"selected\""; ?>>Prince Edward Island</option>
 				<option value="NT" <?php if ($province == "NT") echo "selected=\"selected\""; ?>>Northwest Territories</option>
 				<option value="YT" <?php if ($province == "YT") echo "selected=\"selected\""; ?>>Yukon</option>
 				<option value="NU" <?php if ($province == "NU") echo "selected=\"selected\""; ?>>Nanavut</option>

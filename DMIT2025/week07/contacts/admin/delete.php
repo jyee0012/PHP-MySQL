@@ -1,5 +1,6 @@
-<?php include("../includes/header.php"); ?>
+<?php $admincontrol = true; ?>
 <?php include("../includes/admin-check.php"); ?>
+<?php include("../includes/header.php"); ?>
 
 <?php
     $newContactId = trim($_GET['contactid']);
