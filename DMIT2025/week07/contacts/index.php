@@ -1,15 +1,12 @@
 <?php include("includes/admin-check.php"); ?>
 <?php include("includes/header.php"); ?>
 <?php
-	echo "<br>";
-	echo $_SERVER['PHP_SELF'];
-	echo "<br>";
-	echo dirname(\__FILE__);
-	echo "<br>";
-	echo dirname(__FILE__);
-	echo "<br>";
-	echo basename(__DIR__);
-	echo "<br>";
+	// for testing
+	// echo $_SERVER['PHP_SELF']; 	// /dmit2025/week07/contacts/index.php
+	// echo dirname(__FILE__); 		// /home/jyee12/public_html/dmit2025/week07/
+	// echo dirname(__FILE__); 		// /home/jyee12/public_html/dmit2025/week07/contacts
+	// echo basename(__DIR__); 		// contacts
+	// echo BASE_URL; 				// http://jyee12.dmitstudent.ca/dmit2025/week07/contacts/
 ?>
 <style>
 	#myBtn {

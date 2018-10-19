@@ -91,7 +91,7 @@
 		<h1><?php if ($business) echo $business; ?></h1>
         <hr>
         <p>Contact: <?php if ($usePerson) echo $usePerson; ?></p>
-        <p>Email: <?php if ($email) echo $email; ?></p>
+        <p>Email: <?php if ($email) echo "<a href=\"mailto:$email\">$email</a>"; ?></p>
         <p>Phone: <?php if ($phone) echo $phone; ?></p>
         <p>Website: <?php if ($website) echo "<a href=\"$website\">$website</a>"; ?></p>
         <p>Address: <?php if ($useAddress) echo $useAddress; ?></p>

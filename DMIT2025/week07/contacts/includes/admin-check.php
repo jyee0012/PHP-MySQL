@@ -2,6 +2,9 @@
 session_start();
 //echo $_SESSION['squeezwatgoodbyeotterpopspicyboyfriendshawnwasabithingfeaturinghollisraychaeljayandvocaloidnottomentionomfg'];
 $thisRef = basename($_SERVER['PHP_SELF']);
+if (basename(__DIR__) == "admin"){
+    $thisRef = "admin/" . $thisRef;
+}
 $loggedin = true;
 if (isset($_GET['contactid'])){
     $newContactId = trim($_GET['contactid']);

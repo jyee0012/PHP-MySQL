@@ -2,7 +2,11 @@
 include("mysql_connect.php");// here we include the connection script; since this file(header.php) is included at the top of every page we make, the connection will then also be included. Also, config options like BASE_URL are also available to us.
 
 $thisFile = basename($_SERVER['PHP_SELF']);
-$title = ucwords(str_replace(".php","",$thisFile));
+$fileTitle = str_replace(".php","",$thisFile);
+if ($fileTitle == "companyprofile"){
+  $fileTitle = "company Profile";
+}
+$title = ucwords($fileTitle);
 $loginText = "login";
 if ($loggedin){
   $loginText = "logout";
@@ -32,9 +36,12 @@ if ($loggedin){
 
  <!-- Your Custom styles for this project -->
  <!--  Note how we can use BASE_URL constant to resolve all links no matter where the file resides. -->
-<link href="<?php echo BASE_URL ?>css/styles.css" rel="stylesheet">
-
-
+<link href="<?php echo BASE_URL ?>css/styles.css" rel="stylesheet"> 
+<style>
+  .form-group{
+    padding-top: 1rem;
+  }
+</style>
 </head>
 
   <body>
@@ -64,24 +71,34 @@ if ($loggedin){
                 <ul class="dropdown-menu">
                   <li><a href="<?php echo BASE_URL ?>admin/insert.php">Insert</a></li>
                   <li><a href="<?php echo BASE_URL ?>admin/edit.php">Edit</a></li>
-                  
-                 
                 </ul>
               </li>
             </ul>
+            
+            <div class="form-group col-md-6">
+                    <form name="myform" class="formstyle" method="post" action="<?php echo BASE_URL ?>search.php">
+                        <div class="input-group">
+                            <input type="text" class="form-control searchsubmit-text" id="searchterm" name="searchterm" value="">
+                            <?php if ($searchValidate){echo "<div class=\"alert alert-warning\">" .$searchValidate. "</div>"; } ?>
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-primary searchsubmit" name="searchsubmit">Search <i class="fas fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
             <ul class="nav navbar-nav navbar-right">
               <li><a href="<?php echo BASE_URL ?>admin/<?php echo $loginText; ?>.php"><?php echo ucwords($loginText); ?></a></li>
             </ul>
           </div><!--/.nav-collapse -->
+          
+          <script>
+              document.querySelector(".searchsubmit").addEventListener('submit', (evt) => {
+                  if (trim(document.querySelector(".searchsubmit-text").innerHTML) == "") {
+                      evt.preventDefault();
+                      alert("Please enter something to search.");
+                  }
+              });
+          </script>
+
         </div><!--/.container-fluid -->
       </nav>
-
-    
-
-      
-
-    
-
-
-
-
