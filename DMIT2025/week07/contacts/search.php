@@ -11,21 +11,19 @@
             $boolValidateOK = true; //user has succesfully filled out the form; when we test for this further down, if its still 1, we can go ahead and do whatever this form is meant to do. Any validation rule can veto this by setting it to 0.
             $stringValidate = "";
             if ($searchterm != ""){
-                $sql = "SELECT * from $database WHERE   jye_bname like '%$searchterm%' OR 
-                                                        jye_pname like '%$searchterm%' OR 
-                                                        jye_email like '%$searchterm%' OR 
-                                                        jye_url like '%$searchterm%' OR 
-                                                        jye_phone like '%$searchterm%' OR 
-                                                        jye_address like '%$searchterm%' OR 
-                                                        jye_city like '%$searchterm%' OR 
-                                                        jye_province like '%$searchterm%' OR 
-                                                        jye_description like '%$searchterm%'                                         
-                                                        ";
+                $sql = "SELECT * FROM $database WHERE MATCH 
+                (jye_bname,jye_pname,jye_email,jye_url,jye_phone,jye_address,jye_city,jye_province,jye_description) 
+                AGAINST ('$searchterm' IN BOOLEAN MODE)";
+
                 $result = mysqli_query($con, $sql) or die(mysqli_error($con));
-                while ($row = mysqli_fetch_array($result)){
-                    $contactid = $row['cid'];
-                    $business = $row['jye_bname'];
-                    echo "<p>$business <a href=\"companyprofile.php?contactid=$contactid\">View Profile</a></p> ";
+                if(mysqli_num_rows($result) > 0){
+                    while ($row = mysqli_fetch_array($result)){
+                        $contactid = $row['cid'];
+                        $business = $row['jye_bname'];
+                        echo "<p>$business <a href=\"companyprofile.php?contactid=$contactid\">View Profile</a></p> ";
+                    }
+                }else{
+                    echo "<b>No results</b>";
                 }
             }
         } // if search

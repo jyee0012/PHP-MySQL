@@ -217,7 +217,7 @@
 		<div class="form-group">
 			<label for="edit">&nbsp;</label>
 			<input type="submit" name="edit" class="btn btn-info" value="Update">
-		    <a href="delete.php?contactid=<?php echo $charid; ?>" class="btn btn-info deletebtn">Delete <i class="fas fa-trash-alt"></i></a>
+		    <a href="delete.php?contactid=<?php echo $contactid; ?>" class="btn btn-info deletebtn">Delete <i class="fas fa-trash-alt"></i></a>
 		</div>
 
 

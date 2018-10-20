@@ -1,6 +1,6 @@
 <?php $admincontrol = true; ?>
 <?php include("../includes/admin-check.php"); ?>
-<?php include("../includes/header.php"); ?>
+<?php include("../includes/mysql_connect.php"); ?>
 
 <?php
     $newContactId = trim($_GET['contactid']);
@@ -10,4 +10,3 @@
         header("Location:edit.php");
     }
 ?>
-<?php include("../includes/footer.php"); ?>

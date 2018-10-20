@@ -2,7 +2,7 @@
 session_start();
 //echo $_SESSION['squeezwatgoodbyeotterpopspicyboyfriendshawnwasabithingfeaturinghollisraychaeljayandvocaloidnottomentionomfg'];
 $thisRef = basename($_SERVER['PHP_SELF']);
-if (basename(__DIR__) == "admin"){
+if (strpos($_SERVER['PHP_SELF'], 'admin') !== false){
     $thisRef = "admin/" . $thisRef;
 }
 $loggedin = true;
@@ -20,4 +20,7 @@ if (!isset($_SESSION['squeezwatgoodbyeotterpopspicyboyfriendshawnwasabithingfeat
         header("Location:login.php");
     }
 }
+// echo = basename(__DIR__); // includes
+// echo __DIR__ . "<br>";  // /home/jyee12/public_html/dmit2025/week07/contacts/includes
+// echo dirname($_SERVER['PHP_SELF']); // /dmit2025/week07/contacts/admin
 ?>
