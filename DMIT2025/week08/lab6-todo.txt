@@ -1,0 +1,4 @@
+Take a look at the CodeIgniter PHP framework
+
+
+For lab 06; use cookies to prepopulate login or searchterms

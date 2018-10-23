@@ -9,12 +9,12 @@
                 <span class="icon-bar"></span>
             </button>
             <!--  We'll use the BASE_URL set in the connection script to resolve all links -->
-            <a class="navbar-brand" href="<?php echo BASE_URL ?>index.php">Contacts DB - <?php echo "$title"; ?></a>
+            <a class="navbar-brand" href="<?php echo BASE_URL ?>index.php">Blog - <?php echo "$title"; ?></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <!-- This page doesn't exist. It's just a sample link. YOU need to change it! -->
-                <li><a href="<?php echo BASE_URL ?>index.php">Contact List</a></li>
+                <!-- <li><a href="<?php echo BASE_URL ?>index.php">Contact List</a></li> -->
                 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
@@ -26,7 +26,7 @@
             </ul>
 
             <div class="form-group col-md-6">
-                <form name="myform" class="formstyle" method="post" action="<?php echo BASE_URL ?>search.php">
+                <form name="myform" style="padding-top: 1rem" class="formstyle" method="post" action="<?php echo BASE_URL ?>search.php">
                     <div class="input-group">
                         <input type="text" class="form-control searchsubmit-text" id="searchterm" name="searchterm" value="">
                         <?php if ($searchValidate){echo "<div class=\"alert alert-warning\">" .$searchValidate. "</div>"; } ?>
