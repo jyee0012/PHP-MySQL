@@ -1,10 +1,17 @@
 <?php include("../includes/mysql_connect.php"); ?>
 <?php
 // echo phpversion();
+if (isset($_COOKIE['lastLogin'])){
+	$lastLogin = $_COOKIE['lastLogin'];
+}
 if (isset($_POST['login'])){
 	$user = trim($_POST['user']);
     $pass = trim($_POST['pwd']);
 	
+	$user = filter_var($user, FILTER_SANITIZE_STRING);
+	$pass = filter_var($pass, FILTER_SANITIZE_STRING);
+
+	setcookie("lastLogin", $user);
 	if (($user == "jum") && ($pass == "thing")){
 		// SUCCESS
 		$backupUrl = BASE_URL . "index.php";		
@@ -30,6 +37,7 @@ if (isset($_POST['login'])){
 	}else{
 		// FAILURE
 		$errorMsg = "Incorrect Login";
+		$lastLogin = "";
 	}
 } // if submit
 
@@ -44,7 +52,7 @@ if (isset($_POST['login'])){
     
   <div class="form-group">
     <label for="user">Username:</label>
-    <input type="text" class="form-control" id="user" name="user">
+    <input type="text" class="form-control" id="user" name="user" value="<?php if ($lastLogin) echo $lastLogin; ?>">
   </div>
 
   <div class="form-group">

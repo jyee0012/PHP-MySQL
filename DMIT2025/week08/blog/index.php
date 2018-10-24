@@ -25,6 +25,11 @@
 	}else{
 		$limstring = "LIMIT 0,$limit";
 	}
+
+	$pgNum = trim($_GET['pg']);
+    $pgNum = filter_var($pgNum, FILTER_SANITIZE_NUMBER_INT);
+
+
 ?>
 <style>
 	#myBtn {
@@ -52,12 +57,12 @@
 </style>
 <div class="row">
 	<div class="col-md-12">
-		<h1>Blog Posts</h1>
+		<h1>Blog Posts <?php if ($pgNum) echo "Page $pgNum";?></h1>
 		<?php
 			$sql = "SELECT * from $database ORDER BY jye_timedate DESC $limstring";
 			$result = mysqli_query($con, $sql) or die(mysqli_error($con));
 		?>
-			<div class\"contacts\">
+			<div class="contacts">
 			<?php while ($row = mysqli_fetch_array($result)): ?>
 				<?php
 					$displayTitle = $row['jye_title'];

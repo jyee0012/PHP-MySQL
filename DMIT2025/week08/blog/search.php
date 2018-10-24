@@ -7,12 +7,17 @@
 	<div class="col-md-12">
         <h1>Search</h1>
         <?php
-        if (isset($_POST['searchsubmit'])){
+        if (isset($_COOKIE['searchterm'])){
+            $searchCookie = $_COOKIE['searchterm'];
+        }
+        if (isset($_POST['searchsubmit']) || isset($searchCookie)){
+            if ($searchCookie) $searchterm = $searchCookie;
             $searchterm = trim($_POST['searchterm']);
             $searchterm = filter_var($searchterm, FILTER_SANITIZE_STRING);
             $boolValidateOK = true; //user has succesfully filled out the form; when we test for this further down, if its still 1, we can go ahead and do whatever this form is meant to do. Any validation rule can veto this by setting it to 0.
             $stringValidate = "";
             if ($searchterm != ""){
+                // setcookie("searchterm", $searchterm, 1800);
                 $sql = "SELECT * FROM $database WHERE MATCH 
                 (jye_title,jye_message) 
                 AGAINST ('$searchterm' IN BOOLEAN MODE)";
@@ -23,6 +28,7 @@
                 WHERE MATCH 
                 (jye_title,jye_message) 
                 AGAINST ('$searchterm' IN BOOLEAN MODE)");
+
                 $postnum = mysqli_result($getcount,0);// this needs a fix for MySQLi upgrade; see custom function below
                 $limit = 5;
                 if($postnum > $limit){

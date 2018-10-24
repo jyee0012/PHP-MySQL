@@ -76,7 +76,7 @@ function massEmoticonPlacer(){
     emoticonPlacer(":surprise:","icon_surprised.gif");
     emoticonPlacer(":twisted:","icon_twisted.gif");
     emoticonPlacer(":wink:","icon_wink.gif");
-    
+    echo "<br>";
     emoticonPlacer(":rooBaka:","rooBaka.gif");
     emoticonPlacer(":rooBlank:","rooBlank.gif");
     emoticonPlacer(":rooBlind:","rooBlind.gif");
