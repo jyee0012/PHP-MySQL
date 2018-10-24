@@ -67,15 +67,19 @@
 		?>
 			<div class\"contacts\">
 			<?php while ($row = mysqli_fetch_array($result)): ?>
-				
+				<?php
+					$displayTitle = $row['jye_title'];
+					$displayTxt = nl2br(addEmoticons(makeClickableLinks($row['jye_message'])));
+					$timedate = strtotime($row['jye_timedate']);
+					$displayDate = date("F j, Y, g:i a", $timedate);
+					$bid = $row['bid'];
+				?>
 				<!-- this is for quick and dirty layout; best to not use the well for your labs -->
 				<div class="well clearfix"> 
-					<h3><?php echo $row['jye_title']; ?></h3>
-					<p><?php echo nl2br(addEmoticons(makeClickableLinks($row['jye_message'])));?></p>
-					<?php $timedate = strtotime($row['jye_timedate']); ?>
-					<p class="pull-right"><i><?php echo date("F j, Y, g:i a", $timedate); ?></i></p>
-					<?php $bid = $row['bid']; ?>
-					<a style="margin-right: 1rem;"  class="pull-right"<?php echo "href=\"admin/edit.php?blogid=$bid\""; ?>><i>Edit</i></a>
+					<h3><?php echo $displayTitle; ?></h3>
+					<p><?php echo $displayTxt;?></p>
+					<p class="pull-right"><i><?php echo $displayData; ?></i></p>
+					<a style="margin-right: 1rem;" class="pull-right"<?php echo "href=\"admin/edit.php?blogid=$bid\""; ?>><i>Edit</i></a>
 				</div>
 
 			<?php endwhile; ?>

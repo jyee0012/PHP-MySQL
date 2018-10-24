@@ -18,10 +18,11 @@
                 $result = mysqli_query($con, $sql) or die(mysqli_error($con));
                 if(mysqli_num_rows($result) > 0){
                     while ($row = mysqli_fetch_array($result)){
-                        $blogid = $row['bid'];
-                        $title = $row['jye_title'];
-                        $msg = $row['jye_message'];
-                        echo "<p>$business <a href=\"companyprofile.php?contactid=$contactid\">View Profile</a></p> ";
+                        $displayTitle = $row['jye_title'];
+                        $displayTxt = nl2br(addEmoticons(makeClickableLinks($row['jye_message'])));
+                        $timedate = strtotime($row['jye_timedate']);
+                        $displayDate = date("F j, Y, g:i a", $timedate);
+                        $bid = $row['bid'];
                     }
                 }else{
                     echo "<b>No results</b>";

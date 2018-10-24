@@ -30,11 +30,11 @@
 			$boolValidateOK = false;
 			$blogValidate .= "Please Select a Blog Post";
 		}
-		if ((strlen($btitle) < 2 && strlen($btitle) > 50) || $btitle == ""){
+		if ((strlen($btitle) < 2 || strlen($btitle) > 50) || $btitle == ""){
             $boolValidateOK = false;
             $btitleValidate .= "<p>Please enter a title between 2 and 50 characters</p>";
 		}
-		if (strlen($msg) < 10 && strlen($msg) > 1000){
+		if (strlen($msg) < 10 || strlen($msg) > 1000){
             $boolValidateOK = false;
             $msgValidate .= "<p>Please enter a message between 10 and 1000 characters</p>";
 		}
