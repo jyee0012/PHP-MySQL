@@ -123,4 +123,10 @@ function makePageTitle($conditionTxt = "", $replaceTxt = ""){
     $title = ucwords($fileTitle);
     return $title;
 }
+// MySQLi upgrade: we need this for mysql_result() equivalent
+function mysqli_result($res, $row, $field=0) { 
+  $res->data_seek($row); 
+  $datarow = $res->fetch_array(); 
+  return $datarow[$field]; 
+} //////////////
 ?>

@@ -6,33 +6,25 @@
 	$postnum = mysqli_result($getcount,0);// this needs a fix for MySQLi upgrade; see custom function below
 	$limit = 5;
 	if($postnum > $limit){
-	$tagend = round($postnum % $limit,0);
-	$splits = round(($postnum - $tagend)/$limit,0);
+		$tagend = round($postnum % $limit,0);
+		$splits = round(($postnum - $tagend)/$limit,0);
 
-	if($tagend == 0){
-	$num_pages = $splits;
-	}else{
-	$num_pages = $splits + 1;
-	}
+		if($tagend == 0){
+			$num_pages = $splits;
+		}else{
+			$num_pages = $splits + 1;
+		}
 
-	if(isset($_GET['pg'])){
-	$pg = $_GET['pg'];
+		if(isset($_GET['pg'])){
+			$pg = $_GET['pg'];
+		}else{
+			$pg = 1;
+		}
+		$startpos = ($pg*$limit)-$limit;
+		$limstring = "LIMIT $startpos,$limit";
 	}else{
-	$pg = 1;
+		$limstring = "LIMIT 0,$limit";
 	}
-	$startpos = ($pg*$limit)-$limit;
-	$limstring = "LIMIT $startpos,$limit";
-	}else{
-	$limstring = "LIMIT 0,$limit";
-	}
-		
-	// MySQLi upgrade: we need this for mysql_result() equivalent
-	function mysqli_result($res, $row, $field=0) { 
-		$res->data_seek($row); 
-		$datarow = $res->fetch_array(); 
-		return $datarow[$field]; 
-	}
-	//////////////
 ?>
 <style>
 	#myBtn {
@@ -75,10 +67,10 @@
 					$bid = $row['bid'];
 				?>
 				<!-- this is for quick and dirty layout; best to not use the well for your labs -->
-				<div class="well clearfix"> 
+				<div class="blogpost well clearfix"> 
 					<h3><?php echo $displayTitle; ?></h3>
 					<p><?php echo $displayTxt;?></p>
-					<p class="pull-right"><i><?php echo $displayData; ?></i></p>
+					<p class="pull-right"><i><?php echo $displayDate; ?></i></p>
 					<a style="margin-right: 1rem;" class="pull-right"<?php echo "href=\"admin/edit.php?blogid=$bid\""; ?>><i>Edit</i></a>
 				</div>
 
@@ -87,24 +79,33 @@
 			<?php			
 					///////////////// pagination links: perhaps put these BELOW where your results are echo'd out.
 					if($postnum > $limit){
-					// echo "<strong>Pages:</strong> &nbsp;&nbsp;&nbsp;";
-					$n = $pg + 1;
-					$p = $pg - 1;
-					$thisroot = $_SERVER['PHP_SELF'];
-					if($pg > 1){
-					echo "<a href=\"$thisroot?pg=$p\"><< prev</a>&nbsp;&nbsp;";
-					}
-					for($i=1; $i<=$num_pages; $i++){
-					if($i!= $pg){
-					echo "<a href=\"$thisroot?pg=$i\">$i</a>&nbsp;&nbsp;";
-					}else{
-					echo "$i&nbsp;&nbsp;";
-					}
-					}
-					if($pg < $num_pages){
-					echo "<a href=\"$thisroot?pg=$n\">next >></a>";
-					}
-					echo "&nbsp;&nbsp;";
+						echo "<ul class=\"pagination\">";	
+						// echo "<strong>Pages:</strong> &nbsp;&nbsp;&nbsp;";
+						$n = $pg + 1;
+						$p = $pg - 1;
+						$thisroot = $_SERVER['PHP_SELF'];
+						if($pg > 1){
+							echo "<li class=\"page-item\">";
+							echo "<a class=\"page-link\" href=\"$thisroot?pg=$p\"><< prev</a>"; //&nbsp;&nbsp;
+							echo "</li>";
+						}
+						for($i=1; $i<=$num_pages; $i++){
+							echo "<li class=\"page-item\">";
+							if($i!= $pg){
+								echo "<a class=\"page-link\" href=\"$thisroot?pg=$i\">$i</a>"; //&nbsp;&nbsp;
+							}else{
+								echo "<a class=\"page-link\">$i</a>"; //&nbsp;&nbsp;
+							}
+							echo "</li>";
+						}
+						if($pg < $num_pages){
+							echo "<li class=\"page-item\">";
+							echo "<a class=\"page-link\" href=\"$thisroot?pg=$n\">next >></a>";
+							echo "</li>";
+						}
+						// echo "&nbsp;&nbsp;";
+
+						echo "</ul>";
 					}
 					////////////// end pagination
 			?>
@@ -114,14 +115,14 @@
 
 <script>
         // When the user scrolls down 20px from the top of the document, show the button
-        window.onscroll = function() {scrollFunction()};
+        // window.onscroll = function() {scrollFunction()};
 
-        // function scrollFunction() {
-        //     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        //         document.getElementById("myBtn").style.display = "block";
-        //     } else {
-        //         document.getElementById("myBtn").style.display = "none";
-        //     }
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("myBtn").style.display = "block";
+            } else {
+                document.getElementById("myBtn").style.display = "none";
+            }
         }
 
         // When the user clicks on the button, scroll to the top of the document
