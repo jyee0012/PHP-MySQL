@@ -2,10 +2,10 @@
 // Emoticon Functions
 
 function emoticonPlacer($input, $src){
-  echo "<a style=\"margin-right: 0.5rem;\" href=\"javascript:emoticon('$input')\"><img class=\"emoticon\" src=\"../emoticons/$src\"></a>";
+  echo "<a style=\"margin-right: 0.5rem;\" href=\"javascript:emoticon('$input')\"><img class=\"emoticon\" src=\"../emoticons/$src\" title=\"$input\"></a>";
 }
 function replaceEmoticons($txt, $input, $src) {
-  $thisEmoticon = "<img class=\"emoticon\" src=\"emoticons/$src\">";
+  $thisEmoticon = "<img class=\"emoticon\" src=\"emoticons/$src\" title=\"$input\">";
   $txt = str_replace("$input", $thisEmoticon, $txt);
   return $txt;
 }
