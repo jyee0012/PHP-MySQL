@@ -100,16 +100,16 @@
             mysqli_query($con, $sql) or die(mysqli_error($con));
 			$stringValidate = "<p>Thank you for updating \"$bname's\" Info in the Contacts database</p>";
 			
-			$bname = "";
-			$pname = "";
-			$email = "";
-			$url = "";
-			$phone = "";
-			$address = "";
-			$city = "";
-			$province = "";
-			$descrip = "";
-			$sendletters = "";
+			// $bname = "";
+			// $pname = "";
+			// $email = "";
+			// $url = "";
+			// $phone = "";
+			// $address = "";
+			// $city = "";
+			// $province = "";
+			// $descrip = "";
+			// $sendletters = "";
 		}else{
 			$alertString = "danger";
 			$stringValidate = "<p>Please fill in the information below</p>";
@@ -119,12 +119,12 @@
 ?>
 
 <h2>Edit</h2>
-<form id="myform" name="myform" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+<form id="myform" name="myform" method="post" action="<?php echo htmlspecialchars($_SERVER['REQUEST_URI']); ?>">
 		<?php if ($stringValidate){echo "<div class=\"alert alert-$alertString\">" .$stringValidate. "</div>"; } ?>
 
         <div class="form-group">
 		    <label for="contactid">Contact List:</label>
-            <select name="charid" id="contactid" class="form-control select-char">
+            <select name="contactid" id="contactid" class="form-control select-contact">
                 <option value="" selected disabled hidden >Please Select a Contact</option>
                 <?php
                     $result = mysqli_query($con, "SELECT * from $database") or die(mysqli_error($con));
@@ -228,8 +228,8 @@
             <?php if ($newContactId != "") echo "let alertbool = confirm(\"Are you sure you wish to delete $bname?\");"; ?>
             if (!alertbool) evt.preventDefault();
         });
-        document.querySelector('.select-char').addEventListener('click', (evt) => {
-            let options = document.querySelector('.select-char');
+        document.querySelector('.select-contact').addEventListener('click', (evt) => {
+            let options = document.querySelector('.select-contact');
             // console.log(options.value);
             if (options.value != "" && Number(options.value) != previousVal) {
                 window.location.href = "edit.php?contactid=" + options.value;

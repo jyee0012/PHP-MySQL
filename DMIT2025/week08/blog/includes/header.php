@@ -19,7 +19,7 @@ if ($loggedin){
     <meta name="author" content="">
    
 
-    <title>Blog - <?php echo "$pageTitle"; ?></title>
+    <title>Blog - <?php echo $pageTitle; ?></title>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -51,7 +51,13 @@ if ($loggedin){
     </script>
 
     <!-- Your Custom styles for this project -->
-    <style></style>
+    <style>
+      .emoticon{
+        max-width: 28px;
+        max-height: 28px;
+        margin-bottom: 0.7rem;
+      }
+    </style>
     <!--  Note how we can use BASE_URL constant to resolve all links no matter where the file resides. -->
     <link href="<?php echo BASE_URL ?>css/styles.css" rel="stylesheet"> 
   </head>

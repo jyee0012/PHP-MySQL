@@ -50,8 +50,8 @@
             mysqli_query($con, $sql) or die(mysqli_error($con));
 			$stringValidate = "<p>Thank you for updating the \"$btitle\" Post in the Blog database</p>";
 
-			$btitle = "";
-			$msg = "";
+			// $btitle = "";
+			// $msg = "";
 			
 		}else{
 			$alertString = "danger";
@@ -62,7 +62,7 @@
 ?>
 
 <h2>Edit</h2>
-<form id="myform" name="myform" class="formwidth" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+<form id="myform" name="myform" class="formwidth" method="post" action="<?php echo htmlspecialchars($_SERVER['REQUEST_URI']); ?>">
         
         <?php if ($stringValidate){echo "<div class=\"alert alert-$alertString\">" .$stringValidate. "</div>"; } ?>
         
@@ -109,7 +109,7 @@
 		<div class="form-group">
 			<!-- <label for="insert">&nbsp;</label> -->
 			<input type="submit" name="edit" class="btn btn-info" value="Update">
-		    <a href="delete.php?blogid=<?php echo $blogid; ?>" class="btn btn-info deletebtn">Delete <i class="fas fa-trash-alt"></i></a>
+		    <a href="delete.php?blogid=<?php echo $newBlogId; ?>" class="btn btn-info deletebtn">Delete <i class="fas fa-trash-alt"></i></a>
 		</div>
 
 

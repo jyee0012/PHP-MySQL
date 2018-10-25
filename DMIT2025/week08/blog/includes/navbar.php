@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
             </button>
             <!--  We'll use the BASE_URL set in the connection script to resolve all links -->
-            <a class="navbar-brand" href="<?php echo BASE_URL ?>index.php">Blog - <?php echo "$title"; ?></a>
+            <a class="navbar-brand" href="<?php echo BASE_URL ?>index.php">Blog - <?php echo "$pageTitle"; ?></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">

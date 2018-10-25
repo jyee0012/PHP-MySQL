@@ -23,4 +23,9 @@ body {
   padding: 1.5rem;
   margin-bottom: 2.5rem;
   min-height: 2rem;
+  /* max-width: 80rem; */
+}
+.emoticon{
+  max-width: 28px;
+  max-height: 28px;
 }
