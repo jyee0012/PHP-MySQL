@@ -72,7 +72,7 @@
 					$bid = $row['bid'];
 				?>
 				<!-- this is for quick and dirty layout; best to not use the well for your labs -->
-				<div class="blogpost well clearfix"> 
+				<div class="blogpost clearfix"> 
 					<h3><?php echo $displayTitle; ?></h3>
 					<p><?php echo $displayTxt;?></p>
 					<p class="pull-right"><i><?php echo $displayDate; ?></i></p>
