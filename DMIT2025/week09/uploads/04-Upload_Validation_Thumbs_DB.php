@@ -1,3 +1,5 @@
+<?php include("includes/mysql_connect.php"); ?>
+
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -6,7 +8,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>02 - Upload Validate</title>
+        <title>04 - Upload Validate</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
@@ -53,6 +55,7 @@
             $thumbsFolder = "uploadedfiles/thumbs/";
             $displayFolder = "uploadedfiles/display/";
 
+            $filename = $_FILES['myfile']['name'];
             echo "Upload: " . $_FILES['myfile']['name'] . "<br>";
             echo "Type: " . $_FILES['myfile']['type'] . "<br>";
             $filesize = $_FILES['myfile']['size'];
@@ -86,7 +89,14 @@
                     resizeImage($thisFile, $thumbsFolder, 150); // thumbs
                     resizeImage($thisFile, $displayFolder, 600); // display
 
-                    // enterfilename into DB
+                    // enterfilename into DB        
+                    $sql = "INSERT INTO $database 
+                    (filename) VALUES 
+                    ('$filename')";
+
+                    mysqli_query($con, $sql) or die(mysqli_error($con));
+
+                    echo "<img src=\"$thisFile\">";
 
                     echo "<h3>Upload Successful</h3>";
                 }else{
@@ -97,6 +107,7 @@
         
         
         ?>
+        <a href="display.php"><button>Gallery</button></a>
         <script src="" async defer></script>
     </body>
 </html>
