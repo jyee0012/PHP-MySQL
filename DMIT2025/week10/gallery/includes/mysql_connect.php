@@ -30,6 +30,6 @@ if (mysqli_connect_errno()) {
   //error_reporting(E_ALL);// will show unindexed variables; you can declare them first (if(isset($myvar))) to remove this error.
   //error_reporting(E_ALL ^ E_NOTICE); to report everything except notice. Somewhat sloppy, but minimizes the work.
   error_reporting(E_ALL ^ E_NOTICE);
-  $database = "";
-  $id = "";
+  $database = "jye_gallery";
+  $id = "gid";
 ?>

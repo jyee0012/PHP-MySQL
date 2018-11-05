@@ -4,13 +4,15 @@
 
 <?php
 	if (isset($_POST['insert'])){
-		$originalsFolder = "galleryfiles/";
+		$originalsFolder = "../galleryfiles/";
 		$thumbsFolder = $originalsFolder . "thumbs/";
 		$displayFolder = $originalsFolder . "display/";
 
 		$filename = $_FILES['imgfile']['name'];
+		$filetempname = $_FILES['imgfile']['tmp_name'];
 		$filetype = $_FILES['imgfile']['type'];
 		$baseFilesize = $_FILES['imgfile']['size'];
+		$fileError = $_FILES['imgfile']['error'];
 		$kbFilesize = $filesize/1024;
 		$mbFilesize = $kbFilesize/1024;
 		$displayFilesize = "";
@@ -32,7 +34,7 @@
 			$displayFilesize = $baseFilesize . " bytes";
 		}
 
-		if ((strlen($title) < 2 || strlen($title) > 50) || $btitle == ""){
+		if ((strlen($title) < 2 || strlen($title) > 50) || $title == ""){
             $boolValidateOK = false;
             $titleValidate .= "<p>Please enter a title between 2 and 50 characters</p>";
 		}
@@ -42,19 +44,39 @@
             $descripValidate .= "<p>Please enter a description under 1000 characters</p>";
 		}
 		
+		if ($mbFilesize > 5){
+            $boolValidateOK = false;
+			$fileValidate = "File size is too large, it cannot exceed 5MB";
+		}
+		// && $filetype != "image/png" && $filetype != "image/gif"
+		 if ($filetype != "image/jpeg"){
+            $boolValidateOK = false;
+			$fileValidate = "The file type is not a jpeg/jpg/jpe";
+		 }
 
 		if ($boolValidateOK){
+			if (move_uploaded_file($filetempname, $originalsFolder . $filename)){
+				$thisFile = $originalsFolder . $filename;
+				resizeImage($thisFile, $thumbsFolder, 150); // thumbs
+				resizeImage($thisFile, $displayFolder, 600); // display
 			
-            $sql = "INSERT INTO $database 
-			(jye_title, jye_description) VALUES 
-			('$title', '$descrip')";
+				$sql = "INSERT INTO $database 
+				(jye_title, jye_description, jye_filename) VALUES 
+				('$title', '$descrip', '$filename')";
 
-            mysqli_query($con, $sql) or die(mysqli_error($con));
-			$stringValidate = "<p>Thank you for posting \"$title\" into the Blog</p>";
+				mysqli_query($con, $sql) or die(mysqli_error($con));
+				
+				$stringValidate = "<p>\"$title\" Successfully Uploaded.</p>";
+				$imgTitle = $title;
+				$displayImg = $thisFile;
+				$displayImgBool = true;
 
-			$btitle = "";
-			$msg = "";
-			
+				$title = "";
+				$descrip = "";
+			}else{
+				$alertString = "danger";
+				$stringValidate = "<p>Errors: $fileError</p>";
+			}
 		}else{
 			$alertString = "danger";
 			$stringValidate = "<p>Please fill in the information below</p>";
@@ -63,7 +85,7 @@
 
 ?>
 
-<h2>Insert</h2>
+<h2>Upload</h2>
 <form id="myform" name="myform" class="formwidth" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data">
 		<?php if ($stringValidate){echo "<div class=\"alert alert-$alertString\">" .$stringValidate. "</div>"; } ?>
 		<div class="form-group">
@@ -79,23 +101,16 @@
 		</div>
 		
 		<div class="form-group">
-			<label for="descrip">Description:</label>
-			<textarea name="descrip" id="descrip" class="form-control textarea-height"><?php if ($descrip) echo $descrip ?></textarea>
-			<?php if ($descripValidate){echo "<div class=\"alert alert-warning\">" .$descripValidate. "</div>"; } ?>
-		</div>
-		
-		<div class="form-group">
-			<div class="input-group input-file" name="Fichier1">
-				<input type="text" class="form-control" placeholder='Choose a file...' />			
-				<span class="input-group-btn">
-					<button class="btn btn-default btn-choose" type="button">Choose</button>
-				</span>
-			</div>
+			<label for="imgfile">Image File:</label>
+			<input class="" type="file" name="imgfile">
+				
+			<?php if ($fileValidate){echo "<div class=\"alert alert-warning\">" .$fileValidate. "</div>"; } ?>
+			<?php if ($imgTitle && $displayImg && $displayImgBool){echo "<img src=\"$displayImg\" alt=\"$imgTitle\">"; } ?>
 		</div>
 
 		<div class="form-group">
 			<label for="insert">&nbsp;</label>
-			<input type="submit" name="insert" class="btn btn-info" value="Post">
+			<input type="submit" name="insert" class="btn btn-info" value="Upload">
 		</div>
 
 

@@ -62,7 +62,7 @@
 
 ?>
 
-<h2>Edit</h2>
+<h2>Modify</h2>
 <form id="myform" name="myform" class="formwidth" method="post" action="<?php echo htmlspecialchars($_SERVER['REQUEST_URI']); ?>">
         
         <?php if ($stringValidate){echo "<div class=\"alert alert-$alertString\">" .$stringValidate. "</div>"; } ?>
