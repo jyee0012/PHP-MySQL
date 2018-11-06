@@ -68,7 +68,7 @@
 				
 				$stringValidate = "<p>\"$title\" Successfully Uploaded.</p>";
 				$imgTitle = $title;
-				$displayImg = $thisFile;
+				$displayImg = $displayFolder . $filename;
 				$displayImgBool = true;
 
 				$title = "";
@@ -84,39 +84,44 @@
 	}
 
 ?>
+<div class="row">
+	<h2>Upload</h2>
+	<div class="col-md-5">
+		<form id="myform" name="myform" class="formwidth" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data">
+				<?php if ($stringValidate){echo "<div class=\"alert alert-$alertString\">" .$stringValidate. "</div>"; } ?>
+				<div class="form-group">
+					<label for="title">* Title:</label>
+					<input type="text" class="form-control" id="title" name="title" value="<?php if ($title) echo $title ?>">
+					<?php if ($titleValidate){echo "<div class=\"alert alert-warning\">" .$titleValidate. "</div>"; } ?>
+				</div>
 
-<h2>Upload</h2>
-<form id="myform" name="myform" class="formwidth" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data">
-		<?php if ($stringValidate){echo "<div class=\"alert alert-$alertString\">" .$stringValidate. "</div>"; } ?>
-		<div class="form-group">
-			<label for="title">* Title:</label>
-			<input type="text" class="form-control" id="title" name="title" value="<?php if ($title) echo $title ?>">
-			<?php if ($titleValidate){echo "<div class=\"alert alert-warning\">" .$titleValidate. "</div>"; } ?>
-		</div>
-
-		<div class="form-group">
-			<label for="descrip">Description:</label>
-			<textarea name="descrip" id="descrip" class="form-control textarea-height"><?php if ($descrip) echo $descrip ?></textarea>
-			<?php if ($descripValidate){echo "<div class=\"alert alert-warning\">" .$descripValidate. "</div>"; } ?>
-		</div>
-		
-		<div class="form-group">
-			<label for="imgfile">Image File:</label>
-			<input class="" type="file" name="imgfile">
+				<div class="form-group">
+					<label for="descrip">Description:</label>
+					<textarea name="descrip" id="descrip" class="form-control textarea-height"><?php if ($descrip) echo $descrip ?></textarea>
+					<?php if ($descripValidate){echo "<div class=\"alert alert-warning\">" .$descripValidate. "</div>"; } ?>
+				</div>
 				
-			<?php if ($fileValidate){echo "<div class=\"alert alert-warning\">" .$fileValidate. "</div>"; } ?>
-			<?php if ($imgTitle && $displayImg && $displayImgBool){echo "<img src=\"$displayImg\" alt=\"$imgTitle\">"; } ?>
-		</div>
+				<div class="form-group">
+					<label for="imgfile">Image File:</label>
+					<input class="" type="file" name="imgfile">
+						
+					<?php if ($fileValidate){echo "<div class=\"alert alert-warning\">" .$fileValidate. "</div>"; } ?>
+				</div>
 
-		<div class="form-group">
-			<label for="insert">&nbsp;</label>
-			<input type="submit" name="insert" class="btn btn-info" value="Upload">
-		</div>
+				<div class="form-group">
+					<label for="insert">&nbsp;</label>
+					<input type="submit" name="insert" class="btn btn-info" value="Upload">
+				</div>
 
 
 
-</form>
-
+		</form>
+	</div>
+	
+	<div class="col-md-7">
+		<?php if ($imgTitle && $displayImg && $displayImgBool){echo "<img class=\"uploadedimg\" src=\"$displayImg\" alt=\"$imgTitle\" title=\"$filename\">"; } ?>
+	</div>
+</div>
 
 <?php
 	include("../includes/footer.php");

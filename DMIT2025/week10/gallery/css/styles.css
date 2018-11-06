@@ -16,16 +16,57 @@ body {
 .form-group{
   /* padding-top: 1rem; */
 }
-.blogpost{
-  border: 1px solid #dcdcdc;
+.uploadedimg{
   border-radius: 1rem;
-  background-image: linear-gradient(to bottom, #cbcbcb 0, #f5f5f5 100%);
-  padding: 1.5rem;
-  margin-bottom: 2.5rem;
-  min-height: 2rem;
-  /* max-width: 80rem; */
+  max-height: 600px;
 }
-.emoticon{
-  max-width: 28px;
-  max-height: 28px;
+.gallery{
+  /* background-color: #cdcdcd; */
+  width: 1200px;
+  border-radius: 1rem;
+  border: 1px solid black;
+}
+.image{
+  background-color: #cdcdcd;
+  border-radius: 0.5rem;
+  /* float: left; */
+  display: inline-block;
+  margin: 1rem;
+  padding: 0.4rem;
+  height: 180px;
+}
+
+.thumbs{
+  height: 100px;
+  width: 200px;
+  
+}
+.thumbs img{
+  max-width: 150px;
+  max-height: 100px;
+  border-radius: 0.5rem;
+}
+img.center {
+  display: block;
+  margin: 0 auto;
+}
+.gallerypg{
+  display: block;
+}
+.imgtitle{
+  text-align: center;
+  /* color: black; */
+  font-weight: bold;
+  line-height: 1.5;
+  font-size: 24px;
+  max-width: 200px;
+  
+  /**** Simple CSS Truncate Text here *****/
+  white-space:nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+a:hover{
+  text-decoration: none; 
+  color: blueviolet;
 }
