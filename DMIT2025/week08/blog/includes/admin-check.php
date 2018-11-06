@@ -6,10 +6,10 @@ if (strpos($_SERVER['PHP_SELF'], 'admin') !== false){
     $thisRef = "admin/" . $thisRef;
 }
 $loggedin = true;
-if (isset($_GET['contactid'])){
-    $newContactId = trim($_GET['contactid']);
-    $newContactId = filter_var($newContactId, FILTER_SANITIZE_NUMBER_INT);
-    $newRef = "?contactid=$newContactId";
+if (isset($_GET['blogid'])){
+    $newBlogId = trim($_GET['blogid']);
+    $newBlogId = filter_var($newBlogId, FILTER_SANITIZE_NUMBER_INT);
+    $newRef = "?blogid=$newBlogId";
     $thisRef .= $newRef;
 }
 $_SESSION['ref'] = $thisRef;
