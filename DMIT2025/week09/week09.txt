@@ -1,0 +1,15 @@
+PHP Image methods
+GD Library: The GD (Graphics Draw) Library is the most used of the many PHP image libraryies.
+Installed by default on most PHP web servers.
+
+Image Creation Basics - 5 steps:
+
+1) We must create the image object.
+	-imagecreate()
+	-imagecreatefromjpeg()
+
+2) We do the image processing we want.
+
+3) If outputting directly to the browser, we must define the header.
+
+4) Output the image (jpeg, png).

@@ -1,0 +1,72 @@
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.navbar {
+  margin-bottom: 20px;
+}
+.form-width{
+  max-width:400px;
+}
+.textarea-height{
+  height: 150px;
+}
+
+.form-group{
+  /* padding-top: 1rem; */
+}
+.uploadedimg{
+  border-radius: 1rem;
+  max-height: 600px;
+}
+.gallery{
+  /* background-color: #cdcdcd; */
+  width: 1200px;
+  border-radius: 1rem;
+  border: 1px solid black;
+}
+.image{
+  background-color: #cdcdcd;
+  border-radius: 0.5rem;
+  /* float: left; */
+  display: inline-block;
+  margin: 1rem;
+  padding: 0.4rem;
+  height: 180px;
+}
+
+.thumbs{
+  height: 100px;
+  width: 200px;
+  
+}
+.thumbs img{
+  max-width: 150px;
+  max-height: 100px;
+  border-radius: 0.5rem;
+}
+img.center {
+  display: block;
+  margin: 0 auto;
+}
+.gallerypg{
+  display: block;
+}
+.imgtitle{
+  text-align: center;
+  /* color: black; */
+  font-weight: bold;
+  line-height: 1.5;
+  font-size: 24px;
+  max-width: 200px;
+  
+  /**** Simple CSS Truncate Text here *****/
+  white-space:nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+a:hover{
+  text-decoration: none; 
+  color: blueviolet;
+}
