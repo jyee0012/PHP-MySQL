@@ -7,6 +7,6 @@
     $newImgId = filter_var($newImgId, FILTER_SANITIZE_NUMBER_INT);
     if ($newImgId != "")  {
         mysqli_query($con, "DELETE from $database WHERE $id = '$newImgId'") or die(mysqli_error($con));
-        header("Location:edit.php");
+        header("Location:modify.php");
     }
 ?>

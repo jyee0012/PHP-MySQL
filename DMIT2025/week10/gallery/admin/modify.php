@@ -137,8 +137,8 @@
 				</div>
 
 				<div class="form-group">
-					<label for="insert">&nbsp;</label>
-					<input type="submit" name="insert" class="btn btn-info" value="Upload">
+					<label for="edit">&nbsp;</label>
+					<input type="submit" name="edit" class="btn btn-info" value="Upload">
 					<a href="delete.php?imgid=<?php echo $newImgId; ?>" class="btn btn-info deletebtn">Delete <i class="fas fa-trash-alt"></i></a>
 				</div>
 

@@ -12,6 +12,7 @@
 		$kbFilesize = $baseFilesize/1024;
 		$mbFilesize = $kbFilesize/1024;
 		$displayFilesize = "";
+		$newFilename = insertUniqueFileId($filename);
 
 		$title = trim($_POST['title']);
 		$descrip = trim($_POST['descrip']);
@@ -51,20 +52,20 @@
 		 }
 
 		if ($boolValidateOK){
-			if (move_uploaded_file($filetempname, $originalsFolder . $filename)){
-				$thisFile = $originalsFolder . $filename;
+			if (move_uploaded_file($filetempname, $originalsFolder . $newFilename)){
+				$thisFile = $originalsFolder . $newFilename;
 				resizeImage($thisFile, $thumbsFolder, 150); // thumbs
 				resizeImage($thisFile, $displayFolder, 600); // display
 			
 				$sql = "INSERT INTO $database 
 				(jye_title, jye_description, jye_filename) VALUES 
-				('$title', '$descrip', '$filename')";
+				('$title', '$descrip', '$newFilename')";
 
 				mysqli_query($con, $sql) or die(mysqli_error($con));
 				
 				$stringValidate = "<p>\"$title\" Successfully Uploaded.</p>";
 				$imgTitle = $title;
-				$displayImg = $displayFolder . $filename;
+				$displayImg = $displayFolder . $newFilename;
 				$uploadedImgBool = true;
 
 				$title = "";

@@ -1,6 +1,10 @@
 <?php
 // Emoticon Functions
-
+function insertUniqueFileId($input, $id = ""){
+  if ($id == "") { $id = "-" . uniqid(); }
+  $ext = "." . pathinfo($input, PATHINFO_EXTENSION);
+  return str_replace($ext, $id . $ext , $input);
+}
 function makeClickableLinks($text){
 $text = " " . $text; // fixes problem of not linking if no chars before the link
 
