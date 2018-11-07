@@ -20,6 +20,18 @@
 		$msg = trim($_POST['msg']);
         $imgid = $_POST['imgid'];
 
+		
+		$filename = $_FILES['imgfile']['name'];
+		$filetempname = $_FILES['imgfile']['tmp_name'];
+		$filetype = $_FILES['imgfile']['type'];
+		$baseFilesize = $_FILES['imgfile']['size'];
+		$fileError = $_FILES['imgfile']['error'];
+		$kbFilesize = $filesize/1024;
+		$mbFilesize = $kbFilesize/1024;
+		$displayFilesize = "";
+
+
+
         $title = filter_var($title, FILTER_SANITIZE_STRING);
         $msg = filter_var($msg, FILTER_SANITIZE_STRING);
 		$boolValidateOK = true;
@@ -61,61 +73,64 @@
 	}
 
 ?>
-
-<h2>Modify</h2>
-<form id="myform" name="myform" class="formwidth" method="post" action="<?php echo htmlspecialchars($_SERVER['REQUEST_URI']); ?>">
-        
-        <?php if ($stringValidate){echo "<div class=\"alert alert-$alertString\">" .$stringValidate. "</div>"; } ?>
-        
-        <div class="form-group">
-		    <label for="imgid">Images:</label>
-            <select name="imgid" id="imgid" class="form-control select-img">
-                <option value="" selected disabled hidden>Please Select an Image</option>
-                <?php
-                    $result = mysqli_query($con, "SELECT * from $database") or die(mysqli_error($con));
-                    while ($row = mysqli_fetch_array($result)){
-                        $displayName = $row['jye_title']; 
-                        $imgid = $row['bid'];
-                        echo "<option value=\"$imgid\""; 
-                        if (isset($newImgId) && $newImgId == $imgid) echo "selected=\"selected\"";
-                        echo ">$displayName</option>";
-                    }
-                ?>           
-            </select>
-			<?php if ($blogValidate){echo "<div class=\"alert alert-warning\">" .$blogValidate. "</div>"; } ?>
-        </div>
-		
-		<div class="form-group">
-			<label for="title">* Title:</label>
-			<input type="text" class="form-control" id="title" name="title" value="<?php if ($title) echo $title ?>">
-			<?php if ($titleValidate){echo "<div class=\"alert alert-warning\">" .$titleValidate. "</div>"; } ?>
-		</div>
-
-		<div class="form-group">
-			<label for="msg">Message:</label>
-			<textarea name="msg" id="myMsg" class="form-control textarea-height"><?php if ($msg) echo $msg ?></textarea>
-			<?php if ($msgValidate){echo "<div class=\"alert alert-warning\">" .$msgValidate. "</div>"; } ?>
-		</div>
+<div class="row">
+	<h2>Modify</h2>
+	<div class="col-md-5">
+		<form id="myform" name="myform" class="formwidth" method="post" action="<?php echo htmlspecialchars($_SERVER['REQUEST_URI']); ?>" enctype="multipart/form-data">
+				<?php if ($stringValidate){echo "<div class=\"alert alert-$alertString\">" .$stringValidate. "</div>"; } ?>
 				
-		<!-- Emoticon Editor -->
-		<div class="form-group">
-            <?php massEmoticonPlacer(); ?>
-			<!-- <a href="javascript:emoticon(':)')"><img src="../emoticons/icon_smile.gif"></a> -->
-		</div>
-		<!-- <div class="form-group">
-			<label for="date">Date:</label>
-			<input type="date" name="date" class="form-control">
-		</div> -->
-		
-		<div class="form-group">
-			<!-- <label for="insert">&nbsp;</label> -->
-			<input type="submit" name="edit" class="btn btn-info" value="Update">
-		    <a href="delete.php?imgid=<?php echo $newImgId; ?>" class="btn btn-info deletebtn">Delete <i class="fas fa-trash-alt"></i></a>
-		</div>
+				
+				<div class="form-group">
+					<label for="imgid">Images:</label>
+					<select name="imgid" id="imgid" class="form-control select-img">
+						<option value="" selected disabled hidden>Please Select an Image</option>
+						<?php
+							$result = mysqli_query($con, "SELECT * from $database") or die(mysqli_error($con));
+							while ($row = mysqli_fetch_array($result)){
+								$displayName = $row['jye_title']; 
+								$imgid = $row['gid'];
+								echo "<option value=\"$imgid\""; 
+								if (isset($newImgId) && $newImgId == $imgid) echo "selected=\"selected\"";
+								echo ">$displayName</option>";
+							}
+						?>           
+					</select>
+					<?php if ($blogValidate){echo "<div class=\"alert alert-warning\">" .$blogValidate. "</div>"; } ?>
+				</div>
+
+				<div class="form-group">
+					<label for="title">* Title:</label>
+					<input type="text" class="form-control" id="title" name="title" value="<?php if ($title) echo $title ?>">
+					<?php if ($titleValidate){echo "<div class=\"alert alert-warning\">" .$titleValidate. "</div>"; } ?>
+				</div>
+
+				<div class="form-group">
+					<label for="descrip">Description:</label>
+					<textarea name="descrip" id="descrip" class="form-control textarea-height"><?php if ($descrip) echo $descrip ?></textarea>
+					<?php if ($descripValidate){echo "<div class=\"alert alert-warning\">" .$descripValidate. "</div>"; } ?>
+				</div>
+				
+				<div class="form-group">
+					<label for="imgfile">Image File:</label>
+					<input class="" type="file" name="imgfile">
+						
+					<?php if ($fileValidate){echo "<div class=\"alert alert-warning\">" .$fileValidate. "</div>"; } ?>
+				</div>
+
+				<div class="form-group">
+					<label for="insert">&nbsp;</label>
+					<input type="submit" name="insert" class="btn btn-info" value="Upload">
+				</div>
 
 
 
-</form>
+		</form>
+	</div>
+	
+	<div class="col-md-7">
+		<?php if ($imgTitle && $displayImg && $displayImgBool){echo "<img class=\"uploadedimg\" src=\"$displayImg\" alt=\"$imgTitle\" title=\"$filename\">"; } ?>
+	</div>
+</div>
 
 <script>
         document.querySelector('.deletebtn').addEventListener('click', (evt) => {
