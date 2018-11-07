@@ -4,7 +4,7 @@
 	//////////// pagination
 	$getcount = mysqli_query ($con,"SELECT COUNT(*) FROM $database");
 	$postnum = mysqli_result($getcount,0);// this needs a fix for MySQLi upgrade; see custom function below
-	$limit = 40;
+	$limit = 20;
 	if($postnum > $limit){
 		$tagend = round($postnum % $limit,0);
 		$splits = round(($postnum - $tagend)/$limit,0);
@@ -66,21 +66,21 @@
 			<?php while ($row = mysqli_fetch_array($result)): ?>
 				<?php
 					$displayTitle = $row['jye_title'];
-					$displayDescript = $row['jye_description'];
+					$displayDescrip = $row['jye_description'];
 					$displayImg = $row['jye_filename'];
-					$imgid = $row['gid'];
+					$imgid = $row[$id];
 				?>
 				<!-- this is for quick and dirty layout; best to not use the well for your labs -->
-				<div class="image">
-					<a href="single.php?img=<?php echo $imgid; ?>">
+				<a href="single.php?img=<?php echo $imgid; ?>">
+					<div class="image">
 						<div class="thumbs"> 
 								<img class="center" src="galleryfiles/thumbs/<?php echo $displayImg; ?>" alt="<?php echo $displayTitle; ?>" title="<?php echo $displayImg; ?>">
 						</div>
 						<div class="imgtitle">
 							<h4><?php echo $displayTitle; ?></h4>
 						</div>
-					</a>
-				</div>
+					</div>
+				</a>
 				
 			<?php endwhile; ?>
 			</div>

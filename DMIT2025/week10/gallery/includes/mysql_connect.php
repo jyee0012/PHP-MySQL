@@ -32,4 +32,8 @@ if (mysqli_connect_errno()) {
   error_reporting(E_ALL ^ E_NOTICE);
   $database = "jye_gallery";
   $id = "gid";
+
+  $originalsFolder = "../galleryfiles/";
+  $thumbsFolder = $originalsFolder . "thumbs/";
+  $displayFolder = $originalsFolder . "display/";
 ?>

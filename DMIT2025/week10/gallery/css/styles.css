@@ -70,3 +70,19 @@ a:hover{
   text-decoration: none; 
   color: blueviolet;
 }
+.display{
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+.imgbtn{
+  display: block;
+  margin: 1.5rem auto;
+  text-align: center;
+}
+.imgbtn p{
+  margin: 0 2rem;
+  display: inline-block;
+  font-size: 3rem;
+  font-weight: bold;
+  line-height: 1.5;
+}

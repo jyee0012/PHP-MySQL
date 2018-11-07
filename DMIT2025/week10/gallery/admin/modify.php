@@ -8,10 +8,14 @@
     $newImgId = filter_var($newImgId, FILTER_SANITIZE_NUMBER_INT);
     if ($newImgId != "")  {
         $newResult = mysqli_query($con, "SELECT * from $database WHERE $id = '$newImgId'") or die(mysqli_error($con));
-        while ($fillContact = mysqli_fetch_array($newResult)){
+        while ($loadedImg = mysqli_fetch_array($newResult)){
 			
-			$title = $fillContact['jye_title'];
-			$msg = $fillContact['jye_message'];
+			$title = $loadedImg['jye_title'];
+			$descrip = $loadedImg['jye_description'];
+			$imgfile = $loadedImg['jye_filename'];
+			$displayImg = $displayFolder . $imgfile;
+			$imgTitle = $title;
+			$uploadedImgBool = true;
         }
         echo "<script> previousVal = $newImgId;</script>";
     }
@@ -19,17 +23,27 @@
 		$title = trim($_POST['title']);
 		$msg = trim($_POST['msg']);
         $imgid = $_POST['imgid'];
+		$newfile = isset($_FILES['imgfile']);
 
-		
-		$filename = $_FILES['imgfile']['name'];
-		$filetempname = $_FILES['imgfile']['tmp_name'];
-		$filetype = $_FILES['imgfile']['type'];
-		$baseFilesize = $_FILES['imgfile']['size'];
-		$fileError = $_FILES['imgfile']['error'];
-		$kbFilesize = $filesize/1024;
-		$mbFilesize = $kbFilesize/1024;
-		$displayFilesize = "";
+		if ($newfile){	
+			$filename = $_FILES['imgfile']['name'];
+			$filetempname = $_FILES['imgfile']['tmp_name'];
+			$filetype = $_FILES['imgfile']['type'];
+			$baseFilesize = floatval($_FILES['imgfile']['size']);
+			$fileError = $_FILES['imgfile']['error'];
+			$kbFilesize = $baseFilesize/1024;
+			$mbFilesize = $kbFilesize/1024;
+			$displayFilesize = "";
 
+			
+			if ($mbFilesize > 1){
+				$displayFilesize = round($mbFilesize,3) . " MB";
+			}else if ($kbFilesize > 1){
+				$displayFilesize = round($kbFilesize,3) . " KB";
+			}else{
+				$displayFilesize = $baseFilesize . " bytes";
+			}
+		}
 
 
         $title = filter_var($title, FILTER_SANITIZE_STRING);
@@ -37,7 +51,7 @@
 		$boolValidateOK = true;
 		$stringValidate = "";
 		$alertString = "success";
-		
+		$uploadedImgBool = false;
         if (!isset($blogid)){
 			$boolValidateOK = false;
 			$blogValidate .= "Please Select a Blog Post";
@@ -54,17 +68,22 @@
 		
 
 		if ($boolValidateOK){
-			
+			if ($newfile){
+				if (move_uploaded_file($filetempname, $originalsFolder . $filename)){
+					$thisFile = $originalsFolder . $filename;
+					resizeImage($thisFile, $thumbsFolder, 150); // thumbs
+					resizeImage($thisFile, $displayFolder, 600); // display
+				}
+			}
             $sql = "UPDATE $database SET 
-			jye_title = '$btitle',
-			jye_message = '$msg'
-			WHERE $id = '$blogid'";
+			jye_title = '$title',
+			jye_description = '$descrip'
+			WHERE $id = '$imgid'";
 
-            mysqli_query($con, $sql) or die(mysqli_error($con));
-			$stringValidate = "<p>Thank you for updating the \"$btitle\" Post in the Blog database</p>";
+            // mysqli_query($con, $sql) or die(mysqli_error($con));
+			$stringValidate = "<p>Thank you for updating the \"$title\" Post in the Blog database</p>";
 
-			// $btitle = "";
-			// $msg = "";
+			$uploadedImgBool = true;
 			
 		}else{
 			$alertString = "danger";
@@ -120,6 +139,7 @@
 				<div class="form-group">
 					<label for="insert">&nbsp;</label>
 					<input type="submit" name="insert" class="btn btn-info" value="Upload">
+					<a href="delete.php?imgid=<?php echo $newImgId; ?>" class="btn btn-info deletebtn">Delete <i class="fas fa-trash-alt"></i></a>
 				</div>
 
 
@@ -128,7 +148,20 @@
 	</div>
 	
 	<div class="col-md-7">
-		<?php if ($imgTitle && $displayImg && $displayImgBool){echo "<img class=\"uploadedimg\" src=\"$displayImg\" alt=\"$imgTitle\" title=\"$filename\">"; } ?>
+		<?php
+		
+		if ($uploadedImgBool){
+			if ($imgTitle && $displayImg){
+				echo "<img class=\"uploadedimg\" src=\"$displayImg\" alt=\"$imgTitle\" title=\"$filename\"> <br>"; 
+				if ($newfile){
+					echo "<br><br> <p>File Name: $filename</p>";
+					echo "<p>File Type: $filetype</p>";
+					echo "<p>File Size: $displayFilesize</p>";
+				}
+			}
+		}
+
+		?>
 	</div>
 </div>
 
@@ -141,7 +174,7 @@
             let options = document.querySelector('.select-img');
             // console.log(options.value);
             if (options.value != "" && Number(options.value) != previousVal) {
-                window.location.href = "edit.php?imgid=" + options.value;
+                window.location.href = "modify.php?imgid=" + options.value;
             }
         });
 </script>

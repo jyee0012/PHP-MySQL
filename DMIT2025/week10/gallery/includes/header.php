@@ -8,6 +8,7 @@ $loginText = "login";
 if ($loggedin){
   $loginText = "logout";
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

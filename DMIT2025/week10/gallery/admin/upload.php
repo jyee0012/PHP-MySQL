@@ -4,16 +4,12 @@
 
 <?php
 	if (isset($_POST['insert'])){
-		$originalsFolder = "../galleryfiles/";
-		$thumbsFolder = $originalsFolder . "thumbs/";
-		$displayFolder = $originalsFolder . "display/";
-
 		$filename = $_FILES['imgfile']['name'];
 		$filetempname = $_FILES['imgfile']['tmp_name'];
 		$filetype = $_FILES['imgfile']['type'];
-		$baseFilesize = $_FILES['imgfile']['size'];
+		$baseFilesize = floatval($_FILES['imgfile']['size']);
 		$fileError = $_FILES['imgfile']['error'];
-		$kbFilesize = $filesize/1024;
+		$kbFilesize = $baseFilesize/1024;
 		$mbFilesize = $kbFilesize/1024;
 		$displayFilesize = "";
 
@@ -27,9 +23,9 @@
 		$alertString = "success";
 		
 		if ($mbFilesize > 1){
-			$displayFilesize = $mbFilesize . " MB";
+			$displayFilesize = round($mbFilesize,3) . " MB";
 		}else if ($kbFilesize > 1){
-			$displayFilesize = $kbFilesize . " KB";
+			$displayFilesize = round($kbFilesize,3) . " KB";
 		}else{
 			$displayFilesize = $baseFilesize . " bytes";
 		}
@@ -69,7 +65,7 @@
 				$stringValidate = "<p>\"$title\" Successfully Uploaded.</p>";
 				$imgTitle = $title;
 				$displayImg = $displayFolder . $filename;
-				$displayImgBool = true;
+				$uploadedImgBool = true;
 
 				$title = "";
 				$descrip = "";
@@ -119,7 +115,20 @@
 	</div>
 	
 	<div class="col-md-7">
-		<?php if ($imgTitle && $displayImg && $displayImgBool){echo "<img class=\"uploadedimg\" src=\"$displayImg\" alt=\"$imgTitle\" title=\"$filename\">"; } ?>
+		<?php 
+		if ($uploadedImgBool){
+			if ($imgTitle && $displayImg){
+				echo "<img class=\"uploadedimg\" src=\"$displayImg\" alt=\"$imgTitle\" title=\"$filename\"> <br>"; 
+			}
+			echo "<br><br> <p>File Name: $filename</p>";
+			echo "<p>File Type: $filetype</p>";
+			echo "<p>File Size: $displayFilesize</p>";
+		}
+		
+		
+		
+		?>
+
 	</div>
 </div>
 
