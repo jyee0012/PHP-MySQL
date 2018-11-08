@@ -1,1 +1,1 @@
-If you upload an image with the same name as another image it will replace the existing img with the new uploaded.
+Didn't bother with the water mark though i could've
