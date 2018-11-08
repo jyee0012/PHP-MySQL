@@ -86,3 +86,14 @@ a:hover{
   font-weight: bold;
   line-height: 1.5;
 }
+.editbtn{
+  display: block;
+}
+.description{
+  display: block;
+  margin: 0 2rem;
+  font-size: 1.2rem;
+  font-weight: normal;
+  line-height: 1.2;
+  text-align: center;
+}

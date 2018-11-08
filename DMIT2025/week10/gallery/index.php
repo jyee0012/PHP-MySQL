@@ -57,7 +57,7 @@
 </style>
 <div class="row">
 	<div class="col-md-12">
-		<h1>Gallery <?php if ($pgNum) echo "Page $pgNum";?></h1>
+		<h1>Anime Wallpaper - Gallery <?php if ($pgNum) echo "Page $pgNum";?></h1>
 		<?php
 			$sql = "SELECT * from $database ORDER BY $id DESC $limstring";
 			$result = mysqli_query($con, $sql) or die(mysqli_error($con));

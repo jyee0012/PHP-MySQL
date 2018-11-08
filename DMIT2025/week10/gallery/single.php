@@ -1,3 +1,4 @@
+<?php include("includes/admin-check.php"); ?>
 <?php include("includes/header.php"); ?>
 
         <?php
@@ -44,6 +45,7 @@
                 }else{
                     $displayTitle = $row['jye_title'];
                     $displayImg =  $row['jye_filename'];
+                    $displayDescrip = $row['jye_description'];
                     $imgUrl = "galleryfiles/display/" . $displayImg;
                 }
                 
@@ -55,10 +57,14 @@
                     if ($prevImg) { echo "<a class=\"btn btn-default\" href=\"single.php?img=$prevImg\"><<</a>";}
                     echo "<p>$displayTitle</p>";
                     if ($nextImg) { echo "<a class=\"btn btn-default\" href=\"single.php?img=$nextImg\">>></a>";}
+                    echo "<a class=\"editbtn\" href=\"admin/modify.php?imgid=$img\">Edit</a>"
                 ?>
             </div>
             <div class="display">
-                    <img class="center" src="<?php echo $imgUrl ?>" alt="<?php echo $displayTitle ?>" title="<?php echo $displayImg ?>">
+                <img class="center" src="<?php echo $imgUrl ?>" alt="<?php echo $displayTitle ?>" title="<?php echo $displayImg ?>">
+            </div>
+            <div class="description">
+                <p><?php echo $displayDescrip; ?></p>
             </div>
         </div>
 

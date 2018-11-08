@@ -69,19 +69,56 @@ function createSquareImageCopy($file, $folder, $newWidth){
 
 
 function resizeImage($file, $folder, $newwidth){
+    $fileExt = pathinfo($file, PATHINFO_EXTENSION);
   list($width, $height) = getimagesize($file);
   $imgRatio = $width/$height;
   $newheight = $newwidth/$imgRatio;
   // echo "Width: $newwidth | Height: $newheight";
 
   $thumb = imagecreatetruecolor($newwidth, $newheight);
-  $source = imagecreatefromjpeg($file);
+  if ($fileExt == "jpg" || $fileExt == "jpeg"){
+    $source = imagecreatefromjpeg($file);
+  }else if ($fileExt == "png"){
+    $source = imagecreatefrompng($file);
+  }else if ($fileExt == "gif"){
+    $source = imagecreatefromgif($file);
+  }
   imagecopyresampled($thumb, $source, 0,0,0,0,$newwidth,$newheight, $width,$height);
   $newFileName = $folder . basename($file); // get original file name
-  imagejpeg($thumb, $newFileName, 80);
+
+  if ($fileExt == "jpg" || $fileExt == "jpeg"){
+    imagejpeg($thumb, $newFileName, 80);
+  }else if ($fileExt == "png"){
+    imagepng($thumb, $newFileName, 9/80);
+  }else if ($fileExt == "gif"){
+    imagegif($$thumb, $newFileName);
+  }
   imagedestroy($thumb);
   imagedestroy($source);
 }
 
+/**
+ * Tests all upload fields to determine whether any files were submitted.
+ * Not working "Warning: Invalid argument supplied for foreach() in /home/jyee12/public_html/dmit2025/week10/gallery/includes/functions.php on line 99"
+ * @return boolean
+ */
+function files_uploaded($fileInput = 'imgfile') {
+
+  // bail if there were no upload forms
+ if(empty($_FILES))
+      return false;
+
+  // check for uploaded files
+  $files = $_FILES[$fileInput]['tmp_name'];
+  
+  foreach($files as $field_title => $temp_name ){
+      if( !empty($temp_name) && is_uploaded_file( $temp_name )){
+          // found one!
+          return true;
+      }
+  }   
+  // return false if no files were found
+ return false;
+}
 
 ?>

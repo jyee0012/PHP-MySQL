@@ -21,9 +21,9 @@
     }
 	if (isset($_POST['edit'])){
 		$title = trim($_POST['title']);
-		$msg = trim($_POST['msg']);
+		$descrip = trim($_POST['descrip']);
         $imgid = $_POST['imgid'];
-		$newfile = isset($_FILES['imgfile']);
+		$newfile = is_uploaded_file($_FILES['imgfile']['tmp_name']);
 
 		if ($newfile){	
 			$filename = $_FILES['imgfile']['name'];
@@ -52,36 +52,57 @@
 		$stringValidate = "";
 		$alertString = "success";
 		$uploadedImgBool = false;
-        if (!isset($blogid)){
+
+        if (!isset($imgid)){
 			$boolValidateOK = false;
-			$blogValidate .= "Please Select a Blog Post";
+			$imgValidate .= "Please Select an Image to Modify";
 		}
 		if ((strlen($title) < 2 || strlen($title) > 50) || $title == ""){
             $boolValidateOK = false;
             $titleValidate .= "<p>Please enter a title between 2 and 50 characters</p>";
 		}
 		// strlen($msg) < 10 ||
-		if (strlen($msg) > 1000){
+		if (strlen($descrip) > 1000){
             $boolValidateOK = false;
-            $msgValidate .= "<p>Please enter a message between 10 and 1000 characters</p>";
+            $descripValidate .= "<p>Please enter a description under 1000 characters</p>";
 		}
-		
-
+		if ($newfile){
+			if ($mbFilesize > 5){
+				$boolValidateOK = false;
+				$fileValidate = "File size is too large, it cannot exceed 5MB";
+			}
+			if ($filetype != "image/jpeg" && $filetype != "image/png" && $filetype != "image/gif"){
+				$boolValidateOK = false;
+				$fileValidate = "The file type is not compatible";
+			}
+		}
 		if ($boolValidateOK){
 			if ($newfile){
-				if (move_uploaded_file($filetempname, $originalsFolder . $filename)){
-					$thisFile = $originalsFolder . $filename;
-					resizeImage($thisFile, $thumbsFolder, 150); // thumbs
-					resizeImage($thisFile, $displayFolder, 600); // display
-				}
+				$original = $originalsFolder . $imgfile;
+				$thumbnail = $thumbsFolder . $imgfile;
+				$display = $displayFolder . $imgfile;
+				if (unlink($original) && unlink($thumbnail) && unlink($display)){
+					if (move_uploaded_file($filetempname, $originalsFolder . $filename)){
+						$thisFile = $originalsFolder . $filename;
+						resizeImage($thisFile, $thumbsFolder, 150); // thumbs
+						resizeImage($thisFile, $displayFolder, 600); // display
+					}else{
+						$alertString = "danger";
+						$stringValidate = "<p>Errors: $fileError</p>";
+					}
+					$displayImg = $displayFolder . $filename;
+				}				
 			}
+			if (!$filename) $filename = $imgfile;
+
             $sql = "UPDATE $database SET 
 			jye_title = '$title',
-			jye_description = '$descrip'
+			jye_description = '$descrip',
+			jye_filename = '$filename'
 			WHERE $id = '$imgid'";
 
-            // mysqli_query($con, $sql) or die(mysqli_error($con));
-			$stringValidate = "<p>Thank you for updating the \"$title\" Post in the Blog database</p>";
+            mysqli_query($con, $sql) or die(mysqli_error($con));
+			$stringValidate = "<p>Succesfully Updated \"$title\" within the Gallery</p>";
 
 			$uploadedImgBool = true;
 			
@@ -114,7 +135,7 @@
 							}
 						?>           
 					</select>
-					<?php if ($blogValidate){echo "<div class=\"alert alert-warning\">" .$blogValidate. "</div>"; } ?>
+					<?php if ($imgValidate){echo "<div class=\"alert alert-warning\">" .$imgValidate. "</div>"; } ?>
 				</div>
 
 				<div class="form-group">
@@ -138,7 +159,7 @@
 
 				<div class="form-group">
 					<label for="edit">&nbsp;</label>
-					<input type="submit" name="edit" class="btn btn-info" value="Upload">
+					<input type="submit" name="edit" class="btn btn-info" value="Update">
 					<a href="delete.php?imgid=<?php echo $newImgId; ?>" class="btn btn-info deletebtn">Delete <i class="fas fa-trash-alt"></i></a>
 				</div>
 
@@ -152,7 +173,9 @@
 		
 		if ($uploadedImgBool){
 			if ($imgTitle && $displayImg){
+				echo "<a class=\"\" href=\"../single.php?img=$newImgId\">";
 				echo "<img class=\"uploadedimg\" src=\"$displayImg\" alt=\"$imgTitle\" title=\"$filename\"> <br>"; 
+				echo "</a>";
 				if ($newfile){
 					echo "<br><br> <p>File Name: $filename</p>";
 					echo "<p>File Type: $filetype</p>";

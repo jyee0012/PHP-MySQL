@@ -45,10 +45,9 @@
             $boolValidateOK = false;
 			$fileValidate = "File size is too large, it cannot exceed 5MB";
 		}
-		// && $filetype != "image/png" && $filetype != "image/gif"
-		 if ($filetype != "image/jpeg"){
+		 if ($filetype != "image/jpeg" && $filetype != "image/png" && $filetype != "image/gif"){
             $boolValidateOK = false;
-			$fileValidate = "The file type is not a jpeg/jpg/jpe";
+			$fileValidate = "The file type is not compatible";
 		 }
 
 		if ($boolValidateOK){
@@ -119,7 +118,9 @@
 		<?php 
 		if ($uploadedImgBool){
 			if ($imgTitle && $displayImg){
+				// echo "<a class=\"\" href=\"../single.php?img=\">";
 				echo "<img class=\"uploadedimg\" src=\"$displayImg\" alt=\"$imgTitle\" title=\"$filename\"> <br>"; 
+				// echo "</a>";
 			}
 			echo "<br><br> <p>File Name: $filename</p>";
 			echo "<p>File Type: $filetype</p>";
