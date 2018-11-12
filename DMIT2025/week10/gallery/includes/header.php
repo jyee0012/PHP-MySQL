@@ -8,6 +8,7 @@ $loginText = "login";
 if ($loggedin){
   $loginText = "logout";
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,6 +61,7 @@ if ($loggedin){
     </style>
     <!--  Note how we can use BASE_URL constant to resolve all links no matter where the file resides. -->
     <link href="<?php echo BASE_URL ?>css/styles.css" rel="stylesheet"> 
+    <link rel="stylesheet" href="css/style.css" type="text/css">
   </head>
 
   <body>

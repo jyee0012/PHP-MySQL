@@ -4,7 +4,7 @@
 	//////////// pagination
 	$getcount = mysqli_query ($con,"SELECT COUNT(*) FROM $database");
 	$postnum = mysqli_result($getcount,0);// this needs a fix for MySQLi upgrade; see custom function below
-	$limit = 5;
+	$limit = 20;
 	if($postnum > $limit){
 		$tagend = round($postnum % $limit,0);
 		$splits = round(($postnum - $tagend)/$limit,0);
@@ -57,34 +57,39 @@
 </style>
 <div class="row">
 	<div class="col-md-12">
-		<h1>Blog Posts <?php if ($pgNum) echo "Page $pgNum";?></h1>
+		<h1>Anime Wallpaper - Gallery <?php if ($pgNum) echo "Page $pgNum";?></h1>
 		<?php
-			$sql = "SELECT * from $database ORDER BY jye_timedate DESC $limstring";
+			$sql = "SELECT * from $database ORDER BY $id DESC $limstring";
 			$result = mysqli_query($con, $sql) or die(mysqli_error($con));
 		?>
-			<div class="contacts">
+			<div class="gallery">
 			<?php while ($row = mysqli_fetch_array($result)): ?>
 				<?php
 					$displayTitle = $row['jye_title'];
-					$displayTxt = nl2br(addEmoticons(makeClickableLinks($row['jye_message'])));
-					$timedate = strtotime($row['jye_timedate']);
-					$displayDate = date("F j, Y, g:i a", $timedate);
-					$bid = $row['bid'];
+					$displayDescrip = $row['jye_description'];
+					$displayImg = $row['jye_filename'];
+					$imgid = $row[$id];
 				?>
 				<!-- this is for quick and dirty layout; best to not use the well for your labs -->
-				<div class="blogpost clearfix"> 
-					<h3><?php echo $displayTitle; ?></h3>
-					<p><?php echo $displayTxt;?></p>
-					<p class="pull-right"><i><?php echo $displayDate; ?></i></p>
-					<a style="margin-right: 1rem;" class="pull-right"<?php echo "href=\"admin/edit.php?blogid=$bid\""; ?>><i>Edit</i></a>
-				</div>
-
+				<a href="single.php?img=<?php echo $imgid; ?>">
+					<div class="image">
+						<div class="thumbs"> 
+								<img class="center" src="galleryfiles/thumbs/<?php echo $displayImg; ?>" alt="<?php echo $displayTitle; ?>" title="<?php echo $displayImg; ?>">
+						</div>
+						<div class="imgtitle">
+							<h4><?php echo $displayTitle; ?></h4>
+						</div>
+					</div>
+				</a>
+				
 			<?php endwhile; ?>
+			</div>
+
 			<!-- Good place for pagination links here -->
 			<?php			
 					///////////////// pagination links: perhaps put these BELOW where your results are echo'd out.
 					if($postnum > $limit){
-						echo "<ul class=\"pagination\">";	
+						echo "<ul class=\"pagination gallerypg\">";	
 						// echo "<strong>Pages:</strong> &nbsp;&nbsp;&nbsp;";
 						$n = $pg + 1;
 						$p = $pg - 1;

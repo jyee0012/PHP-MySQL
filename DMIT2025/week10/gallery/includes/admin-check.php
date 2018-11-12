@@ -12,6 +12,12 @@ if (isset($_GET['imgid'])){
     $newRef = "?imgid=$newImgId";
     $thisRef .= $newRef;
 }
+if (isset($_GET['img'])){
+    $newImgId = trim($_GET['img']);
+    $newImgId = filter_var($newImgId, FILTER_SANITIZE_NUMBER_INT);
+    $newRef = "?img=$newImgId";
+    $thisRef .= $newRef;
+}
 $_SESSION['ref'] = $thisRef;
 if (!isset($_SESSION['squeezwatgoodbyeotterpopspicyboyfriendshawnwasabithingfeaturinghollisraychaeljayandvocaloidnottomentionomfg'])){
     //echo "Logged in";
