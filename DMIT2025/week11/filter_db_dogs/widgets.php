@@ -38,7 +38,7 @@ while($row = mysqli_fetch_array($topDog)){
     $pooch_id = $row['pooch_id'];
     $poochimg = $row['image_file']; 
     $img = "<img src=\"images/thumbs100/$poochimg\"><br>";
-    echo "<a href=\"breed.php?pooch_id=$pooch_id\">$img $breed</a>";
+    echo "<a href=\"breed.php?pooch_id=$pooch_id\">$img $breed</a> <br>";
 }
 ///////////////////////////////////////
 
@@ -46,9 +46,24 @@ while($row = mysqli_fetch_array($topDog)){
 // from http://www.webhostingtalk.com/showthread.php?t=717692
 // user "bigfan"
 
-echo "<a href=\"index.php?orderby=breed\">";
+// echo "<a href=\"index.php?orderby=breed\">";
 echo "<h3>Alphabetical List</h3>";
-echo "</a>";
+$qry = "SELECT *, LEFT(breed, 1) AS first_char FROM dogs 
+        WHERE UPPER(breed) BETWEEN 'A' AND 'Z'
+        ORDER BY breed";
+$result = mysqli_query($con,$qry);
+$current_char = '';
+while ($row = mysqli_fetch_assoc($result)) {
+    if ($row['first_char'] != $current_char) {
+        $current_char = $row['first_char'];
+        echo '<br /><b>' . strtoupper($current_char) . '</b><br />';
+    }
+    //echo $row['breed'] . '<br />';
+	$breed = $row['breed'];
+	$pooch_id = $row['pooch_id'];
+	echo "$breed <a href=\"breed.php?pooch_id=$pooch_id\">More info...</a><br />";
+}
+// echo "</a>";
 
 /*Mysql Left Function is used to return the leftmost string character from the string.
 Column Alias: 
@@ -61,6 +76,19 @@ http://www.geeksengine.com/database/basic-select/column-alias.php
 ////////////////////////////////////////// ALPHABETICAL A - Z LINKS
 echo "<h3>Alphabetical A - Z Links only</h3>";
 
+$qry = "SELECT *, LEFT(breed, 1) AS first_char FROM dogs 
+        WHERE UPPER(breed) BETWEEN 'A' AND 'Z'
+        ORDER BY breed";
+ 
+$result = mysqli_query($con,$qry);
+$current_char = '';
+while ($row = mysqli_fetch_assoc($result)) {
+    if ($row['first_char'] != $current_char) {
+        $current_char = $row['first_char'];
+		$thisChar = strtoupper($current_char);
+        echo "<a href=\"index.php?displayby=breed&displayvalue=$thisChar%\">$thisChar</a> | ";
+    }  
+} 
 
 
 ?>
