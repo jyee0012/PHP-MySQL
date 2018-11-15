@@ -78,6 +78,7 @@
 		}
 		if ($boolValidateOK){
 			if ($newfile){
+				insertUniqueFileId($imgfile);
 				$original = $originalsFolder . $imgfile;
 				$thumbnail = $thumbsFolder . $imgfile;
 				$display = $displayFolder . $imgfile;

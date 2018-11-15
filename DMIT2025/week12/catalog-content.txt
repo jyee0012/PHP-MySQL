@@ -1,0 +1,21 @@
+Anime Series
+DB info:
+
+1. 	Series Name 		- Varchar
+2. 	Alternate Name 		- Varchar
+3. 	Series Length 		- Num
+4. 	Episode Length 		- Num
+5. 	Airing 			- Bool (Checkbox)
+6. 	Series Thumbnail	- Varchar (Upload)
+7. 	Series Source		- Varchar (Select)
+8. 	Rating			- Varchar (Select)
+9. 	Description		- Text (Synopsis)
+10. 	Data Source		- Varchar (Url-Link)
+11. 	
+12. 	
+13. 	
+14. 	
+15. 	
+16. 	
+17. 	
+

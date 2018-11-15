@@ -69,7 +69,7 @@ function createSquareImageCopy($file, $folder, $newWidth){
 
 
 function resizeImage($file, $folder, $newwidth){
-    $fileExt = pathinfo($file, PATHINFO_EXTENSION);
+    $fileExt = strtolower(pathinfo($file, PATHINFO_EXTENSION));
   list($width, $height) = getimagesize($file);
   $imgRatio = $width/$height;
   $newheight = $newwidth/$imgRatio;
