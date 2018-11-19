@@ -65,16 +65,16 @@
 			<div class="gallery">
 			<?php while ($row = mysqli_fetch_array($result)): ?>
 				<?php
-					$displayTitle = $row['jye_title'];
+					$displayTitle = $row['jye_series_name'];
 					$displayDescrip = $row['jye_description'];
-					$displayImg = $row['jye_filename'];
+					$displayImg = $row['jye_series_image'];
 					$imgid = $row[$id];
 				?>
 				<!-- this is for quick and dirty layout; best to not use the well for your labs -->
 				<a href="single.php?img=<?php echo $imgid; ?>">
 					<div class="image">
 						<div class="thumbs"> 
-								<img class="center" src="galleryfiles/thumbs/<?php echo $displayImg; ?>" alt="<?php echo $displayTitle; ?>" title="<?php echo $displayImg; ?>">
+								<img class="center" src="imagefiles/thumbs/<?php echo $displayImg; ?>" alt="<?php echo $displayTitle; ?>" title="<?php echo $displayImg; ?>">
 						</div>
 						<div class="imgtitle">
 							<h4><?php echo $displayTitle; ?></h4>
@@ -93,7 +93,7 @@
 						// echo "<strong>Pages:</strong> &nbsp;&nbsp;&nbsp;";
 						$n = $pg + 1;
 						$p = $pg - 1;
-						$thisroot = $_SERVER['PHP_SELF'];
+						$thisroot = $_SERVER['PHP_SELF']; // use REQUEST_URI instead of PHP_SELF
 						if($pg > 1){
 							echo "<li class=\"page-item\">";
 							echo "<a class=\"page-link\" href=\"$thisroot?pg=$p\"><< prev</a>"; //&nbsp;&nbsp;
