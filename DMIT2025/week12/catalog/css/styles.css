@@ -22,7 +22,9 @@ body {
 }
 .gallery{
   /* background-color: #cdcdcd; */
-  width: 1200px;
+  /* width: 1200px; */
+  /* width: inherit; */
+  padding-left:2.5rem;
   border-radius: 1rem;
   border: 1px solid black;
 }
@@ -96,4 +98,8 @@ a:hover{
   font-weight: normal;
   line-height: 1.2;
   text-align: center;
+}
+.filterbtn{
+  margin-bottom:1rem;
+  display:block;
 }
