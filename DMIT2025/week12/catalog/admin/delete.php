@@ -3,22 +3,20 @@
 <?php include("../includes/mysql_connect.php"); ?>
 
 <?php
-    $newImgId = trim($_GET['imgid']);
-    $newImgId = filter_var($newImgId, FILTER_SANITIZE_NUMBER_INT);
-    if ($newImgId != "")  {
-        echo  "SELECT * from $database WHERE $id = $newImgId";
-        $result = mysqli_query($con, "SELECT * from $database WHERE $id = '$newImgId'") or die(mysqli_error($con));
+    $newAnimId = trim($_GET['animid']);
+    $newAnimId = filter_var($newAnimId, FILTER_SANITIZE_NUMBER_INT);
+    if ($newAnimId != "")  {
+        echo  "SELECT * from $database WHERE $id = $newAnimId";
+        $result = mysqli_query($con, "SELECT * from $database WHERE $id = '$newAnimId'") or die(mysqli_error($con));
         while ($row = mysqli_fetch_array($result)){
-            $filename = $row['jye_filename'];
+            $filename = $row['jye_series_image'];
             $original = $originalsFolder . $filename;
             $thumbnail = $thumbsFolder . $filename;
             $display = $displayFolder . $filename;
         }
-        if (unlink($original) &&
-            unlink($thumbnail) &&
-            unlink($display)) {
-            mysqli_query($con, "DELETE from $database WHERE $id = '$newImgId'") or die(mysqli_error($con));
-            header("Location:modify.php");
+        if ($filename == "" || (unlink($original) && unlink($thumbnail) && unlink($display))) {
+            mysqli_query($con, "DELETE from $database WHERE $id = '$newAnimId'") or die(mysqli_error($con));
+            header("Location:update.php");
         }
     }
 ?>

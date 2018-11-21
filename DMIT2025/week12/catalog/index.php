@@ -100,6 +100,14 @@
 				$gSports = trim($_POST['genre_sports']);
 				$gSuper = trim($_POST['genre_super']);
 				
+				$andAppend = array();
+				if ($rating != ""){
+					array_push($andAppend, "jye_rating like '$rating'");
+				}
+				if ($seriesSrc != ""){
+					array_push($andAppend, "jye_series_source like '$seriesSrc'");
+				}
+
 				$genreAppend = array();
 				if ($gAction){
 					array_push($genreAppend, "jye_genre_action like '1'");
@@ -132,6 +140,25 @@
 					array_push($genreAppend, "jye_genre_super like '1'");
 				}
 
+				$queryFilter = "";
+				foreach($genreAppend as $k => $v){
+					if($k == 0){ //if this is the first array item
+						$queryFilter .= " WHERE " . $v;
+					}else{
+						$queryFilter .= " OR " . $v;
+					}
+				}
+
+				foreach($andAppend as $k => $v){
+					if($k == 0 && $queryFilter == ""){ //if this is the first array item
+						$queryFilter .= " WHERE " . $v;
+					}else{
+						$queryFilter .= " AND " . $v;
+					}
+				}
+				
+
+				$sqlAddon = $queryFilter; 
 			}
 			
 			if($displaybyrange && $minrange && $maxrange){
@@ -315,8 +342,15 @@
 			<a class="btn btn-primary filterbtn" href="index.php?displaybyrange=jye_series_length&minrange=10&maxrange=14">Quarter Season (10-14 Episodes)</a>
 			<a class="btn btn-primary filterbtn" href="index.php?displaybyrange=jye_series_length&minrange=20&maxrange=26">Half Season (20-26 Episodes)</a>
 			<a class="btn btn-primary filterbtn" href="index.php?displaybyrange=jye_series_length&minrange=48&maxrange=56">Full Season (48-56 Episodes)</a>
+			<a class="btn btn-primary filterbtn" href="index.php?displaybyrange=jye_episode_length&minrange=10&maxrange=14">Short Episodes (10-14 minute Episodes)</a>
+			<a class="btn btn-primary filterbtn" href="index.php?displaybyrange=jye_episode_length&minrange=20&maxrange=26">Regular Length Episodes (20-26 minute Episodes)</a>
+			<a class="btn btn-primary filterbtn" href="index.php?displaybyrange=jye_episode_length&minrange=30&maxrange=60">Long Episodes (30-60 minute Episodes)</a>
 			<a class="btn btn-primary filterbtn" href="index.php?displayby=jye_series_source&displayvalue=ln">Light Novel Source</a>
 			<a class="btn btn-primary filterbtn" href="index.php?displayby=jye_series_source&displayvalue=manga">Manga Source</a>
+			<a class="btn btn-primary filterbtn" href="index.php?displayby=jye_rating&displayvalue=r">Restricted Series</a>
+			<a class="btn btn-primary filterbtn" href="index.php?displayby=jye_rating&displayvalue=pg-13">PG-13 Series</a>
+			<a class="btn btn-primary filterbtn" href="index.php?displayby=jye_rating&displayvalue=g">General Audience Series</a>
+			<a class="btn btn-primary filterbtn" href="index.php?displayby=jye_airing&displayvalue=1">Currently Airing</a>
 		</div>
 	</div>
     <!-- <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button> -->

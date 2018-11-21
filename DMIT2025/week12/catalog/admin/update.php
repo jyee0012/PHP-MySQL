@@ -4,10 +4,10 @@
 
 <?php
 	echo "<script> let previousVal;</script>";
-    $newImgId = trim($_GET['imgid']);
-    $newImgId = filter_var($newImgId, FILTER_SANITIZE_NUMBER_INT);
-    if ($newImgId != "")  {
-        $newResult = mysqli_query($con, "SELECT * from $database WHERE $id = '$newImgId'") or die(mysqli_error($con));
+    $newAnimId = trim($_GET['imgid']);
+    $newAnimId = filter_var($newAnimId, FILTER_SANITIZE_NUMBER_INT);
+    if ($newAnimId != "")  {
+        $newResult = mysqli_query($con, "SELECT * from $database WHERE $id = '$newAnimId'") or die(mysqli_error($con));
         while ($loadedImg = mysqli_fetch_array($newResult)){
 			
 			$title = $loadedImg['jye_title'];
@@ -17,7 +17,7 @@
 			$imgTitle = $title;
 			$uploadedImgBool = true;
         }
-        echo "<script> previousVal = $newImgId;</script>";
+        echo "<script> previousVal = $newAnimId;</script>";
     }
 	if (isset($_POST['edit'])){
 		$title = trim($_POST['title']);
@@ -191,14 +191,14 @@
 
 <script>
         document.querySelector('.deletebtn').addEventListener('click', (evt) => {
-            <?php if ($newImgId != "") echo "let alertbool = confirm(\"Are you sure you wish to delete $title?\");"; ?>
+            <?php if ($newAnimId != "") echo "let alertbool = confirm(\"Are you sure you wish to delete $title?\");"; ?>
             if (!alertbool) evt.preventDefault();
         });
         document.querySelector('.select-img').addEventListener('click', (evt) => {
             let options = document.querySelector('.select-img');
             // console.log(options.value);
             if (options.value != "" && Number(options.value) != previousVal) {
-                window.location.href = "modify.php?imgid=" + options.value;
+                window.location.href = "update.php?imgid=" + options.value;
             }
         });
 </script>
