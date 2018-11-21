@@ -5,6 +5,7 @@
 <?php
     $newAnimId = trim($_GET['animid']);
     $newAnimId = filter_var($newAnimId, FILTER_SANITIZE_NUMBER_INT);
+    $canDelete = false;
     if ($newAnimId != "")  {
         echo  "SELECT * from $database WHERE $id = $newAnimId";
         $result = mysqli_query($con, "SELECT * from $database WHERE $id = '$newAnimId'") or die(mysqli_error($con));
@@ -14,7 +15,12 @@
             $thumbnail = $thumbsFolder . $filename;
             $display = $displayFolder . $filename;
         }
-        if ($filename == "" || (unlink($original) && unlink($thumbnail) && unlink($display))) {
+        if ($filename == ""){
+            $canDelete = true;
+        }else{
+            $canDelete = (unlink($original) && unlink($thumbnail) && unlink($display));
+        }
+        if ($canDelete) {
             mysqli_query($con, "DELETE from $database WHERE $id = '$newAnimId'") or die(mysqli_error($con));
             header("Location:update.php");
         }

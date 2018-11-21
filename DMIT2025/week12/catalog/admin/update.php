@@ -4,25 +4,67 @@
 
 <?php
 	echo "<script> let previousVal;</script>";
-    $newAnimId = trim($_GET['imgid']);
+    $newAnimId = trim($_GET['animid']);
     $newAnimId = filter_var($newAnimId, FILTER_SANITIZE_NUMBER_INT);
     if ($newAnimId != "")  {
         $newResult = mysqli_query($con, "SELECT * from $database WHERE $id = '$newAnimId'") or die(mysqli_error($con));
-        while ($loadedImg = mysqli_fetch_array($newResult)){
+        while ($loadedAnim = mysqli_fetch_array($newResult)){
+			// (jye_series_name, jye_alter_name, jye_series_length, jye_episode_length, jye_airing, jye_series_image, jye_series_source, jye_rating, jye_description, jye_data_source,
+			// jye_genre_action, jye_genre_adventure, jye_genre_comedy, jye_genre_fantasy, jye_genre_game, jye_genre_magic, jye_genre_mystery, jye_genre_school, jye_genre_sports, jye_genre_supernatural 
 			
-			$title = $loadedImg['jye_title'];
-			$descrip = $loadedImg['jye_description'];
-			$imgfile = $loadedImg['jye_filename'];
-			$displayImg = $displayFolder . $imgfile;
-			$imgTitle = $title;
-			$uploadedImgBool = true;
+			$seriesN = $loadedAnim['jye_series_name'];
+			$alterN = $loadedAnim['jye_alter_name'];
+			$seriesL = $loadedAnim['jye_series_length'];
+			$episodeL = $loadedAnim['jye_episode_length'];
+			$rating = $loadedAnim['jye_rating'];
+			$seriesSrc = $loadedAnim['jye_series_source'];
+			$dataSrc = $loadedAnim['jye_data_source'];
+			$airing = $loadedAnim['jye_airing'];
+			$descrip = $loadedAnim['jye_description'];
+	
+			$gAction = $loadedAnim['jye_genre_action'];
+			$gAdven = $loadedAnim['jye_genre_adventure'];
+			$gComedy = $loadedAnim['jye_genre_comedy'];
+			$gFantasy = $loadedAnim['jye_genre_fantasy'];
+			$gGame = $loadedAnim['jye_genre_game'];
+			$gMagic = $loadedAnim['jye_genre_magic'];
+			$gMystery = $loadedAnim['jye_genre_mystery'];
+			$gSchool = $loadedAnim['jye_genre_school'];
+			$gSports = $loadedAnim['jye_genre_sports'];
+			$gSuper = $loadedAnim['jye_genre_super'];
+			
+			$imgfile = $loadedAnim['jye_series_image'];
+			if ($imgfile != ""){
+				$displayImg = $displayFolder . $imgfile;
+				$imgTitle = $seriesN;
+				$uploadedImgBool = true;
+			}
         }
         echo "<script> previousVal = $newAnimId;</script>";
     }
 	if (isset($_POST['edit'])){
-		$title = trim($_POST['title']);
+		$seriesN = trim($_POST['seriesname']);
+		$alterN = trim($_POST['altername']);
+		$seriesL = trim($_POST['serieslength']);
+		$episodeL = trim($_POST['episodelength']);
+		$rating = trim($_POST['rating']);
+		$seriesSrc = trim($_POST['seriessrc']);
+		$dataSrc = trim($_POST['datasrc']);
+		$airing = trim($_POST['airing']);
 		$descrip = trim($_POST['descrip']);
-        $imgid = $_POST['imgid'];
+
+		$gAction = trim($_POST['genre_action']);
+		$gAdven = trim($_POST['genre_adventure']);
+		$gComedy = trim($_POST['genre_comedy']);
+		$gFantasy = trim($_POST['genre_fantasy']);
+		$gGame = trim($_POST['genre_game']);
+		$gMagic = trim($_POST['genre_magic']);
+		$gMystery = trim($_POST['genre_mystery']);
+		$gSchool = trim($_POST['genre_school']);
+		$gSports = trim($_POST['genre_sports']);
+		$gSuper = trim($_POST['genre_super']);
+
+        $animid = $_POST['animid'];
 		$newfile = is_uploaded_file($_FILES['imgfile']['tmp_name']);
 
 		if ($newfile){	
@@ -34,7 +76,7 @@
 			$kbFilesize = $baseFilesize/1024;
 			$mbFilesize = $kbFilesize/1024;
 			$displayFilesize = "";
-
+			$newFilename = insertUniqueFileId($filename);
 			
 			if ($mbFilesize > 1){
 				$displayFilesize = round($mbFilesize,3) . " MB";
@@ -46,25 +88,29 @@
 		}
 
 
-        $title = filter_var($title, FILTER_SANITIZE_STRING);
-        $msg = filter_var($msg, FILTER_SANITIZE_STRING);
+        $seriesN = filter_var($seriesN, FILTER_SANITIZE_STRING);
+        $alterN = filter_var($alterN, FILTER_SANITIZE_STRING);
+        $rating = filter_var($rating, FILTER_SANITIZE_STRING);
+        $seriesSrc = filter_var($seriesSrc, FILTER_SANITIZE_STRING);
+        $descrip = filter_var($descrip, FILTER_SANITIZE_STRING);
+        $dataSrc = filter_var($dataSrc, FILTER_SANITIZE_URL);
+        $seriesL = filter_var($seriesL, FILTER_SANITIZE_NUMBER_INT);
+        $episodeL = filter_var($episodeL, FILTER_SANITIZE_NUMBER_INT);
+		$airing = filter_var($airing, FILTER_SANITIZE_NUMBER_INT);
+		
 		$boolValidateOK = true;
 		$stringValidate = "";
 		$alertString = "success";
 		$uploadedImgBool = false;
 
-        if (!isset($imgid)){
+        if (!isset($animid)){
 			$boolValidateOK = false;
-			$imgValidate .= "Please Select an Image to Modify";
+			$animValidate .= "Please select a Series to edit";
 		}
-		if ((strlen($title) < 2 || strlen($title) > 50) || $title == ""){
+
+		if ((strlen($seriesN) < 2 || strlen($seriesN) > 50) || $seriesN == ""){
             $boolValidateOK = false;
-            $titleValidate .= "<p>Please enter a title between 2 and 50 characters</p>";
-		}
-		// strlen($msg) < 10 ||
-		if (strlen($descrip) > 1000){
-            $boolValidateOK = false;
-            $descripValidate .= "<p>Please enter a description under 1000 characters</p>";
+            $seriesNValidate .= "<p>Please enter the series name between 2 and 50 characters</p>";
 		}
 		if ($newfile){
 			if ($mbFilesize > 5){
@@ -78,33 +124,63 @@
 		}
 		if ($boolValidateOK){
 			if ($newfile){
-				insertUniqueFileId($imgfile);
+				// insertUniqueFileId($imgfile);
 				$original = $originalsFolder . $imgfile;
 				$thumbnail = $thumbsFolder . $imgfile;
 				$display = $displayFolder . $imgfile;
-				if (unlink($original) && unlink($thumbnail) && unlink($display)){
-					if (move_uploaded_file($filetempname, $originalsFolder . $filename)){
-						$thisFile = $originalsFolder . $filename;
+				$removedOld = false;
+				if ($imgfile != ""){
+					$removedOld = (unlink($original) && unlink($thumbnail) && unlink($display));
+				}else{
+					$removedOld = true;
+				}
+				if ($removedOld){
+					if (move_uploaded_file($filetempname, $originalsFolder . $newFilename)){
+						$thisFile = $originalsFolder . $newFilename;
 						resizeImage($thisFile, $thumbsFolder, 150); // thumbs
 						resizeImage($thisFile, $displayFolder, 600); // display
 					}else{
 						$alertString = "danger";
 						$stringValidate = "<p>Errors: $fileError</p>";
 					}
-					$displayImg = $displayFolder . $filename;
+					$imgTitle = $seriesN;
+					$displayImg = $displayFolder . $newFilename;
+					$uploadedImgBool = true;
 				}				
 			}
-			if (!$filename) $filename = $imgfile;
+			if (!$newFilename) $newFilename = $imgfile;
+
+			
+			// ) VALUES 
+			// ('$seriesN', '$alterN', '$seriesL', '$episodeL', '$airing', '$newFilename', '$seriesSrc', '$rating', '$descrip', '$dataSrc',
+			// '$gAction', '$gAdven', '$gComedy', '$gFantasy', '$gGame', '$gMagic', '$gMystery', '$gSchool', '$gSports', '$gSuper'
+			// )";
 
             $sql = "UPDATE $database SET 
-			jye_title = '$title',
+			jye_series_name = '$seriesN',
+			jye_alter_name = '$alterN',
+			jye_series_length = '$seriesL',
+			jye_episode_length = '$episodeL',
+			jye_airing = '$airing',
+			jye_series_source = '$seriesSrc',
+			jye_rating = '$rating',
 			jye_description = '$descrip',
-			jye_filename = '$filename'
-			WHERE $id = '$imgid'";
+			jye_data_source = '$dataSrc',
+			jye_genre_action = '$gAction',
+			jye_genre_adventure = '$gAdven',
+			jye_genre_comedy = '$gComedy',
+			jye_genre_fantasy = '$gFantasy',
+			jye_genre_game = '$gGame',
+			jye_genre_magic = '$gMagic',
+			jye_genre_mystery = '$gMystery',
+			jye_genre_school = '$gSchool',
+			jye_genre_sports = '$gSports',
+			jye_genre_supernatural = '$gSuper',
+			jye_series_image = '$newFilename'
+			WHERE $id = '$animid'";
 
             mysqli_query($con, $sql) or die(mysqli_error($con));
-			$stringValidate = "<p>Succesfully Updated \"$title\" within the Gallery</p>";
-
+			$stringValidate = "<p>Succesfully Updated \"$seriesN\" in the Catalog.</p>";
 			$uploadedImgBool = true;
 			
 		}else{
@@ -115,49 +191,34 @@
 
 ?>
 <div class="row">
-	<h2>Modify</h2>
+	<h2>Update</h2>
 	<div class="col-md-5">
 		<form id="myform" name="myform" class="formwidth" method="post" action="<?php echo htmlspecialchars($_SERVER['REQUEST_URI']); ?>" enctype="multipart/form-data">
 				<?php if ($stringValidate){echo "<div class=\"alert alert-$alertString\">" .$stringValidate. "</div>"; } ?>
 				
 				
 				<div class="form-group">
-					<label for="imgid">Images:</label>
-					<select name="imgid" id="imgid" class="form-control select-img">
-						<option value="" selected disabled hidden>Please Select an Image</option>
+					<label for="animid">Series:</label>
+					<select name="animid" id="animid" class="form-control select-img">
+						<option value="" selected disabled hidden>Please Select a Series</option>
 						<?php
 							$result = mysqli_query($con, "SELECT * from $database") or die(mysqli_error($con));
 							while ($row = mysqli_fetch_array($result)){
-								$displayName = $row['jye_title']; 
-								$imgid = $row['gid'];
-								echo "<option value=\"$imgid\""; 
-								if (isset($newImgId) && $newImgId == $imgid) echo "selected=\"selected\"";
+								$displayName = $row['jye_series_name']; 
+								$animid = $row[$id];
+								echo "<option value=\"$animid\""; 
+								if (isset($newAnimId) && $newAnimId == $animid) echo "selected"; //=\"selected\"
 								echo ">$displayName</option>";
 							}
 						?>           
 					</select>
-					<?php if ($imgValidate){echo "<div class=\"alert alert-warning\">" .$imgValidate. "</div>"; } ?>
-				</div>
-
-				<div class="form-group">
-					<label for="title">* Title:</label>
-					<input type="text" class="form-control" id="title" name="title" value="<?php if ($title) echo $title ?>">
-					<?php if ($titleValidate){echo "<div class=\"alert alert-warning\">" .$titleValidate. "</div>"; } ?>
-				</div>
-
-				<div class="form-group">
-					<label for="descrip">Description:</label>
-					<textarea name="descrip" id="descrip" class="form-control textarea-height"><?php if ($descrip) echo $descrip ?></textarea>
-					<?php if ($descripValidate){echo "<div class=\"alert alert-warning\">" .$descripValidate. "</div>"; } ?>
+					<?php if ($animValidate){echo "<div class=\"alert alert-warning\">" .$animValidate. "</div>"; } ?>
 				</div>
 				
-				<div class="form-group">
-					<label for="imgfile">Image File:</label>
-					<input class="" type="file" name="imgfile">
-						
-					<?php if ($fileValidate){echo "<div class=\"alert alert-warning\">" .$fileValidate. "</div>"; } ?>
-				</div>
-
+				
+				<?php include("../includes/main-form.php"); ?>
+				
+				
 				<div class="form-group">
 					<label for="edit">&nbsp;</label>
 					<input type="submit" name="edit" class="btn btn-info" value="Update">
@@ -171,14 +232,14 @@
 	
 	<div class="col-md-7">
 		<?php
-		
+		// echo "$uploadedImgBool and $imgTitle and $displayImg";
 		if ($uploadedImgBool){
 			if ($imgTitle && $displayImg){
-				echo "<a class=\"\" href=\"../single.php?img=$newImgId\">";
-				echo "<img class=\"uploadedimg\" src=\"$displayImg\" alt=\"$imgTitle\" title=\"$filename\"> <br>"; 
+				echo "<a class=\"\" href=\"../single.php?anim=$newAnimId\">";
+				echo "<img class=\"uploadedimg\" src=\"$displayImg\" alt=\"$imgTitle\" title=\"$newFilename\"> <br>"; 
 				echo "</a>";
 				if ($newfile){
-					echo "<br><br> <p>File Name: $filename</p>";
+					echo "<br><br> <p>File Name: $newFilename</p>";
 					echo "<p>File Type: $filetype</p>";
 					echo "<p>File Size: $displayFilesize</p>";
 				}
@@ -191,14 +252,14 @@
 
 <script>
         document.querySelector('.deletebtn').addEventListener('click', (evt) => {
-            <?php if ($newAnimId != "") echo "let alertbool = confirm(\"Are you sure you wish to delete $title?\");"; ?>
+            <?php if ($newAnimId != "") echo "let alertbool = confirm(\"Are you sure you wish to delete $seriesN?\");"; ?>
             if (!alertbool) evt.preventDefault();
         });
         document.querySelector('.select-img').addEventListener('click', (evt) => {
             let options = document.querySelector('.select-img');
             // console.log(options.value);
             if (options.value != "" && Number(options.value) != previousVal) {
-                window.location.href = "update.php?imgid=" + options.value;
+                window.location.href = "update.php?animid=" + options.value;
             }
         });
 </script>
