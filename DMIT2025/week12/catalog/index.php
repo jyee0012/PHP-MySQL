@@ -100,6 +100,38 @@
 				$gSports = trim($_POST['genre_sports']);
 				$gSuper = trim($_POST['genre_super']);
 				
+				$genreAppend = array();
+				if ($gAction){
+					array_push($genreAppend, "jye_genre_action like '1'");
+				}
+				if ($gAdven){
+					array_push($genreAppend, "jye_genre_adventure like '1'");
+				}
+				if ($gComedy){
+					array_push($genreAppend, "jye_genre_comedy like '1'");
+				}
+				if ($gFantasy){
+					array_push($genreAppend, "jye_genre_fantasy like '1'");
+				}
+				if ($gGame){
+					array_push($genreAppend, "jye_genre_game like '1'");
+				}
+				if ($gMagic){
+					array_push($genreAppend, "jye_genre_magic like '1'");
+				}
+				if ($gMystery){
+					array_push($genreAppend, "jye_genre_mystery like '1'");
+				}
+				if ($gSchool){
+					array_push($genreAppend, "jye_genre_school like '1'");
+				}
+				if ($gSports){
+					array_push($genreAppend, "jye_genre_sports like '1'");
+				}
+				if ($gSuper){
+					array_push($genreAppend, "jye_genre_super like '1'");
+				}
+
 			}
 			
 			if($displaybyrange && $minrange && $maxrange){
