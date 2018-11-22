@@ -13,8 +13,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <!-- This page doesn't exist. It's just a sample link. YOU need to change it! -->
-                <!-- <li><a href="<?php echo BASE_URL ?>index.php">Contact List</a></li> -->
+                <!-- This page doesn't exist. It's just a sample link. YOU need to change it! -->                
+                <li><a href="<?php echo BASE_URL ?>display.php">Display</a></li>
                 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>

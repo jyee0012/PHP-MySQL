@@ -125,15 +125,7 @@
 		if ($boolValidateOK){
 			if ($newfile){
 				// insertUniqueFileId($imgfile);
-				$original = $originalsFolder . $imgfile;
-				$thumbnail = $thumbsFolder . $imgfile;
-				$display = $displayFolder . $imgfile;
-				$removedOld = false;
-				if ($imgfile != ""){
-					$removedOld = (unlink($original) && unlink($thumbnail) && unlink($display));
-				}else{
-					$removedOld = true;
-				}
+				$removedOld = check_old_images($imgfile);
 				if ($removedOld){
 					if (move_uploaded_file($filetempname, $originalsFolder . $newFilename)){
 						$thisFile = $originalsFolder . $newFilename;
@@ -222,7 +214,7 @@
 				<div class="form-group">
 					<label for="edit">&nbsp;</label>
 					<input type="submit" name="edit" class="btn btn-info" value="Update">
-					<a href="delete.php?imgid=<?php echo $newImgId; ?>" class="btn btn-info deletebtn">Delete <i class="fas fa-trash-alt"></i></a>
+					<a href="delete.php?animid=<?php echo $newAnimId; ?>" class="btn btn-info deletebtn">Delete <i class="fas fa-trash-alt"></i></a>
 				</div>
 
 
@@ -235,11 +227,11 @@
 		// echo "$uploadedImgBool and $imgTitle and $displayImg";
 		if ($uploadedImgBool){
 			if ($imgTitle && $displayImg){
-				echo "<a class=\"\" href=\"../single.php?anim=$newAnimId\">";
-				echo "<img class=\"uploadedimg\" src=\"$displayImg\" alt=\"$imgTitle\" title=\"$newFilename\"> <br>"; 
-				echo "</a>";
+				echo "<img class=\"uploadedimg\" src=\"$displayImg\" alt=\"$imgTitle\" title=\"$newFilename\"> <br><br>"; 
+				echo "<a class=\"btn btn-primary\" href=\"../single.php?anim=$newAnimId\">Go to Item View";
+				echo "</a><br>";
 				if ($newfile){
-					echo "<br><br> <p>File Name: $newFilename</p>";
+					echo "<br> <p>File Name: $newFilename</p>";
 					echo "<p>File Type: $filetype</p>";
 					echo "<p>File Size: $displayFilesize</p>";
 				}

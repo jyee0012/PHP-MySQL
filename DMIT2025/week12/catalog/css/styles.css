@@ -101,5 +101,9 @@ a:hover{
 }
 .filterbtn{
   margin-bottom:1rem;
-  display:block;
+  /* display:block; */
+}
+.base-filters .btn-group-vertical{
+    width: 300px;
+    display:block;
 }

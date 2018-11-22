@@ -1,5 +1,6 @@
 <?php $admincontrol = true; ?>
 <?php include("../includes/admin-check.php"); ?>
+<?php include("../includes/functions.php"); ?>
 <?php include("../includes/mysql_connect.php"); ?>
 
 <?php
@@ -11,15 +12,8 @@
         $result = mysqli_query($con, "SELECT * from $database WHERE $id = '$newAnimId'") or die(mysqli_error($con));
         while ($row = mysqli_fetch_array($result)){
             $filename = $row['jye_series_image'];
-            $original = $originalsFolder . $filename;
-            $thumbnail = $thumbsFolder . $filename;
-            $display = $displayFolder . $filename;
         }
-        if ($filename == ""){
-            $canDelete = true;
-        }else{
-            $canDelete = (unlink($original) && unlink($thumbnail) && unlink($display));
-        }
+        $canDelete = check_old_images($filename);
         if ($canDelete) {
             mysqli_query($con, "DELETE from $database WHERE $id = '$newAnimId'") or die(mysqli_error($con));
             header("Location:update.php");

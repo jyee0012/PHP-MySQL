@@ -121,4 +121,17 @@ function files_uploaded($fileInput = 'imgfile') {
  return false;
 }
 
+function check_old_images($imgfile) {
+  
+  $original = $originalsFolder . $imgfile;
+  $thumbnail = $thumbsFolder . $imgfile;
+  $display = $displayFolder . $imgfile;
+  if ($imgfile == ""){
+      $canDelete = true;
+  }else{
+      $canDelete = (unlink($original) && unlink($thumbnail) && unlink($display));
+  }
+  return $canDelete;
+}
+
 ?>

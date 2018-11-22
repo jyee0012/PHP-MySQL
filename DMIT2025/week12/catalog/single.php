@@ -45,7 +45,7 @@
                 }else{
                     $displayTitle = $row['jye_series_name'];
                     $displayImg =  $row['jye_series_image'];
-                    $displayDescrip = $row['jye_description'];
+                    $displayDescrip = nl2br($row['jye_description']);
                     $imgUrl = "imagefiles/display/" . $displayImg;
                 }
                 

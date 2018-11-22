@@ -11,12 +11,12 @@
 				</div>
 				<div class="form-group">
 					<label for="serieslength">Series Length:</label>
-					<input type="text" class="form-control" id="serieslength" name="serieslength" value="<?php if ($seriesL) echo $seriesL ?>">
+					<input type="number" class="form-control" id="serieslength" name="serieslength" placeholder="Number of episodes" value="<?php if ($seriesL) echo $seriesL ?>">
 					<?php if ($seriesLValidate){echo "<div class=\"alert alert-warning\">" .$seriesLValidate. "</div>"; } ?>
 				</div>
 				<div class="form-group">
 					<label for="episodelength">Episode Length:</label>
-					<input type="text" class="form-control" id="episodelength" name="episodelength" placeholder="Number of minutes per episode" value="<?php if ($episodeL) echo $episodeL ?>">
+					<input type="number" class="form-control" id="episodelength" name="episodelength" placeholder="Number of minutes per episode" value="<?php if ($episodeL) echo $episodeL ?>">
 					<?php if ($episodeLValidate){echo "<div class=\"alert alert-warning\">" .$episodeLValidate. "</div>"; } ?>
 				</div>
 				<div class="form-group">
@@ -48,7 +48,7 @@
 				</div>
 				<div class="form-group">
 					<label for="datasrc">Data Source:</label>
-					<input type="text" class="form-control" id="datasrc" name="datasrc" placeholder="Source of info" value="<?php if ($dataSrc) echo $dataSrc ?>">
+					<input type="text" class="form-control" id="datasrc" name="datasrc" placeholder="Source of info (i.e. URL-link)" value="<?php if ($dataSrc) echo $dataSrc ?>">
 					<?php if ($dataSrcValidate){echo "<div class=\"alert alert-warning\">" .$dataSrcValidate. "</div>"; } ?>
 				</div>
 
@@ -112,8 +112,10 @@
 				</div>
 
 				<div class="form-group">
-					<label for="imgfile">Thumbnail Image:</label>
-					<input class="" type="file" name="imgfile">
-						
-					<?php if ($fileValidate){echo "<div class=\"alert alert-warning\">" .$fileValidate. "</div>"; } ?>
+					<span class="control-fileupload">
+						<label class="custom-file-label" for="imgfile">Thumbnail Image:</label>
+						<input class="custom-file-input" type="file" name="imgfile">
+					</span>
+					<?php if ($fileValidate){echo "<div class=\"invalid-feedback\">" .$fileValidate. "</div>"; } ?>
+					<!-- alert alert-warning -->
 				</div>
