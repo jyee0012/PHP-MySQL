@@ -127,8 +127,8 @@
 				// insertUniqueFileId($imgfile);
 				$removedOld = check_old_images($imgfile);
 				if ($removedOld){
-					if (move_uploaded_file($filetempname, $originalsFolder . $newFilename)){
-						$thisFile = $originalsFolder . $newFilename;
+					$thisFile = $originalsFolder . $newFilename;
+					if (move_uploaded_file($filetempname, $thisFile)){
 						resizeImage($thisFile, $thumbsFolder, 150); // thumbs
 						resizeImage($thisFile, $displayFolder, 600); // display
 					}else{

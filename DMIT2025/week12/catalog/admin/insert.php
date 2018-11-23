@@ -90,12 +90,8 @@
 		if ($boolValidateOK){
 
 			if ($newfile){
-				insertUniqueFileId($imgfile);
-				$original = $originalsFolder . $imgfile;
-				$thumbnail = $thumbsFolder . $imgfile;
-				$display = $displayFolder . $imgfile;
-				if (move_uploaded_file($filetempname, $originalsFolder . $filename)){
-					$thisFile = $originalsFolder . $filename;
+				$thisFile = $originalsFolder . $newFilename;
+				if (move_uploaded_file($filetempname, $thisFile)){
 					resizeImage($thisFile, $thumbsFolder, 150); // thumbs
 					resizeImage($thisFile, $displayFolder, 600); // display
 				}else{

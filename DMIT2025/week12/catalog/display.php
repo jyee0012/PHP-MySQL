@@ -208,6 +208,7 @@
 		</form>
 		<h3>Default Filters</h3>
 		<div class="base-filters">
+			<?php //$baseroot = $_SERVER['PHP_SELF']; ?>
 			<a class="btn btn-primary filterbtn" href="<?php echo $thisroot; ?>">All Series</a>
 			<a class="btn btn-primary filterbtn" href="<?php echo $thisroot; ?>?displayby=jye_airing&displayvalue=1">Currently Airing</a>
 			<div class="btn-group-vertical">
