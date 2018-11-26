@@ -93,7 +93,6 @@ a:hover{
 }
 .description{
   display: block;
-  margin: 3rem;
   padding: 3rem;
   /* font-size: 1.2rem; */
   font-weight: normal;
@@ -116,8 +115,38 @@ a:hover{
 }
 .series-url{
     font-size: 1.4rem;
-    text-align: center;
+    text-align: left;
 }
 .series-info{
   font-size: 1.6rem;
+  border-radius: 0.5rem;
+  background-color:rgba(161, 10, 10, 0.562);
+}
+
+.suggestionsBox {
+  position: relative;
+  left: 30px;
+  margin: 10px 0px 0px 0px;
+  width: 200px;
+  background-color: #212427;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  border: 2px solid #000;	
+  color: #fff;
+}
+
+.suggestionList {
+  margin: 0px;
+  padding: 0px;
+}
+
+.suggestionList li {
+  
+  margin: 0px 0px 3px 0px;
+  padding: 3px;
+  cursor: pointer;
+}
+
+.suggestionList li:hover {
+  background-color: #659CD8;
 }

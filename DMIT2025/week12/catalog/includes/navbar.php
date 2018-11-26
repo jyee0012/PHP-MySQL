@@ -28,11 +28,18 @@
             <div class="form-group col-md-6">
                 <form name="myform" style="padding-top: 1rem" class="formstyle" method="post" action="<?php echo BASE_URL ?>search.php">
                     <div class="input-group">
-                        <input type="text" class="form-control searchsubmit-text" id="searchterm" name="searchterm" value="">
+                        <input type="text" class="form-control searchsubmit-text" id="inputString" name="searchterm" value="" onkeyup="lookup(this.value);" onblur="fill();">
                         <?php if ($searchValidate){echo "<div class=\"alert alert-warning\">" .$searchValidate. "</div>"; } ?>
                         <span class="input-group-btn">
                             <button type="submit" class="btn btn-primary searchsubmit" name="searchsubmit">Search <i class="fas fa-search"></i></button>
                         </span>
+                        
+                        <div class="suggestionsBox" id="suggestions" style="display: none;">
+                            <img src="upArrow.png" style="position: relative; top: -12px; left: 30px;" alt="upArrow" />
+                            <div class="suggestionList" id="autoSuggestionsList">
+                                &nbsp;
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>

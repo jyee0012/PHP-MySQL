@@ -112,6 +112,12 @@
             $boolValidateOK = false;
             $seriesNValidate .= "<p>Please enter the series name between 2 and 50 characters</p>";
 		}
+		
+		if (strlen($descrip) < 10 || $descrip == ""){
+            $boolValidateOK = false;
+            $descripValidate .= "<p>Please enter description/synopsis of at least 10 characters</p>";
+		}
+		
 		if ($newfile){
 			if ($mbFilesize > 5){
 				$boolValidateOK = false;

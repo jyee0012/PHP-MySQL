@@ -35,6 +35,30 @@ if ($loggedin){
     <!-- FontAwesome CDN -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
+    <!-- AutoComplete Function -->
+    <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+
+    <script type="text/javascript">
+      function lookup(inputString) {
+        if(inputString.length == 0) {
+          // Hide the suggestion box.
+          $('#suggestions').hide();
+        } else {
+          $.post("rpc.php", {queryString: ""+inputString+""}, function(data){
+            if(data.length >0) {
+              $('#suggestions').show();
+              $('#autoSuggestionsList').html(data);
+            }
+          });
+        }
+      } // lookup
+      
+      function fill(thisValue) {
+        $('#inputString').val(thisValue);
+        setTimeout("$('#suggestions').hide();", 200);
+      }
+    </script>
+
     <!-- Emoticon Script -->
     <script type="text/javascript">
     function emoticon(text) {

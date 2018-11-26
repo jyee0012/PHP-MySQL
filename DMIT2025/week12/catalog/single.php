@@ -167,8 +167,8 @@
             <div class="col-md-6">
                 <div class="display">
                 <figure>
-                    <img class="series-img center" src="<?php echo $imgUrl ?>" alt="<?php echo $displayTitle ?>" title="<?php echo $displayImg ?>">
-                    <?php if ($dataSrc != "") { echo "<figcaption class=\"series-url\">Data Source: <a href=\"<$dataSrc\">$displayTitle</a></figcaption>"; } ?>
+                    <img class="series-img" src="<?php echo $imgUrl ?>" alt="<?php echo $displayTitle ?>" title="<?php echo $displayImg ?>">
+                    <?php if ($dataSrc != "") { echo "<figcaption class=\"series-url\">Data Source: <a href=\"$dataSrc\">$displayTitle</a></figcaption>"; } ?>
                 </figure>
                 </div>
                 <div class="series-info">
