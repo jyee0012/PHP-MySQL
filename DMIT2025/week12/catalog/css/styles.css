@@ -93,7 +93,8 @@ a:hover{
 }
 .description{
   display: block;
-  padding: 3rem;
+  margin: 2rem;
+  padding: 1.5rem;
   /* font-size: 1.2rem; */
   font-weight: normal;
   line-height: 1.2;
@@ -120,7 +121,10 @@ a:hover{
 .series-info{
   font-size: 1.6rem;
   border-radius: 0.5rem;
-  background-color:rgba(161, 10, 10, 0.562);
+  max-width: 600px;
+  background-color:rgb(237, 223, 255);
+  margin: 1rem;
+  padding: 0.5rem;
 }
 
 .suggestionsBox {

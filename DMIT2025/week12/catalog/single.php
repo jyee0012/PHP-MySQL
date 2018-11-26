@@ -164,7 +164,7 @@
                     echo "<a class=\"editbtn\" href=\"admin/update.php?animid=$anim\">Edit</a>"
                 ?>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-7">
                 <div class="display">
                 <figure>
                     <img class="series-img" src="<?php echo $imgUrl ?>" alt="<?php echo $displayTitle ?>" title="<?php echo $displayImg ?>">
@@ -194,7 +194,7 @@
                     ?>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <?php
                     if ($displayDescrip != "") {
                         echo "<div class=\"description\">";
