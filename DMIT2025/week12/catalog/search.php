@@ -49,27 +49,27 @@
                 // }
 
                 $sql = "SELECT * FROM $database WHERE MATCH 
-                (jye_title,jye_description) 
-                AGAINST ('$searchterm' IN BOOLEAN MODE) ORDER BY gid DESC "; //$limstring
+                (jye_series_name,jye_alter_name,jye_description) 
+                AGAINST ('$searchterm' IN BOOLEAN MODE) ORDER BY $id DESC "; //$limstring
 
 
                 $result = mysqli_query($con, $sql) or die(mysqli_error($con));
                 if(mysqli_num_rows($result) > 0){
                     echo "<div class=\"gallery\">";
                     while ($row = mysqli_fetch_array($result)){
-                        $displayTitle = $row['jye_title'];
+                        $displayTitle = $row['jye_series_name'];
                         $displayDescrip = $row['jye_description'];
-                        $displayImg = $row['jye_filename'];
-                        $imgid = $row[$id];
-                        echo "<a href=\"single.php?img=$imgid\">";
-                        echo "<div class=\"image\">"; 
-                        echo "<div class=\"thumbs\">"; 
-                        echo "<img class=\"center\" src=\"galleryfiles/thumbs/$displayImg\" alt=\"$displayTitle\" title=\"$displayImg\">";
-                        echo "</div>";
-                        echo "<div class=\"imgtitle\">"; 
-                        echo "<h4>$displayTitle</h4>";
-                        echo "</div>";
-                        echo "</div>";
+                        $displayImg = $row['jye_series_image'];
+                        $animid = $row[$id];
+                        echo "<a href=\"single.php?anim=$animid\">";
+                            echo "<div class=\"image\">"; 
+                                echo "<div class=\"thumbs\">"; 
+                                    echo "<img class=\"center\" src=\"imagefiles/thumbs/$displayImg\" alt=\"$displayTitle\" title=\"$displayImg\">";
+                                echo "</div>";
+                                echo "<div class=\"imgtitle\">"; 
+                                    echo "<h4>$displayTitle</h4>";
+                                echo "</div>";
+                            echo "</div>";
                         echo "</a>";
                     }
                     echo "</div>";

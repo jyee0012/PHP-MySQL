@@ -220,7 +220,7 @@
 			<div class="btn-group-vertical">
 				<h4>Episode Length (Amount of Minutes)</h4>
 				<a class="btn btn-primary filterbtn" href="<?php echo $thisroot; ?>?displaybyrange=jye_episode_length&minrange=10&maxrange=14">Short (10-14)</a>
-				<a class="btn btn-primary filterbtn" href="<?php echo $thisroot; ?>?displaybyrange=jye_episode_length&minrange=20&maxrange=26">Regular (20-26)</a>
+				<a class="btn btn-primary filterbtn" href="<?php echo $thisroot; ?>?displaybyrange=jye_episode_length&minrange=20&maxrange=30">Regular (20-30)</a>
 				<a class="btn btn-primary filterbtn" href="<?php echo $thisroot; ?>?displaybyrange=jye_episode_length&minrange=30&maxrange=60">Long (30-60)</a>
 			</div>
 			<div class="btn-group">

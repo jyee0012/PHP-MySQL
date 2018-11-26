@@ -93,11 +93,14 @@ a:hover{
 }
 .description{
   display: block;
-  margin: 0 2rem;
-  font-size: 1.2rem;
+  margin: 3rem;
+  padding: 3rem;
+  /* font-size: 1.2rem; */
   font-weight: normal;
   line-height: 1.2;
-  text-align: center;
+  text-align: left;
+  border-radius: 1rem;
+  background-color:#eee
 }
 .filterbtn{
   margin-bottom:1rem;
@@ -106,4 +109,15 @@ a:hover{
 .base-filters .btn-group-vertical{
     width: 300px;
     display:block;
+}
+.series-img{
+  max-width: 600px;
+  max-height: 400px;
+}
+.series-url{
+    font-size: 1.4rem;
+    text-align: center;
+}
+.series-info{
+  font-size: 1.6rem;
 }

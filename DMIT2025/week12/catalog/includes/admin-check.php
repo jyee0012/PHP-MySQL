@@ -6,16 +6,16 @@ if (strpos($_SERVER['PHP_SELF'], 'admin') !== false){
     $thisRef = "admin/" . $thisRef;
 }
 $loggedin = true;
-if (isset($_GET['imgid'])){
-    $newImgId = trim($_GET['imgid']);
-    $newImgId = filter_var($newImgId, FILTER_SANITIZE_NUMBER_INT);
-    $newRef = "?imgid=$newImgId";
+if (isset($_GET['animid'])){
+    $newAnimId = trim($_GET['animid']);
+    $newAnimId = filter_var($newAnimId, FILTER_SANITIZE_NUMBER_INT);
+    $newRef = "?animid=$newAnimId";
     $thisRef .= $newRef;
 }
-if (isset($_GET['img'])){
-    $newImgId = trim($_GET['img']);
-    $newImgId = filter_var($newImgId, FILTER_SANITIZE_NUMBER_INT);
-    $newRef = "?img=$newImgId";
+if (isset($_GET['anim'])){
+    $newAnimId = trim($_GET['anim']);
+    $newAnimId = filter_var($newAnimId, FILTER_SANITIZE_NUMBER_INT);
+    $newRef = "?anim=$newAnimId";
     $thisRef .= $newRef;
 }
 $_SESSION['ref'] = $thisRef;

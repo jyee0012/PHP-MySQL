@@ -47,11 +47,115 @@
                     $displayImg =  $row['jye_series_image'];
                     $displayDescrip = nl2br($row['jye_description']);
                     $imgUrl = "imagefiles/display/" . $displayImg;
+
+                    $alterN = $row['jye_alter_name'];
+                    $seriesL = $row['jye_series_length'];
+                    $episodeL = $row['jye_episode_length'];
+                    $rating = $row['jye_rating'];
+                    $seriesSrc = $row['jye_series_source'];
+                    $dataSrc = $row['jye_data_source'];
+                    $airing = $row['jye_airing'];
+                    $descrip = $row['jye_description'];
+            
+                    $gAction = $row['jye_genre_action'];
+                    $gAdven = $row['jye_genre_adventure'];
+                    $gComedy = $row['jye_genre_comedy'];
+                    $gFantasy = $row['jye_genre_fantasy'];
+                    $gGame = $row['jye_genre_game'];
+                    $gMagic = $row['jye_genre_magic'];
+                    $gMystery = $row['jye_genre_mystery'];
+                    $gSchool = $row['jye_genre_school'];
+                    $gSports = $row['jye_genre_sports'];
+                    $gSuper = $row['jye_genre_super'];
+                    
+                    $genreArray = array();
+                    if ($gAction){
+                        array_push($genreArray, "Action");
+                    }
+                    if ($gAdven){
+                        array_push($genreArray, "Adventure");
+                    }
+                    if ($gComedy){
+                        array_push($genreArray, "Comedy");
+                    }
+                    if ($gFantasy){
+                        array_push($genreArray, "Fantasy");
+                    }
+                    if ($gGame){
+                        array_push($genreArray, "Game");
+                    }
+                    if ($gMagic){
+                        array_push($genreArray, "Magic");
+                    }
+                    if ($gMystery){
+                        array_push($genreArray, "Mystery");
+                    }
+                    if ($gSchool){
+                        array_push($genreArray, "School");
+                    }
+                    if ($gSports){
+                        array_push($genreArray, "Sports");
+                    }
+                    if ($gSuper){
+                        array_push($genreArray, "Supernatural");
+                    }
+                    
+                    $seriesGenre = "";
+                    foreach($genreArray as $k => $v){
+                        if($k == 0){ //if this is the first array item
+                            $seriesGenre .= $v;
+                        }else{
+                            $seriesGenre .= ", " . $v;
+                        }
+                    }
+                    
+                    $actualRating = strtoupper($rating);
+                    $displayRating = "Not Rated";
+                    $displaySrc = "Unknown";
+                    switch($rating){
+                        case "g":
+                        $displayRating = "General Audience";
+                        break;
+                        case "pg":
+                        $displayRating = "Parental Guidance";
+                        break;
+                        case "pg-13":
+                        $displayRating = "Parents Strongly Cautioned";
+                        break;
+                        case "r":
+                        $displayRating = "Restricted";
+                        break;
+                        case "nc-17":
+                        $displayRating = "Adult Only";
+                        break;
+                    }
+                    switch($seriesSrc){
+                        case "ln":
+                        $displaySrc = "Light Novel";
+                        break;
+                        case "vn":
+                        $displaySrc = "Visual Novel";
+                        break;
+                        case "manga":
+                        $displaySrc = "Manga";
+                        break;
+                        case "game":
+                        $displaySrc = "Game";
+                        break;
+                        case "original":
+                        $displaySrc = "Original";
+                        break;
+                        case "other":
+                        $displaySrc = "Other";
+                        break;
+                    }
+
+
                 }
                 
             }
         ?>
-        <div class="gallery">
+        <div class="gallery row">
             <div class="imgbtn">
                 <?php
                     if ($prevImg) { echo "<a class=\"btn btn-default prevbtn\" href=\"single.php?anim=$prevImg\"><<</a>";}
@@ -60,11 +164,44 @@
                     echo "<a class=\"editbtn\" href=\"admin/update.php?animid=$anim\">Edit</a>"
                 ?>
             </div>
-            <div class="display">
-                <img class="center" src="<?php echo $imgUrl ?>" alt="<?php echo $displayTitle ?>" title="<?php echo $displayImg ?>">
+            <div class="col-md-6">
+                <div class="display">
+                <figure>
+                    <img class="series-img center" src="<?php echo $imgUrl ?>" alt="<?php echo $displayTitle ?>" title="<?php echo $displayImg ?>">
+                    <?php if ($dataSrc != "") { echo "<figcaption class=\"series-url\">Data Source: <a href=\"<$dataSrc\">$displayTitle</a></figcaption>"; } ?>
+                </figure>
+                </div>
+                <div class="series-info">
+                    <?php
+                        if ($alterN != "") {echo "<p>Also known as: $alterN</p>"; }
+                        if ($seriesGenre != "") {echo "<p>Genres: $seriesGenre</p>"; }
+                        if ($seriesL != ""|| $episodeL != "") { 
+                            echo "<p>";
+                            if ($seriesL){
+                                echo "$seriesL episodes";
+                            }
+                            if ($seriesL && $episodeL){
+                                echo ", ";
+                            }
+                            if ($episodeL){
+                                echo "$episodeL minutes per episode";
+                            }
+                            echo "</p>"; 
+                        }
+                        if ($airing) { echo "<p>Status: Currently Airing</p>"; } else { echo "<p>Status: Finished/Not Yet Aired</p>"; }
+                        if ($displaySrc != "") { echo "<p>Source: $displaySrc</p>"; }
+                        if ($displayRating != "") { echo "<p>Rating: $displayRating ($actualRating)</p>"; }
+                    ?>
+                </div>
             </div>
-            <div class="description">
-                <p><?php echo $displayDescrip; ?></p>
+            <div class="col-md-6">
+                <?php
+                    if ($displayDescrip != "") {
+                        echo "<div class=\"description\">";
+                        echo "<p>$displayDescrip</p>";
+                        echo "</div>";
+                    }
+                ?>
             </div>
         </div>
 
