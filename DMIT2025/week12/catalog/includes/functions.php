@@ -123,9 +123,13 @@ function files_uploaded($fileInput = 'imgfile') {
 
 function check_old_images($imgfile) {
   
+  $originalsFolder = "../imagefiles/";
+  $thumbsFolder = $originalsFolder . "thumbs/";
+  $displayFolder = $originalsFolder . "display/";
   $original = $originalsFolder . $imgfile;
   $thumbnail = $thumbsFolder . $imgfile;
   $display = $displayFolder . $imgfile;
+  // echo "$original: $thumbnail/$display";
   if ($imgfile == ""){
       $canDelete = true;
   }else{
