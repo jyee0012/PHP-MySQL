@@ -9,12 +9,12 @@
                 <span class="icon-bar"></span>
             </button>
             <!--  We'll use the BASE_URL set in the connection script to resolve all links -->
-            <a class="navbar-brand" href="<?php echo BASE_URL ?>index.php"><?php echo $pageTitle; ?></a>
+            <a class="navbar-brand" href="<?php echo BASE_URL ?>index.php"><?php echo $webTitle; ?></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <!-- This page doesn't exist. It's just a sample link. YOU need to change it! -->                
-                <li><a href="<?php echo BASE_URL ?>display.php">Display</a></li>
+                <li><a href="<?php echo BASE_URL ?>list.php">List</a></li>
                 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
@@ -26,9 +26,9 @@
             </ul>
 
             <div class="form-group col-md-6">
-                <form name="myform" style="padding-top: 1rem" class="formstyle" method="post" action="<?php echo BASE_URL ?>search.php">
+                <form name="myform"style="padding-top: 1rem" class="formstyle" method="post" action="<?php echo BASE_URL ?>search.php">
                     <div class="input-group">
-                        <input type="text" class="form-control searchsubmit-text" id="inputString" name="searchterm" value="" onkeyup="lookup(this.value);" onblur="fill();">
+                        <input type="text" class="form-control searchsubmit-text" id="inputString" name="searchterm" value="" autocomplete="off" onkeyup="lookup(this.value);" onblur="fill();">
                         <?php if ($searchValidate){echo "<div class=\"alert alert-warning\">" .$searchValidate. "</div>"; } ?>
                         <span class="input-group-btn">
                             <button type="submit" class="btn btn-primary searchsubmit" name="searchsubmit">Search <i class="fas fa-search"></i></button>
@@ -54,6 +54,20 @@
                     evt.preventDefault();
                     alert("Please enter something to search.");
                 }
+            });
+            $('form[autocomplete="off"] input, input[autocomplete="off"]').each(function () {
+
+                var input = this;
+                var name = $(input).attr('name');
+                var id = $(input).attr('id');
+
+                $(input).removeAttr('name');
+                $(input).removeAttr('id');
+
+                setTimeout(function () {
+                    $(input).attr('name', name);
+                    $(input).attr('id', id);
+                }, 1);
             });
         </script>
 

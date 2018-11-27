@@ -59,6 +59,7 @@
 	<div class="col-md-8">
 		<h1>Anime - Catalog <?php if ($pgNum) echo "Page $pgNum";?></h1>
 		<?php
+			// echo "$sqlAddon";
 			$sql = "SELECT * from $database $sqlAddon DESC $limstring";
 			$result = mysqli_query($con, $sql) or die(mysqli_error($con));
 		?>

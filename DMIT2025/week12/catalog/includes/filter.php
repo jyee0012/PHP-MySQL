@@ -84,11 +84,12 @@
         $queryFilter = "";
         foreach($genreAppend as $k => $v){
             if($k == 0){ //if this is the first array item
-                $queryFilter .= " WHERE " . $v;
+                $queryFilter .= " WHERE (" . $v;
             }else{
                 $queryFilter .= " OR " . $v;
             }
         }
+        if ($queryFilter != "") $queryFilter .= ")";
 
         foreach($andAppend as $k => $v){
             if($k == 0 && $queryFilter == ""){ //if this is the first array item

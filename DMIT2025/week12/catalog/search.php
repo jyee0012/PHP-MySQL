@@ -47,9 +47,9 @@
                 // }else{
                 //     $limstring = "LIMIT 0,$limit";
                 // }
-
+                // ,jye_alter_name,jye_description
                 $sql = "SELECT * FROM $database WHERE MATCH 
-                (jye_series_name,jye_alter_name,jye_description) 
+                (jye_series_name) 
                 AGAINST ('$searchterm' IN BOOLEAN MODE) ORDER BY $id DESC "; //$limstring
 
 
