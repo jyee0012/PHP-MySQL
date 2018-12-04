@@ -12,6 +12,7 @@
     $searchlimit = $_GET['searchlimit'];
     $sqlAddon = '';
     $hasOrderby = false;
+    $searchQuery = $_GET['searchquery'];
 
     $baseQuery = parse_url($_SERVER['REQUEST_URI']);
     $eachQuery = explode("&", $baseQuery['query']);
@@ -44,41 +45,70 @@
         $andAppend = array();
         if ($rating != ""){
             array_push($andAppend, "jye_rating like '$rating'");
+            $rateQuery = strtoupper($rating);
+            $searchQuery .= "Rated: $rateQuery";
         }
         if ($seriesSrc != ""){
             array_push($andAppend, "jye_series_source like '$seriesSrc'");
+            switch($seriesSrc){
+                case "ln":
+                $srcQuery = "Light Novel";
+                break;
+                case "vn":
+                $srcQuery = "Visual Novel";
+                break;
+                case "game":
+                $srcQuery = "Video Game";
+                break;
+                default:
+                $srcQuery = ucfirst($seriesSrc);
+                break;
+            }
+            if ($searchQuery != "") $searchQuery .= " and ";
+            $searchQuery .= "Source: $srcQuery";
         }
 
+        $genreQuery = array();
         $genreAppend = array();
         if ($gAction){
             array_push($genreAppend, "jye_genre_action like '1'");
+            array_push($genreQuery, "Action");
         }
         if ($gAdven){
             array_push($genreAppend, "jye_genre_adventure like '1'");
+            array_push($genreQuery, "Adventure");
         }
         if ($gComedy){
             array_push($genreAppend, "jye_genre_comedy like '1'");
+            array_push($genreQuery, "Comedy");
         }
         if ($gFantasy){
             array_push($genreAppend, "jye_genre_fantasy like '1'");
+            array_push($genreQuery, "Fantasy");
         }
         if ($gGame){
             array_push($genreAppend, "jye_genre_game like '1'");
+            array_push($genreQuery, "Game");
         }
         if ($gMagic){
             array_push($genreAppend, "jye_genre_magic like '1'");
+            array_push($genreQuery, "Magic");
         }
         if ($gMystery){
             array_push($genreAppend, "jye_genre_mystery like '1'");
+            array_push($genreQuery, "Mystery");
         }
         if ($gSchool){
             array_push($genreAppend, "jye_genre_school like '1'");
+            array_push($genreQuery, "School");
         }
         if ($gSports){
             array_push($genreAppend, "jye_genre_sports like '1'");
+            array_push($genreQuery, "Sports");
         }
         if ($gSuper){
             array_push($genreAppend, "jye_genre_super like '1'");
+            array_push($genreQuery, "Supernatural");
         }
 
         $queryFilter = "";
@@ -99,7 +129,17 @@
             }
         }
         
-
+        foreach($genreQuery as $k => $v){
+            if($k == 0){ //if this is the first array item
+                if ($searchQuery != ""){
+                    $searchQuery .= " and ";
+                }
+                $searchQuery .= "Genre: " . $v;
+            }else{
+                $searchQuery .= " or " . $v;
+            }
+        }
+        // echo "$searchQuery";
         $sqlAddon = $queryFilter; 
     }
 

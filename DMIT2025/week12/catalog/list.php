@@ -57,7 +57,7 @@
 </style>
 <div class="row">
 	<div class="col-md-8">
-		<h1>Anime - Catalog <?php if ($pgNum) echo "Page $pgNum";?></h1>
+		<h1>Anime - <?php if($searchQuery == "") {$searchQuery = "Catalog ";} echo "$searchQuery"; if ($pgNum) echo "Page $pgNum";?></h1>
 		<?php
 			// echo "$sqlAddon";
 			$sql = "SELECT * from $database $sqlAddon DESC $limstring";
@@ -211,30 +211,30 @@
 		<div class="base-filters">
 			<?php //$baseroot = $_SERVER['PHP_SELF']; ?>
 			<a class="btn btn-primary filterbtn" href="<?php echo $thisroot; ?>">All Series</a>
-			<a class="btn btn-primary filterbtn" href="<?php echo $thisroot; ?>?displayby=jye_airing&displayvalue=1">Currently Airing</a>
+			<a class="btn btn-primary filterbtn" href="<?php echo $thisroot; ?>?displayby=jye_airing&displayvalue=1&searchquery=Currently%20Airing">Currently Airing</a>
 			<div class="btn-group-vertical">
 				<h4>Series Length (Amount of Episodes)</h4>
-				<a class="btn btn-primary filterbtn" href="<?php echo $thisroot; ?>?displaybyrange=jye_series_length&minrange=10&maxrange=14">Quarter Season (10-14)</a>
-				<a class="btn btn-primary filterbtn" href="<?php echo $thisroot; ?>?displaybyrange=jye_series_length&minrange=20&maxrange=26">Half Season (20-26)</a>
-				<a class="btn btn-primary filterbtn" href="<?php echo $thisroot; ?>?displaybyrange=jye_series_length&minrange=48&maxrange=56">Full Season (48-56)</a>
+				<a class="btn btn-primary filterbtn" href="<?php echo $thisroot; ?>?displaybyrange=jye_series_length&minrange=10&maxrange=14&searchquery=Quarter%20Season">Quarter Season (10-14)</a>
+				<a class="btn btn-primary filterbtn" href="<?php echo $thisroot; ?>?displaybyrange=jye_series_length&minrange=20&maxrange=26&searchquery=Half%20Season">Half Season (20-26)</a>
+				<a class="btn btn-primary filterbtn" href="<?php echo $thisroot; ?>?displaybyrange=jye_series_length&minrange=48&maxrange=56&searchquery=Full%20Season">Full Season (48-56)</a>
 			</div>
 			<div class="btn-group-vertical">
 				<h4>Episode Length (Amount of Minutes)</h4>
-				<a class="btn btn-primary filterbtn" href="<?php echo $thisroot; ?>?displaybyrange=jye_episode_length&minrange=10&maxrange=14">Short (10-14)</a>
-				<a class="btn btn-primary filterbtn" href="<?php echo $thisroot; ?>?displaybyrange=jye_episode_length&minrange=20&maxrange=30">Regular (20-30)</a>
-				<a class="btn btn-primary filterbtn" href="<?php echo $thisroot; ?>?displaybyrange=jye_episode_length&minrange=30&maxrange=60">Long (30-60)</a>
+				<a class="btn btn-primary filterbtn" href="<?php echo $thisroot; ?>?displaybyrange=jye_episode_length&minrange=10&maxrange=14&searchquery=Short%20Episodes">Short (10-14)</a>
+				<a class="btn btn-primary filterbtn" href="<?php echo $thisroot; ?>?displaybyrange=jye_episode_length&minrange=20&maxrange=30&searchquery=Regular%20Episodes">Regular (20-30)</a>
+				<a class="btn btn-primary filterbtn" href="<?php echo $thisroot; ?>?displaybyrange=jye_episode_length&minrange=30&maxrange=60&searchquery=Long%20Episodes">Long (30-60)</a>
 			</div>
 			<div class="btn-group">
 				<div class="btn-group-vertical">
 					<h4>Series Source</h4>
-					<a class="btn btn-primary filterbtn" href="<?php echo $thisroot; ?>?displayby=jye_series_source&displayvalue=ln">Light Novel</a>
-					<a class="btn btn-primary filterbtn" href="<?php echo $thisroot; ?>?displayby=jye_series_source&displayvalue=manga">Manga</a>
+					<a class="btn btn-primary filterbtn" href="<?php echo $thisroot; ?>?displayby=jye_series_source&displayvalue=ln&searchquery=Source:%20Light%20Novel">Light Novel</a>
+					<a class="btn btn-primary filterbtn" href="<?php echo $thisroot; ?>?displayby=jye_series_source&displayvalue=manga&searchquery=Source:%20Manga">Manga</a>
 				</div>
 				<div class="btn-group-vertical">
 					<h4>Ratings</h4>
-					<a class="btn btn-primary filterbtn" href="<?php echo $thisroot; ?>?displayby=jye_rating&displayvalue=r">Restricted</a>
-					<a class="btn btn-primary filterbtn" href="<?php echo $thisroot; ?>?displayby=jye_rating&displayvalue=pg-13">PG-13</a>
-					<a class="btn btn-primary filterbtn" href="<?php echo $thisroot; ?>?displayby=jye_rating&displayvalue=g">General Audience</a>
+					<a class="btn btn-primary filterbtn" href="<?php echo $thisroot; ?>?displayby=jye_rating&displayvalue=r&searchquery=Rated:%20R">Restricted</a>
+					<a class="btn btn-primary filterbtn" href="<?php echo $thisroot; ?>?displayby=jye_rating&displayvalue=pg-13&searchquery=Rated:%20PG-13">PG-13</a>
+					<a class="btn btn-primary filterbtn" href="<?php echo $thisroot; ?>?displayby=jye_rating&displayvalue=g&searchquery=Rated:%20G">General Audience</a>
 				</div>
 			</div>
 		</div>

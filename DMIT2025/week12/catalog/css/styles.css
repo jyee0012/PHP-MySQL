@@ -24,6 +24,7 @@ body {
   /* background-color: #cdcdcd; */
   /* width: 1200px; */
   /* width: inherit; */
+  padding: 2.5rem 0;
   padding-left:2.5rem;
   border-radius: 1rem;
   border: 1px solid black;
@@ -41,7 +42,7 @@ body {
 .thumbs{
   height: 100px;
   width: 200px;
-  
+  margin-top: 22px;
 }
 .thumbs img{
   max-width: 150px;
@@ -78,8 +79,8 @@ a:hover{
 }
 .imgbtn{
   display: block;
-  margin: 1.5rem auto;
-  text-align: center;
+  /* margin: 1.5rem auto; */
+  /* text-align: center; */
 }
 .imgbtn p{
   margin: 0 2rem;
@@ -90,6 +91,7 @@ a:hover{
 }
 .editbtn{
   display: block;
+  margin-left: 2rem;
 }
 .description{
   display: block;
@@ -111,8 +113,8 @@ a:hover{
     display:block;
 }
 .series-img{
-  max-width: 600px;
-  max-height: 400px;
+  /* max-width: 600px; */
+  /* max-height: 800px; */
 }
 .series-url{
     font-size: 1.4rem;
@@ -122,7 +124,7 @@ a:hover{
   font-size: 1.6rem;
   border-radius: 0.5rem;
   max-width: 600px;
-  background-color:rgb(237, 223, 255);
+  /* background-color:rgb(237, 223, 255); */
   margin: 1rem;
   padding: 0.5rem;
 }
@@ -155,4 +157,13 @@ a:hover{
 
 .suggestionList li:hover {
   background-color: #659CD8;
+}
+.item-title{
+  float: left;
+  display: inline-block
+}
+.item-btns{
+  float: right;
+  margin-right: 3.5rem;
+  margin-top: 1rem;
 }

@@ -156,12 +156,16 @@
             }
         ?>
         <div class="gallery row">
-            <div class="imgbtn">
+            <div class="imgbtn clearfix">
                 <?php
-                    if ($prevImg) { echo "<a class=\"btn btn-default prevbtn\" href=\"single.php?anim=$prevImg\"><<</a>";}
+                    echo "<div class=\"item-title\">";
                     echo "<p>$displayTitle</p>";
+                    echo "<a class=\"editbtn\" href=\"admin/update.php?animid=$anim\">Edit</a>";
+                    echo "</div>";
+                    echo "<div class=\"item-btns\">";
+                    if ($prevImg) { echo "<a class=\"btn btn-default prevbtn\" href=\"single.php?anim=$prevImg\"><<</a>";}
                     if ($nextImg) { echo "<a class=\"btn btn-default nextbtn\" href=\"single.php?anim=$nextImg\">>></a>";}
-                    echo "<a class=\"editbtn\" href=\"admin/update.php?animid=$anim\">Edit</a>"
+                    echo "</div>";
                 ?>
             </div>
             <div class="col-md-7">
@@ -171,36 +175,41 @@
                     <?php if ($dataSrc != "") { echo "<figcaption class=\"series-url\">Data Source: <a href=\"$dataSrc\">$displayTitle</a></figcaption>"; } ?>
                 </figure>
                 </div>
-                <div class="series-info">
-                    <?php
-                        if ($alterN != "") {echo "<p>Also known as: $alterN</p>"; }
-                        if ($seriesGenre != "") {echo "<p>Genres: $seriesGenre</p>"; }
-                        if ($seriesL != ""|| $episodeL != "") { 
-                            echo "<p>";
-                            if ($seriesL){
-                                echo "$seriesL episodes";
-                            }
-                            if ($seriesL && $episodeL){
-                                echo ", ";
-                            }
-                            if ($episodeL){
-                                echo "$episodeL minutes per episode";
-                            }
-                            echo "</p>"; 
-                        }
-                        if ($airing) { echo "<p>Status: Currently Airing</p>"; } else { echo "<p>Status: Finished/Not Yet Aired</p>"; }
-                        if ($displaySrc != "") { echo "<p>Source: $displaySrc</p>"; }
-                        if ($displayRating != "") { echo "<p>Rating: $displayRating ($actualRating)</p>"; }
-                    ?>
-                </div>
+                <!-- <div class="series-info">
+                </div> -->
             </div>
             <div class="col-md-5">
                 <?php
-                    if ($displayDescrip != "") {
-                        echo "<div class=\"description\">";
-                        echo "<p>$displayDescrip</p>";
-                        echo "</div>";
+                    echo "<div class=\"description\">";
+                    if ($alterN != "") {echo "<p><b>Also known as:</b> $alterN</p>"; }
+                    if ($seriesGenre != "") {echo "<p><b>Genres:</b> $seriesGenre</p>"; }
+                    if ($seriesL != ""|| $episodeL != "") { 
+                        echo "<p>";
+                        if ($seriesL){
+                            echo "$seriesL episodes";
+                        }
+                        if ($seriesL && $episodeL){
+                            echo ", ";
+                        }
+                        if ($episodeL){
+                            echo "$episodeL minutes per episode";
+                        }
+                        echo "</p>"; 
                     }
+                    echo "<p><b>Status:</b>";
+                    if ($airing) { echo " Currently Airing</p>"; } else { echo " Finished/Not Yet Aired</p>"; }
+                    if ($displaySrc != "") { echo "<p><b>Source:</b> $displaySrc</p>"; }
+                    if ($displayRating != "") { echo "<p><b>Rating:</b> $displayRating ($actualRating)</p>"; }
+                    echo "<br><br>";
+                ?>
+                <?php
+                    if ($displayDescrip != "") {
+                        // echo "<div class=\"description\">";
+                        echo "<h5><b>Synopsis:</b></h5>";
+                        echo "<p>$displayDescrip</p>";
+                        // echo "</div>";
+                    }
+                    echo "</div>";
                 ?>
             </div>
         </div>
