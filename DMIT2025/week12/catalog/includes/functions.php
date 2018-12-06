@@ -137,5 +137,26 @@ function check_old_images($imgfile) {
   }
   return $canDelete;
 }
+function renderListItem($result, $actualTitle = "", $actualLink = ""){
+  $id = "aid";
+  while ($row = mysqli_fetch_array($result)){
+      $displayTitle = $row['jye_series_name'];
+      $displayDescrip = $row['jye_description'];
+      $displayImg = $row['jye_series_image'];
+      $animid = $row[$id];
+      if ($actualLink == "") $actualLink = "single.php?anim=$animid";
+      if ($actualTitle != "") $displayTitle = $actualTitle;
+    echo "<a href=\"$actualLink\">";
+    echo	"<div class=\"image\">";
+    echo		"<div class=\"thumbs\">"; 
+    echo				"<img class=\"center\" src=\"imagefiles/thumbs/$displayImg\" alt=\"$displayTitle\" title=\"$displayImg\">";
+    echo		"</div>";
+    echo		"<div class=\"imgtitle\">";
+    echo			"<h4>$displayTitle</h4>";
+    echo		"</div>";
+    echo	"</div>";
+    echo "</a>";
+  }
+}
 
 ?>

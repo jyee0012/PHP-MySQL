@@ -136,7 +136,7 @@
 	}
 
 ?>
-<div class="row">
+<div class="row catalog-form">
 	<h2>Insert</h2>
 	<div class="col-md-5">
 		<form id="myform" name="myform" class="formwidth" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data">

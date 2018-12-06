@@ -45,7 +45,7 @@ if (isset($_POST['login'])){
 <?php include("../includes/header.php"); ?>
 
 <div class="container">
-
+<div class="login-form">
 <h1>Login</h1>
 
 <form name="myform" class="formstyle" method="post" action="login.php">
@@ -64,7 +64,7 @@ if (isset($_POST['login'])){
 <?php if ($errorMsg) {echo "<div class=\"alert alert-warning\">" . $errorMsg . "</div>"; } ?>
 
 </form>
-
+</div>
 
 </div><!-- / .container -->
 

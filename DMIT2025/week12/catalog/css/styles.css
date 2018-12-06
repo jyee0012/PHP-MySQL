@@ -22,12 +22,11 @@ body {
 }
 .gallery{
   /* background-color: #cdcdcd; */
-  /* width: 1200px; */
   /* width: inherit; */
   padding: 2.5rem 0;
   padding-left:2.5rem;
   border-radius: 1rem;
-  border: 1px solid black;
+  border: 1px solid rgba(172, 172, 172, 0.432);
 }
 .image{
   background-color: #cdcdcd;
@@ -91,7 +90,8 @@ a:hover{
 }
 .editbtn{
   display: block;
-  margin-left: 2rem;
+  margin-right: 2rem;
+  float: right;
 }
 .description{
   display: block;
@@ -115,6 +115,7 @@ a:hover{
 .series-img{
   /* max-width: 600px; */
   /* max-height: 800px; */
+  border-radius: 1rem;
 }
 .series-url{
     font-size: 1.4rem;
@@ -160,10 +161,21 @@ a:hover{
 }
 .item-title{
   float: left;
-  display: inline-block
+  display: inline-block;
+  color: #666;
 }
 .item-btns{
   float: right;
   margin-right: 3.5rem;
   margin-top: 1rem;
+}
+.item-view{
+  width: 1140px;
+  margin-left: 0px;
+}
+.catalog-form{
+  margin-left: 0px;
+}
+.login-form{
+  margin-left: -15px;
 }

@@ -155,12 +155,11 @@
                 
             }
         ?>
-        <div class="gallery row">
+        <div class="gallery row item-view">
             <div class="imgbtn clearfix">
                 <?php
                     echo "<div class=\"item-title\">";
                     echo "<p>$displayTitle</p>";
-                    echo "<a class=\"editbtn\" href=\"admin/update.php?animid=$anim\">Edit</a>";
                     echo "</div>";
                     echo "<div class=\"item-btns\">";
                     if ($prevImg) { echo "<a class=\"btn btn-default prevbtn\" href=\"single.php?anim=$prevImg\"><<</a>";}
@@ -210,6 +209,8 @@
                         // echo "</div>";
                     }
                     echo "</div>";
+                    
+                    echo "<a class=\"editbtn\" href=\"admin/update.php?animid=$anim\">Edit</a>";
                 ?>
             </div>
         </div>

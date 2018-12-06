@@ -188,7 +188,7 @@
 	}
 
 ?>
-<div class="row">
+<div class="row catalog-form">
 	<h2>Update</h2>
 	<div class="col-md-5">
 		<form id="myform" name="myform" class="formwidth" method="post" action="<?php echo htmlspecialchars($_SERVER['REQUEST_URI']); ?>" enctype="multipart/form-data">
